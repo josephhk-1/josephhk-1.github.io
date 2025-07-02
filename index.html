@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +22,8 @@
             --bg-dark-secondary: #161b22;
             --border-dark-stroke: #30363d;
             --text-light: #c9d1d9;
-            --text-accent: #2dd4bf; /* Emerald Green */
-            --bg-accent: #2dd4bf;
+            --text-accent-start: #2dd4bf; /* Teal 400 */
+            --text-accent-end: #22d3ee;   /* Cyan 400 */
             --bg-accent-hover: #14b8a6;
         }
 
@@ -32,84 +31,79 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark-main);
             color: var(--text-light);
+            transition: background-color 0.3s ease;
         }
         .font-pixel { font-family: 'Pixelify Sans', sans-serif; }
         .font-arabic { font-family: 'Cairo', sans-serif; }
         
         .bg-dark-secondary { background-color: var(--bg-dark-secondary); }
         .border-dark-stroke { border-color: var(--border-dark-stroke); }
-        .text-accent { color: var(--text-accent); }
-        .bg-accent { background-color: var(--bg-accent); }
-        .bg-accent-hover:hover { background-color: var(--bg-accent-hover); }
-        .border-accent { border-color: var(--text-accent); }
+        .text-gradient-accent {
+            background: linear-gradient(to right, var(--text-accent-start), var(--text-accent-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .bg-gradient-accent {
+             background: linear-gradient(to right, var(--text-accent-start), var(--text-accent-end));
+        }
+        .bg-gradient-accent-hover:hover {
+            background: linear-gradient(to right, #14b8a6, #06b6d4); /* Darker shades for hover */
+        }
+        .border-accent { border-color: var(--text-accent-start); }
         
-        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.6, 0.2, 0.1, 1), transform 0.8s cubic-bezier(0.6, 0.2, 0.1, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* ===== Animations & Transitions ===== */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .reveal.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* Staggered animation for children */
+        .reveal-stagger.visible > * {
+            opacity: 0;
+            animation: fadeIn-stagger 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes fadeIn-stagger {
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .progress-bar-container { width: 100%; height: 8px; background-color: var(--border-dark-stroke); border-radius: 4px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; background-color: var(--bg-accent); width: 0%; border-radius: 4px; transition: width 1.5s ease-in-out; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(to right, var(--text-accent-start), var(--text-accent-end)); width: 0%; border-radius: 4px; transition: width 1.5s ease-in-out; }
 
-        .timeline-item::after { content: ''; position: absolute; width: 25px; height: 25px; right: -12.5px; background-color: var(--bg-dark-main); border: 4px solid var(--text-accent); top: 15px; border-radius: 50%; z-index: 1; }
+        .timeline-item::after { content: ''; position: absolute; width: 25px; height: 25px; right: -12.5px; background-color: var(--bg-dark-main); border: 4px solid var(--text-accent-start); top: 15px; border-radius: 50%; z-index: 1; }
         .timeline-item.right-timeline::after{ left: -12.5px; }
-        
         html[dir="rtl"] .timeline-item::after { left: -12.5px; right: auto; }
         html[dir="rtl"] .timeline-item.right-timeline::after{ right: -12.5px; left: auto; }
         
-        .page { display: none; }
-        .page.active { display: block; }
-        
-        .lang-switcher .lang-dropdown { display: none; }
-        .lang-switcher:hover .lang-dropdown { display: block; }
+        /* ===== Page Transitions ===== */
+        .page {
+            display: none;
+            animation: pageFadeIn 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes pageFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
         /* Lightbox and Carousel Styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox.active { display: flex; }
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 80vh;
-            border-radius: 8px;
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .lightbox-close:hover { color: var(--text-accent); }
-        .carousel-container {
-            position: relative;
-            max-width: 800px;
-            margin: auto;
-        }
+        .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
+        .lightbox.active { display: flex; animation: pageFadeIn 0.3s; }
+        .lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+        .lightbox-close:hover { color: var(--text-accent-start); }
+        .carousel-container { position: relative; max-width: 800px; margin: auto; }
         .carousel-slide { display: none; }
-        .carousel-prev, .carousel-next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -30px;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
-            background-color: rgba(0,0,0,0.5);
-        }
+        .carousel-prev, .carousel-next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -30px; color: white; font-weight: bold; font-size: 20px; transition: 0.6s ease; border-radius: 0 3px 3px 0; user-select: none; background-color: rgba(0,0,0,0.5); }
         .carousel-next { right: 0; border-radius: 3px 0 0 3px; }
         html[dir="rtl"] .carousel-next { left: 0; right: auto; border-radius: 0 3px 3px 0; }
         html[dir="rtl"] .carousel-prev { right: 0; left: auto; border-radius: 3px 0 0 3px; }
@@ -123,21 +117,21 @@
     <header class="bg-dark-secondary/80 backdrop-blur-lg sticky top-0 z-50 border-b border-dark-stroke">
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
-                <a href="#" class="home-link text-xl font-bold font-pixel text-white">Joseph HAMDY KAMAL</a>
+                <a href="#" class="home-link text-xl font-bold font-pixel text-white hover:text-gray-300 transition-colors">Joseph HAMDY KAMAL</a>
                 <div class="flex items-center">
                     <ul class="hidden md:flex items-center space-x-6">
-                        <li><a href="#about" class="nav-link hover:text-accent transition-colors" data-translate="nav_about">À propos</a></li>
-                        <li><a href="#engagement" class="nav-link hover:text-accent transition-colors" data-translate="nav_values">Valeurs</a></li>
-                        <li><a href="#skills" class="nav-link hover:text-accent transition-colors" data-translate="nav_skills">Compétences</a></li>
-                        <li><a href="#portfolio" class="nav-link hover:text-accent transition-colors" data-translate="nav_portfolio">Portfolio</a></li>
-                        <li><a href="#experience" class="nav-link hover:text-accent transition-colors" data-translate="nav_experience">Parcours</a></li>
-                        <li><a href="#page-cv" class="page-link hover:text-accent transition-colors" data-translate="nav_cv">Mon CV</a></li>
-                        <li><a href="#contact" class="nav-link hover:text-accent transition-colors" data-translate="nav_contact">Contact</a></li>
+                        <li><a href="#about" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_about">À propos</a></li>
+                        <li><a href="#engagement" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_values">Valeurs</a></li>
+                        <li><a href="#skills" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_skills">Compétences</a></li>
+                        <li><a href="#portfolio" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_portfolio">Portfolio</a></li>
+                        <li><a href="#experience" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_experience">Parcours</a></li>
+                        <li><a href="#page-cv" class="page-link hover:text-gradient-accent transition-colors" data-translate="nav_cv">Mon CV</a></li>
+                        <li><a href="#contact" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_contact">Contact</a></li>
                         <li class="lang-switcher relative">
-                            <button class="flex items-center p-2 rounded-md hover:bg-gray-700">
+                            <button id="lang-switcher-btn" class="flex items-center p-2 rounded-md hover:bg-gray-700">
                                 <img id="current-lang-flag" src="https://flagcdn.com/fr.svg" alt="Français" class="w-6 h-auto rounded-sm">
                             </button>
-                            <ul class="lang-dropdown absolute right-0 mt-2 py-1 w-36 bg-dark-secondary border border-dark-stroke rounded-md shadow-lg">
+                            <ul id="lang-dropdown" class="hidden absolute right-0 mt-2 py-1 w-36 bg-dark-secondary border border-dark-stroke rounded-md shadow-lg">
                                 <li><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700" data-lang="fr"><img src="https://flagcdn.com/fr.svg" alt="Français" class="w-5 h-auto mr-3 rounded-sm"> <span data-translate="lang_fr">Français</span></a></li>
                                 <li><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700" data-lang="en"><img src="https://flagcdn.com/gb.svg" alt="English" class="w-5 h-auto mr-3 rounded-sm"> <span data-translate="lang_en">English</span></a></li>
                                 <li><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700" data-lang="it"><img src="https://flagcdn.com/it.svg" alt="Italiano" class="w-5 h-auto mr-3 rounded-sm"> <span data-translate="lang_it">Italiano</span></a></li>
@@ -146,11 +140,11 @@
                         </li>
                     </ul>
                     <div class="md:hidden flex items-center">
-                        <div class="lang-switcher relative">
-                            <button class="flex items-center p-2 rounded-md hover:bg-gray-700">
+                         <div class="lang-switcher relative">
+                            <button id="lang-switcher-btn-mobile" class="flex items-center p-2 rounded-md hover:bg-gray-700">
                                 <img id="current-lang-flag-mobile" src="https://flagcdn.com/fr.svg" alt="Français" class="w-6 h-auto rounded-sm">
                             </button>
-                             <ul class="lang-dropdown absolute right-0 mt-2 py-1 w-36 bg-dark-secondary border border-dark-stroke rounded-md shadow-lg">
+                            <ul id="lang-dropdown-mobile" class="hidden absolute right-0 mt-2 py-1 w-36 bg-dark-secondary border border-dark-stroke rounded-md shadow-lg">
                                 <li><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700" data-lang="fr"><img src="https://flagcdn.com/fr.svg" alt="Français" class="w-5 h-auto mr-3 rounded-sm"> <span data-translate="lang_fr">Français</span></a></li>
                                 <li><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700" data-lang="en"><img src="https://flagcdn.com/gb.svg" alt="English" class="w-5 h-auto mr-3 rounded-sm"> <span data-translate="lang_en">English</span></a></li>
                                 <li><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-gray-700" data-lang="it"><img src="https://flagcdn.com/it.svg" alt="Italiano" class="w-5 h-auto mr-3 rounded-sm"> <span data-translate="lang_it">Italiano</span></a></li>
@@ -166,35 +160,113 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden">
             <ul class="flex flex-col items-center space-y-4 py-4 bg-dark-secondary">
-                 <li><a href="#about" class="nav-link hover:text-accent transition-colors" data-translate="nav_about">À propos</a></li>
-                 <li><a href="#engagement" class="nav-link hover:text-accent transition-colors" data-translate="nav_values">Valeurs</a></li>
-                 <li><a href="#skills" class="nav-link hover:text-accent transition-colors" data-translate="nav_skills">Compétences</a></li>
-                 <li><a href="#portfolio" class="nav-link hover:text-accent transition-colors" data-translate="nav_portfolio">Portfolio</a></li>
-                 <li><a href="#experience" class="nav-link hover:text-accent transition-colors" data-translate="nav_experience">Parcours</a></li>
-                 <li><a href="#page-cv" class="page-link hover:text-accent transition-colors" data-translate="nav_cv">Mon CV</a></li>
-                 <li><a href="#contact" class="nav-link hover:text-accent transition-colors" data-translate="nav_contact">Contact</a></li>
+                 <li><a href="#about" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_about">À propos</a></li>
+                 <li><a href="#engagement" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_values">Valeurs</a></li>
+                 <li><a href="#skills" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_skills">Compétences</a></li>
+                 <li><a href="#portfolio" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_portfolio">Portfolio</a></li>
+                 <li><a href="#experience" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_experience">Parcours</a></li>
+                 <li><a href="#page-cv" class="page-link hover:text-gradient-accent transition-colors" data-translate="nav_cv">Mon CV</a></li>
+                 <li><a href="#contact" class="nav-link hover:text-gradient-accent transition-colors" data-translate="nav_contact">Contact</a></li>
             </ul>
         </div>
     </header>
 
     <div id="main-content" class="page active">
         <main>
-            <section id="welcome-hero" class="h-[85vh] flex items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80');"><div class="absolute inset-0 bg-black/70"></div><div class="container mx-auto px-4 z-10"><h1 class="text-5xl md:text-7xl font-bold text-white font-pixel reveal">Joseph HAMDY KAMAL</h1><p class="text-xl md:text-2xl text-gray-300 mt-4 reveal" style="transition-delay: 200ms;" data-translate="hero_subtitle">Professionnel polyvalent et passionné</p></div></section>
-            <section id="about" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="about_title">À Propos de Moi</h2><div class="h-1 w-20 bg-accent mx-auto mt-4"></div></div><div class="grid md:grid-cols-5 gap-10 items-center"><div class="md:col-span-2 reveal"><img src="photo-profil.jpg" alt="Photo de Joseph Hamdy Kamal" class="rounded-lg shadow-2xl mx-auto border-4 border-dark-stroke" onerror="this.onerror=null;this.src='https://placehold.co/400x500/161b22/c9d1d9?text=Photo+non+trouv\u00e9e';"></div><div class="md:col-span-3 reveal" style="transition-delay: 200ms;"><p class="mb-4 text-lg" data-translate="about_text">Je suis un professionnel polyvalent et passionné, doté d'une expérience riche et diversifiée dans les domaines du design, du marketing digital et de la gestion de projet. Je suis capable de m'adapter rapidement à de nouveaux environnements et de mettre mes compétences au service de votre entreprise pour contribuer à son développement et à son succès.</p><div class="flex flex-wrap gap-x-8 gap-y-4 mt-6"><div><h4 class="font-bold text-accent" data-translate="email">Email</h4><p>eng.joseph.h.kamal@gmail.com</p></div><div><h4 class="font-bold text-accent" data-translate="phone">Téléphone</h4><p>+33 07 67 11 70 91</p></div><div><h4 class="font-bold text-accent" data-translate="location">Localisation</h4><p data-translate="location_details">Deuil-la-Barre, 95170, France</p></div><div><h4 class="font-bold text-accent" data-translate="website">Site Web</h4><p><a href="https://joe4design.com/" target="_blank" class="hover:underline">joe4design.com</a></p></div></div></div></div></div></section>
-            <section id="engagement" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="values_title">Valeurs & Engagement ESS</h2><div class="h-1 w-20 bg-accent mx-auto mt-4"></div><p class="max-w-3xl mx-auto mt-4 text-gray-400" data-translate="values_subtitle">Je crois en un design qui a du sens et un impact positif. Mon parcours est jalonné d'expériences dans l'Économie Sociale et Solidaire, qui ont forgé mes valeurs fondamentales.</p></div><div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"><div class="text-center p-6 border border-dark-stroke rounded-lg reveal"><h3 class="text-xl font-bold text-accent mb-2" data-translate="value1_title">Impact Communautaire</h3><p class="text-sm" data-translate="value1_text">Participer activement à des projets qui renforcent le lien social et promeuvent la paix et le dialogue.</p></div><div class="text-center p-6 border border-dark-stroke rounded-lg reveal" style="transition-delay: 100ms;"><h3 class="text-xl font-bold text-accent mb-2" data-translate="value2_title">Inclusion & Dialogue</h3><p class="text-sm" data-translate="value2_text">Accompagner et soutenir les porteurs de projets issus de la diversité pour favoriser l'inclusion sociale et économique.</p></div><div class="text-center p-6 border border-dark-stroke rounded-lg reveal" style="transition-delay: 200ms;"><h3 class="text-xl font-bold text-accent mb-2" data-translate="value3_title">Innovation Sociale</h3><p class="text-sm" data-translate="value3_text">Utiliser la créativité et la technologie pour répondre à des défis sociaux et environnementaux concrets.</p></div><div class="text-center p-6 border border-dark-stroke rounded-lg reveal" style="transition-delay: 300ms;"><h3 class="text-xl font-bold text-accent mb-2" data-translate="value4_title">Collaboration</h3><p class="text-sm" data-translate="value4_text">L'esprit d'équipe et la co-création sont au cœur de ma démarche pour construire des solutions durables.</p></div></div></div></section>
-            <section id="skills" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="skills_title">Compétences Techniques</h2><div class="h-1 w-20 bg-accent mx-auto mt-4"></div></div><div class="grid md:grid-cols-2 gap-x-12 gap-y-8"><div class="skill-item reveal"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill1_name">UI/UX Design (Figma, Sketch)</span><span class="font-medium text-gray-300">90%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="90%"></div></div></div><div class="skill-item reveal"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill2_name">Outils Visuels (Photoshop, Illustrator, Canva)</span><span class="font-medium text-gray-300">85%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="85%"></div></div></div><div class="skill-item reveal"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill3_name">Design d'Intérieur (SketchUp, AutoCAD, 3D Max)</span><span class="font-medium text-gray-300">95%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="95%"></div></div></div><div class="skill-item reveal"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill4_name">Marketing Digital (SEO, SEM, Google Ads)</span><span class="font-medium text-gray-300">80%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="80%"></div></div></div><div class="skill-item reveal"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill5_name">E-commerce (WordPress, PrestaShop)</span><span class="font-medium text-gray-300">85%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="85%"></div></div></div><div class="skill-item reveal"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill6_name">Gestion de Projet (Notion, Agile/Scrum)</span><span class="font-medium text-gray-300">90%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="90%"></div></div></div></div></div></section>
-            <section id="portfolio" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="portfolio_title">Portfolio</h2><p class="text-gray-400 mt-2" data-translate="portfolio_subtitle">Cliquez sur un projet pour voir les détails.</p><div class="h-1 w-20 bg-accent mx-auto mt-4"></div></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><a href="#page-morpholia" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden reveal border border-dark-stroke group"><div class="overflow-hidden"><img src="uiux.jpg" alt="Projet MORPHOLIA" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project1_title">Projet MORPHOLIA</h3><p class="mt-2 text-gray-400 h-24" data-translate="project1_desc">Conception et développement d'un site e-commerce pour vêtements grande taille.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-accent text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project1_tag">UI/UX Design</span></div></div></a><a href="#page-design" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden reveal border border-dark-stroke group" style="transition-delay: 100ms;"><div class="overflow-hidden"><img src="interior.jpg" alt="Projet 2" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project2_title">Design d'Intérieur</h3><p class="mt-2 text-gray-400 h-24" data-translate="project2_desc">Création de designs sur-mesure pour cuisines, salles de bain et autres espaces.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-accent text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project2_tag">Conception 3D</span></div></div></a><a href="#page-communication" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden reveal border border-dark-stroke group" style="transition-delay: 200ms;"><div class="overflow-hidden"><img src="communication.jpg" alt="Projet 3" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project3_title">Communication & Marketing</h3><p class="mt-2 text-gray-400 h-24" data-translate="project3_desc">Création de supports graphiques et mise en œuvre de campagnes de marketing digital.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-accent text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project3_tag">Marketing Digital</span></div></div></a></div></div></section>
-            <section id="experience" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-16 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="experience_title">Parcours</h2><div class="h-1 w-20 bg-accent mx-auto mt-4"></div></div><div class="max-w-4xl mx-auto relative wrap overflow-hidden p-2 md:p-10"><div class="absolute border-opacity-20 border-gray-700 h-full border left-1/2 -translate-x-1/2"></div><h3 class="text-2xl font-bold text-accent mb-12 text-center font-pixel" data-translate="experience_subtitle">Expériences Professionnelles</h3><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-accent" data-translate="exp1_date">Depuis mars 2025</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp1_title">Designer d'intérieur et graphique</h4><p class="text-sm text-gray-400" data-translate="exp1_company">Joe 4 Design, France</p></div></div><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-accent" data-translate="exp2_date">Depuis déc. 2024</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp2_title">Designer d'Intérieur</h4><p class="text-sm text-gray-400" data-translate="exp2_company">Groupe Nawat Al Talaea, Arabie Saoudite</p></div></div><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-accent" data-translate="exp3_date">Sept. 2023 - Mars 2024</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp3_title">UI/UX Designer</h4><p class="text-sm text-gray-400" data-translate="exp3_company">Projet MORPHOLIA - Label École</p></div></div><h3 class="text-2xl font-bold text-accent mt-20 mb-12 text-center font-pixel" data-translate="education_title">Formations</h3><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-accent" data-translate="edu1_date">Depuis sept. 2023</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu1_title">Chef de projet e-commerce (BAC+3)</h4><p class="text-sm text-gray-400" data-translate="edu1_school">Label Ecole, Noisy-le-Sec</p></div></div><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-accent" data-translate="edu2_date">2022 - 2023</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu2_title">Diplôme universitaire Français C1</h4><p class="text-sm text-gray-400" data-translate="edu2_school">Université Paris Est Créteil (UPEC)</p></div></div><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-accent" data-translate="edu3_date">2015 - 2020</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu3_title">Ingénierie Mécanique & Mécatronique</h4><p class="text-sm text-gray-400" data-translate="edu3_school">Istituto Salesiano Don Bosco, Le Caire</p></div></div></div></div></section>
-            <section id="interests" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="interests_title">Mes Intérêts, Ma Force</h2><div class="h-1 w-20 bg-accent mx-auto mt-4"></div><p class="max-w-3xl mx-auto mt-4 text-gray-400" data-translate="interests_subtitle">Mes passions nourrissent ma créativité et ma façon d'aborder les défis. Les échecs m'ont enseigné la stratégie, le cinéma affine mon sens de la narration visuelle, et l'origami me rappelle l'importance de la précision et de la patience.</p></div></div></section>
-            <section id="contact" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="contact_title">Me Contacter</h2><div class="h-1 w-20 bg-accent mx-auto mt-4"></div></div><div class="max-w-2xl mx-auto bg-[#10151b] p-8 rounded-lg border border-dark-stroke"><form action="https://formspree.io/f/xqabdaro" method="POST"><div class="grid md:grid-cols-2 gap-4 mb-4"><input type="text" name="Nom" data-translate-placeholder="form_name" placeholder="Nom" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-accent" required><input type="email" name="Email" data-translate-placeholder="form_email" placeholder="Email *" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-accent" required></div><input type="text" name="Objet" data-translate-placeholder="form_subject" placeholder="Objet" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-accent"><textarea name="Message" data-translate-placeholder="form_message" placeholder="Votre message" rows="5" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-accent" required></textarea><button type="submit" class="w-full bg-accent text-gray-900 font-bold py-3 px-6 rounded-md hover:bg-accent-hover transition-colors" data-translate="form_button">Envoyer</button></form></div></div></section>
+            <section id="welcome-hero" class="h-[85vh] flex items-center justify-center text-center bg-cover bg-center bg-fixed" style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80');"><div class="absolute inset-0 bg-black/70"></div><div class="container mx-auto px-4 z-10"><h1 class="text-5xl md:text-7xl font-bold text-white font-pixel reveal">Joseph HAMDY KAMAL</h1><p class="text-xl md:text-2xl text-gray-300 mt-4 reveal" style="transition-delay: 200ms;" data-translate="hero_subtitle">Professionnel polyvalent et passionné</p></div></section>
+            
+            <section id="about" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="about_title">À Propos de Moi</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="grid md:grid-cols-5 gap-10 items-center"><div class="md:col-span-2 reveal"><img src="photo-profil.jpg" alt="Photo de Joseph Hamdy Kamal" class="rounded-lg shadow-2xl mx-auto border-4 border-dark-stroke" onerror="this.onerror=null;this.src='https://placehold.co/400x500/161b22/c9d1d9?text=Photo+non+trouv\u00e9e';"></div><div class="md:col-span-3 reveal" style="transition-delay: 200ms;"><p class="mb-4 text-lg" data-translate="about_text">Je suis un professionnel polyvalent et passionné, doté d'une expérience riche et diversifiée dans les domaines du design, du marketing digital et de la gestion de projet. Je suis capable de m'adapter rapidement à de nouveaux environnements et de mettre mes compétences au service de votre entreprise pour contribuer à son développement et à son succès.</p><div class="flex flex-wrap gap-x-8 gap-y-4 mt-6"><div><h4 class="font-bold text-gradient-accent" data-translate="email">Email</h4><p>eng.joseph.h.kamal@gmail.com</p></div><div><h4 class="font-bold text-gradient-accent" data-translate="phone">Téléphone</h4><p>+33 07 67 11 70 91</p></div><div><h4 class="font-bold text-gradient-accent" data-translate="location">Localisation</h4><p data-translate="location_details">Deuil-la-Barre, 95170, France</p></div><div><h4 class="font-bold text-gradient-accent" data-translate="website">Site Web</h4><p><a href="https://joe4design.com/" target="_blank" class="hover:underline">joe4design.com</a></p></div></div></div></div></div></section>
+            
+            <section id="engagement" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="values_title">Valeurs & Engagement ESS</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div><p class="max-w-3xl mx-auto mt-4 text-gray-400" data-translate="values_subtitle">Je crois en un design qui a du sens et un impact positif. Mon parcours est jalonné d'expériences dans l'Économie Sociale et Solidaire, qui ont forgé mes valeurs fondamentales.</p></div><div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 reveal-stagger"><div class="text-center p-6 border border-dark-stroke rounded-lg bg-dark-main/30" style="animation-delay: 0ms;"><div class="text-gradient-accent mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-people-fill mx-auto" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/></svg></div><h3 class="text-xl font-bold text-white mb-2" data-translate="value1_title">Impact Communautaire</h3><p class="text-sm text-gray-400" data-translate="value1_text">Participer activement à des projets qui renforcent le lien social et promeuvent la paix et le dialogue.</p></div><div class="text-center p-6 border border-dark-stroke rounded-lg bg-dark-main/30" style="animation-delay: 100ms;"><div class="text-gradient-accent mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-arrows-angle-expand mx-auto" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 10.036a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5m13-3.972a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6.536h-3.5a.5.5 0 0 1-.5-.5m-13-1a.5.5 0 0 1 .5.5v3.5h3.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5m13-3.972a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V2.536h-3.5a.5.5 0 0 1-.5-.5"/></svg></div><h3 class="text-xl font-bold text-white mb-2" data-translate="value2_title">Inclusion & Dialogue</h3><p class="text-sm text-gray-400" data-translate="value2_text">Accompagner et soutenir les porteurs de projets issus de la diversité pour favoriser l'inclusion sociale et économique.</p></div><div class="text-center p-6 border border-dark-stroke rounded-lg bg-dark-main/30" style="animation-delay: 200ms;"><div class="text-gradient-accent mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-lightbulb-fill mx-auto" viewBox="0 0 16 16"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A6 6 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5"/></svg></div><h3 class="text-xl font-bold text-white mb-2" data-translate="value3_title">Innovation Sociale</h3><p class="text-sm text-gray-400" data-translate="value3_text">Utiliser la créativité et la technologie pour répondre à des défis sociaux et environnementaux concrets.</p></div><div class="text-center p-6 border border-dark-stroke rounded-lg bg-dark-main/30" style="animation-delay: 300ms;"><div class="text-gradient-accent mb-4"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-puzzle-fill mx-auto" viewBox="0 0 16 16"><path d="M3.112 3.645A1.5 1.5 0 0 1 4.605 2.5h.092a1.5 1.5 0 0 1 1.061.439l.002.002a1.5 1.5 0 0 1 .439 1.061v.092a1.5 1.5 0 0 1-2.5 1.061l-.002-.002A1.5 1.5 0 0 1 3.112 3.645m3.72.133a1.5 1.5 0 0 1 1.061-1.061h.092a1.5 1.5 0 0 1 1.061.439l.002.002a1.5 1.5 0 0 1 .439 1.061v.092a1.5 1.5 0 0 1-2.5 1.061l-.002-.002A1.5 1.5 0 0 1 6.832 3.778M3.112 9.645A1.5 1.5 0 0 1 4.605 8.5h.092a1.5 1.5 0 0 1 1.061.439l.002.002a1.5 1.5 0 0 1 .439 1.061v.092a1.5 1.5 0 0 1-2.5 1.061l-.002-.002A1.5 1.5 0 0 1 3.112 9.645m3.72.133a1.5 1.5 0 0 1 1.061-1.061h.092a1.5 1.5 0 0 1 1.061.439l.002.002a1.5 1.5 0 0 1 .439 1.061v.092a1.5 1.5 0 0 1-2.5 1.061l-.002-.002A1.5 1.5 0 0 1 6.832 9.778m6.18.02a1.5 1.5 0 0 1 1.061-1.061h.092a1.5 1.5 0 0 1 1.061.439l.002.002a1.5 1.5 0 0 1 .439 1.061v.092a1.5 1.5 0 0 1-2.5 1.061l-.002-.002a1.5 1.5 0 0 1-1.061-2.5l.002.002zM13 3.645a1.5 1.5 0 0 1 1.061-1.061h.092a1.5 1.5 0 0 1 1.061.439l.002.002a1.5 1.5 0 0 1 .439 1.061v.092a1.5 1.5 0 0 1-2.5 1.061l-.002-.002A1.5 1.5 0 0 1 13 3.645"/></svg></div><h3 class="text-xl font-bold text-white mb-2" data-translate="value4_title">Collaboration</h3><p class="text-sm text-gray-400" data-translate="value4_text">L'esprit d'équipe et la co-création sont au cœur de ma démarche pour construire des solutions durables.</p></div></div></div></section>
+            
+            <section id="skills" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="skills_title">Compétences Techniques</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="grid md:grid-cols-2 gap-x-12 gap-y-8 reveal-stagger"><div class="skill-item" style="animation-delay: 0ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill1_name">UI/UX Design (Figma, Sketch)</span><span class="font-medium text-gray-300">90%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="90%"></div></div></div><div class="skill-item" style="animation-delay: 100ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill2_name">Outils Visuels (Photoshop, Illustrator, Canva)</span><span class="font-medium text-gray-300">85%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="85%"></div></div></div><div class="skill-item" style="animation-delay: 200ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill3_name">Design d'Intérieur (SketchUp, AutoCAD, 3D Max)</span><span class="font-medium text-gray-300">95%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="95%"></div></div></div><div class="skill-item" style="animation-delay: 300ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill4_name">Marketing Digital (SEO, SEM, Google Ads)</span><span class="font-medium text-gray-300">80%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="80%"></div></div></div><div class="skill-item" style="animation-delay: 400ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill5_name">E-commerce (WordPress, PrestaShop)</span><span class="font-medium text-gray-300">85%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="85%"></div></div></div><div class="skill-item" style="animation-delay: 500ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill6_name">Gestion de Projet (Notion, Agile/Scrum)</span><span class="font-medium text-gray-300">90%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="90%"></div></div></div></div></div></section>
+            
+            <section id="portfolio" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="portfolio_title">Portfolio</h2><p class="text-gray-400 mt-2" data-translate="portfolio_subtitle">Cliquez sur un projet pour voir les détails.</p><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal-stagger"><a href="#page-morpholia" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group" style="animation-delay: 0ms;"><div class="overflow-hidden"><img src="uiux.jpg" alt="Projet MORPHOLIA" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project1_title">Projet MORPHOLIA</h3><p class="mt-2 text-gray-400 h-24" data-translate="project1_desc">Conception et développement d'un site e-commerce pour vêtements grande taille.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project1_tag">UI/UX Design</span></div></div></a><a href="#page-design" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group" style="animation-delay: 100ms;"><div class="overflow-hidden"><img src="interior.jpg" alt="Projet 2" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project2_title">Design d'Intérieur</h3><p class="mt-2 text-gray-400 h-24" data-translate="project2_desc">Création de designs sur-mesure pour cuisines, salles de bain et autres espaces.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project2_tag">Conception 3D</span></div></div></a><a href="#page-communication" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group" style="animation-delay: 200ms;"><div class="overflow-hidden"><img src="communication.jpg" alt="Projet 3" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project3_title">Communication & Marketing</h3><p class="mt-2 text-gray-400 h-24" data-translate="project3_desc">Création de supports graphiques et mise en œuvre de campagnes de marketing digital.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project3_tag">Marketing Digital</span></div></div></a></div></div></section>
+            
+            <section id="experience" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-16 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="experience_title">Parcours</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="max-w-4xl mx-auto relative wrap overflow-hidden p-2 md:p-10"><div class="absolute border-opacity-20 border-gray-700 h-full border left-1/2 -translate-x-1/2"></div><h3 class="text-2xl font-bold text-gradient-accent mb-12 text-center font-pixel" data-translate="experience_subtitle">Expériences Professionnelles</h3><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="exp1_date">Depuis mars 2025</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp1_title">Designer d'intérieur et graphique</h4><p class="text-sm text-gray-400" data-translate="exp1_company">Joe 4 Design, France</p></div></div><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="exp2_date">Depuis déc. 2024</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp2_title">Designer d'Intérieur</h4><p class="text-sm text-gray-400" data-translate="exp2_company">Groupe Nawat Al Talaea, Arabie Saoudite</p></div></div><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="exp3_date">Sept. 2023 - Mars 2024</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp3_title">UI/UX Designer</h4><p class="text-sm text-gray-400" data-translate="exp3_company">Projet MORPHOLIA - Label École</p></div></div><h3 class="text-2xl font-bold text-gradient-accent mt-20 mb-12 text-center font-pixel" data-translate="education_title">Formations</h3><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="edu1_date">Depuis sept. 2023</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu1_title">Chef de projet e-commerce (BAC+3)</h4><p class="text-sm text-gray-400" data-translate="edu1_school">Label Ecole, Noisy-le-Sec</p></div></div><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="edu2_date">2022 - 2023</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu2_title">Diplôme universitaire Français C1</h4><p class="text-sm text-gray-400" data-translate="edu2_school">Université Paris Est Créteil (UPEC)</p></div></div><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="edu3_date">2015 - 2020</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu3_title">Ingénierie Mécanique & Mécatronique</h4><p class="text-sm text-gray-400" data-translate="edu3_school">Istituto Salesiano Don Bosco, Le Caire</p></div></div></div></div></section>
+            
+            <section id="interests" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="interests_title">Mes Intérêts, Ma Force</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div><p class="max-w-3xl mx-auto mt-4 text-gray-400" data-translate="interests_subtitle">Mes passions nourrissent ma créativité et ma façon d'aborder les défis. Les échecs m'ont enseigné la stratégie, le cinéma affine mon sens de la narration visuelle, et l'origami me rappelle l'importance de la précision et de la patience.</p></div></div></section>
+            
+            <section id="contact" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-pixel text-white" data-translate="contact_title">Me Contacter</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="max-w-2xl mx-auto bg-[#10151b] p-8 rounded-lg border border-dark-stroke"><form action="https://formspree.io/f/xqabdaro" method="POST"><div class="grid md:grid-cols-2 gap-4 mb-4"><input type="text" name="Nom" data-translate-placeholder="form_name" placeholder="Nom" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-teal-400" required><input type="email" name="Email" data-translate-placeholder="form_email" placeholder="Email *" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-teal-400" required></div><input type="text" name="Objet" data-translate-placeholder="form_subject" placeholder="Objet" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-teal-400"><textarea name="Message" data-translate-placeholder="form_message" placeholder="Votre message" rows="5" class="w-full bg-dark-secondary border border-dark-stroke rounded-md p-3 resize-none mb-4 focus:outline-none focus:ring-2 focus:ring-teal-400" required></textarea><button type="submit" class="w-full bg-gradient-accent text-gray-900 font-bold py-3 px-6 rounded-md bg-gradient-accent-hover transition-transform transform hover:scale-105" data-translate="form_button">Envoyer</button></form></div></div></section>
         </main>
     </div>
 
     <!-- ===== Project Pages ===== -->
-    <div id="page-morpholia" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="morpholia_title">Projet MORPHOLIA</h2><p class="text-gray-400 mt-2" data-translate="morpholia_subtitle">Site E-commerce pour vêtements grande taille.</p></div><img src="morpholia-project.png" alt="Projet MORPHOLIA" class="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-2xl mb-12 cursor-pointer lightbox-trigger"><div class="grid md:grid-cols-3 gap-10"><div class="md:col-span-2"><h3 class="text-2xl font-bold text-accent mb-4" data-translate="project_desc_title">Description du projet</h3><p data-translate="morpholia_desc">MORPHOLIA est un projet complet de création d'une plateforme e-commerce... Mon rôle a couvert l'ensemble du cycle de vie du projet : recherche utilisateur, création des personas, conception des wireframes et prototypes interactifs sur Figma, et enfin, l'intégration du design sur WordPress.</p></div><div><h3 class="text-2xl font-bold text-accent mb-4" data-translate="tech_title">Technologies</h3><ul class="space-y-2"><li class="flex items-center"><span class="inline-block h-2 w-2 bg-accent rounded-full mr-3"></span>Figma</li><li class="flex items-center"><span class="inline-block h-2 w-2 bg-accent rounded-full mr-3"></span>WordPress</li><li class="flex items-center"><span class="inline-block h-2 w-2 bg-accent rounded-full mr-3"></span>Tests Utilisateurs</li><li class="flex items-center"><span class="inline-block h-2 w-2 bg-accent rounded-full mr-3"></span>UX Research</li></ul></div></div></div>
-    <div id="page-design" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="design_title">Design d'Intérieur</h2><p class="text-gray-400 mt-2" data-translate="design_subtitle">Créations sur-mesure d'espaces de vie.</p></div><div class="space-y-16"><!-- Projet 1: Dressing Room --><div class="grid md:grid-cols-2 gap-8 items-center"><img src="design-dressing-1.jpg" alt="Design Dressing Room" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"><div><h3 class="text-2xl font-bold text-accent mb-2" data-translate="design1_title">Dressing Room sur Mesure</h3><p data-translate="design1_desc">Réalisation d'un dressing complet où le design épuré rencontre une fonctionnalité maximale. Cet espace sur mesure intègre des penderies toute hauteur, une niche d'entrée avec banquette, un îlot de rangement et un coin beauté luxueux avec miroir Hollywood. L'harmonie des teintes beiges et des contrastes noirs crée une atmosphère à la fois sophistiquée et apaisante.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">SketchUp</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">AutoCAD</li></ul></div></div></div><!-- Projet 2: Cuisine --><div class="grid md:grid-cols-2 gap-8 items-center"><div class="md:order-2"><img src="photo-cuisine.jpg" alt="Cuisine" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="md:order-1"><h3 class="text-2xl font-bold text-accent mb-2" data-translate="design_kitchen_title">Cuisine Fonctionnelle</h3><p data-translate="design_kitchen_desc">Création d'une cuisine sur-mesure. L'objectif était de combiner esthétique moderne et fonctionnalité maximale dans un espace compact, avec des solutions de rangement intelligentes.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">AutoCAD</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">3ds Max</li></ul></div></div></div><!-- Projet 3: Hilton Hotel --><div class="grid md:grid-cols-2 gap-8 items-center"><div class="carousel-container" data-carousel="hilton-carousel"><div class="carousel-slide" style="display: block;"><img src="hilton-1.jpeg" alt="Projet Hilton 1" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-2.jpg" alt="Projet Hilton 2" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-3.jpg" alt="Projet Hilton 3" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-4.jpg" alt="Projet Hilton 4" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-5.jpg" alt="Projet Hilton 5" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><a class="carousel-prev" data-carousel-btn="-1">&#10094;</a><a class="carousel-next" data-carousel-btn="1">&#10095;</a></div><div><h3 class="text-2xl font-bold text-accent mb-2" data-translate="design2_title">Hilton Garden Inn (Arabie Saoudite)</h3><p data-translate="design2_desc">Contribution au design de plusieurs espaces pour le projet hôtelier Hilton Garden Inn. Création de rendus 3D photo-réalistes pour les chambres et les espaces communs, en utilisant 3ds Max pour des modélisations complexes et des finitions détaillées.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">3ds Max</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">AutoCAD</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">SketchUp</li></ul></div></div></div></div></div>        <div id="page-communication" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="comm_title">Communication & Marketing</h2><p class="text-gray-400 mt-2" data-translate="comm_subtitle">Logo</p></div><div class="space-y-16"><div class="grid md:grid-cols-2 gap-8 items-center"><img src="identite-visuelle.png" alt="Logo sur fond noir et blanc" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"><div><h3 class="text-2xl font-bold text-accent mb-2" data-translate="comm1_title">Identité Visuelle - Morpholia</h3><p data-translate="comm1_desc">Création de l'identité visuelle pour Morpholia, une marque de mode grande taille conçue pour célébrer toutes les morphologies. Le logo incarne cette mission : il associe un symbole organique – évoquant un cocon en pleine transformation – à une typographie moderne et affirmée. Il représente l'épanouissement et la confiance en soi, positionnant la marque comme une référence chic et inclusive dans l'univers de la mode.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Illustrator</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Photoshop</li></ul></div></div></div></div></div>
-    <div id="page-communication" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="comm_title">Communication & Marketing</h2><p class="text-gray-400 mt-2" data-translate="comm_subtitle">Logo</p></div><div class="space-y-16"><div class="grid md:grid-cols-2 gap-8 items-center"><img src="identite-visuelle.png" alt="Logo sur fond noir et blanc" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"><div><h3 class="text-2xl font-bold text-accent mb-2" data-translate="comm1_title">Identité Visuelle - Morpholia</h3><p data-translate="comm1_desc">Création de l'identité visuelle pour Morpholia, une marque de mode grande taille conçue pour célébrer toutes les morphologies. Le logo incarne cette mission : il associe un symbole organique – évoquant un cocon en pleine transformation – à une typographie moderne et affirmée. Il représente l'épanouissement et la confiance en soi, positionnant la marque comme une référence chic et inclusive dans l'univers de la mode.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Illustrator</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Photoshop</li></ul></div></div></div></div></div>
-    <div id="page-cv" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="cv_title">Mon Curriculum Vitae</h2></div><div class="bg-dark-secondary p-4 md:p-8 rounded-lg border border-dark-stroke"><embed src="CV-Joseph-HAMDY-KAMAL.pdf" type="application/pdf" width="100%" height="800px" /></div><div class="text-center mt-8"><a href="CV-Joseph-HAMDY-KAMAL.pdf" download="CV_Joseph_HAMDY_KAMAL.pdf" class="inline-block bg-accent text-gray-900 font-bold py-4 px-8 rounded-md hover:bg-accent-hover transition-transform transform hover:scale-105 text-lg"><span data-translate="cv_download_button">Recrutez-moi ? Téléchargez-moi !</span></a></div></div>
+    <div id="page-morpholia" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-gradient-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="morpholia_title">Projet MORPHOLIA</h2><p class="text-gray-400 mt-2" data-translate="morpholia_subtitle">Site E-commerce pour vêtements grande taille.</p></div><img src="morpholia-project.png" alt="Projet MORPHOLIA" class="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-2xl mb-12 cursor-pointer lightbox-trigger"><div class="grid md:grid-cols-3 gap-10"><div class="md:col-span-2"><h3 class="text-2xl font-bold text-gradient-accent mb-4" data-translate="project_desc_title">Description du projet</h3><p data-translate="morpholia_desc">MORPHOLIA est un projet complet de création d'une plateforme e-commerce... Mon rôle a couvert l'ensemble du cycle de vie du projet : recherche utilisateur, création des personas, conception des wireframes et prototypes interactifs sur Figma, et enfin, l'intégration du design sur WordPress.</p></div><div><h3 class="text-2xl font-bold text-gradient-accent mb-4" data-translate="tech_title">Technologies</h3><ul class="space-y-2"><li class="flex items-center"><span class="inline-block h-2 w-2 bg-gradient-accent rounded-full mr-3"></span>Figma</li><li class="flex items-center"><span class="inline-block h-2 w-2 bg-gradient-accent rounded-full mr-3"></span>WordPress</li><li class="flex items-center"><span class="inline-block h-2 w-2 bg-gradient-accent rounded-full mr-3"></span>Tests Utilisateurs</li><li class="flex items-center"><span class="inline-block h-2 w-2 bg-gradient-accent rounded-full mr-3"></span>UX Research</li></ul></div></div></div>
+    
+    <div id="page-design" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-gradient-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="design_title">Design d'Intérieur</h2><p class="text-gray-400 mt-2" data-translate="design_subtitle">Créations sur-mesure d'espaces de vie.</p></div><div class="space-y-16"><!-- Projet 1: Dressing Room --><div class="grid md:grid-cols-2 gap-8 items-center"><img src="design-dressing-1.jpg" alt="Design Dressing Room" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"><div><h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="design1_title">Dressing Room sur Mesure</h3><p data-translate="design1_desc">Réalisation d'un dressing complet où le design épuré rencontre une fonctionnalité maximale. Cet espace sur mesure intègre des penderies toute hauteur, une niche d'entrée avec banquette, un îlot de rangement et un coin beauté luxueux avec miroir Hollywood. L'harmonie des teintes beiges et des contrastes noirs crée une atmosphère à la fois sophistiquée et apaisante.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">SketchUp</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">AutoCAD</li></ul></div></div></div><!-- Projet 2: Cuisine --><div class="grid md:grid-cols-2 gap-8 items-center"><div class="md:order-2"><img src="photo-cuisine.jpg" alt="Cuisine" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="md:order-1"><h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="design_kitchen_title">Cuisine Fonctionnelle</h3><p data-translate="design_kitchen_desc">Création d'une cuisine sur-mesure. L'objectif était de combiner esthétique moderne et fonctionnalité maximale dans un espace compact, avec des solutions de rangement intelligentes.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">AutoCAD</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">3ds Max</li></ul></div></div></div><!-- Projet 3: Hilton Hotel --><div class="grid md:grid-cols-2 gap-8 items-center"><div class="carousel-container" data-carousel="hilton-carousel"><div class="carousel-slide" style="display: block;"><img src="hilton-1.jpeg" alt="Projet Hilton 1" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-2.jpg" alt="Projet Hilton 2" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-3.jpg" alt="Projet Hilton 3" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-4.jpg" alt="Projet Hilton 4" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><div class="carousel-slide"><img src="hilton-5.jpg" alt="Projet Hilton 5" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger"></div><a class="carousel-prev" data-carousel-btn="-1">&#10094;</a><a class="carousel-next" data-carousel-btn="1">&#10095;</a></div><div><h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="design2_title">Hilton Garden Inn (Arabie Saoudite)</h3><p data-translate="design2_desc">Contribution au design de plusieurs espaces pour le projet hôtelier Hilton Garden Inn. Création de rendus 3D photo-réalistes pour les chambres et les espaces communs, en utilisant 3ds Max pour des modélisations complexes et des finitions détaillées.</p><div class="mt-4"><h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4><ul class="flex flex-wrap gap-2"><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">3ds Max</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">AutoCAD</li><li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">SketchUp</li></ul></div></div></div></div></div>
+    
+    <div id="page-communication" class="page container mx-auto px-4 py-20">
+        <button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-gradient-accent hover:text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+            <span data-translate="back_button">Retour au portfolio</span>
+        </button>
+        <div class="text-center mb-12">
+            <h2 class="text-5xl font-bold font-pixel text-white" data-translate="comm_title">Communication & Marketing</h2>
+            <p class="text-gray-400 mt-2" data-translate="comm_subtitle_full">Identité visuelle, supports graphiques et campagnes digitales.</p>
+        </div>
+        
+        <div class="space-y-16">
+            <!-- PROJET 1: Identité Visuelle -->
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <img src="identite-visuelle.png" alt="Logo sur fond noir et blanc" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
+                <div>
+                    <h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="comm1_title">Identité Visuelle - Morpholia</h3>
+                    <p data-translate="comm1_desc">Création de l'identité visuelle pour Morpholia, une marque de mode grande taille conçue pour célébrer toutes les morphologies. Le logo incarne cette mission : il associe un symbole organique – évoquant un cocon en pleine transformation – à une typographie moderne et affirmée. Il représente l'épanouissement et la confiance en soi, positionnant la marque comme une référence chic et inclusive dans l'univers de la mode.</p>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
+                        <ul class="flex flex-wrap gap-2">
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Illustrator</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Photoshop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOUVEAU PROJET 2 : REMPLACEZ CETTE SECTION PAR VOTRE PROJET -->
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="md:order-2">
+                    <!-- Remplacez 'src' par le chemin de votre image -->
+                    <img src="2.png" alt="Carte de visite digitale" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
+                </div>
+                <div class="md:order-1">
+                    <!-- Remplacez le titre et la description -->
+                    <h3 class="text-2xl font-bold text-gradient-accent mb-2">Carte de visite digitale</h3>
+                    <p>Une carte de visite digital!"</p>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
+                        <!-- Remplacez les technologies -->
+                        <ul class="flex flex-wrap gap-2">
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Canva</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HTML CSS JS</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Figma</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOUVEAU PROJET 3 : REMPLACEZ CETTE SECTION PAR VOTRE PROJET -->
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- Remplacez 'src' par le chemin de votre image -->
+                <img src="3.png" alt="Carte de visite digitale" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
+                <div>
+                    <!-- Remplacez le titre et la description -->
+                    <h3 class="text-2xl font-bold text-gradient-accent mb-2">Carte de visite digitale</h3>
+                    <p>Une carte de visite digitale!"</p>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
+                        <!-- Remplacez les technologies -->
+                        <ul class="flex flex-wrap gap-2">
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Figma</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HTML CSS JS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-cv" class="page container mx-auto px-4 py-20"><button class="back-to-portfolio mb-8 inline-flex items-center font-semibold text-gradient-accent hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg><span data-translate="back_button">Retour au portfolio</span></button><div class="text-center mb-12"><h2 class="text-5xl font-bold font-pixel text-white" data-translate="cv_title">Mon Curriculum Vitae</h2></div><div class="bg-dark-secondary p-4 md:p-8 rounded-lg border border-dark-stroke"><embed src="CV-Joseph-HAMDY-KAMAL.pdf" type="application/pdf" width="100%" height="800px" /></div><div class="text-center mt-8"><a href="CV-Joseph-HAMDY-KAMAL.pdf" download="CV_Joseph_HAMDY_KAMAL.pdf" class="inline-block bg-gradient-accent text-gray-900 font-bold py-4 px-8 rounded-md bg-gradient-accent-hover transition-transform transform hover:scale-105 text-lg"><span data-translate="cv_download_button">Recrutez-moi ? Téléchargez-moi !</span></a></div></div>
     
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
@@ -204,8 +276,8 @@
 
     <footer class="bg-dark-secondary border-t border-dark-stroke py-8">
         <div class="container mx-auto px-4 text-center text-gray-500">
-            <div class="flex justify-center space-x-6 mb-4"><a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" aria-label="LinkedIn" class="hover:text-accent transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
-            <p data-translate="footer_copyright">&copy; 2025 Designed by Joseph Hamdy Kamal. Tous droits réservés.</p>
+            <div class="flex justify-center space-x-6 mb-4"><a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" aria-label="LinkedIn" class="hover:text-gradient-accent transition-colors"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a></div>
+            <p data-translate="footer_copyright">&copy; 2025 Designed and Created by Joseph Hamdy Kamal. Tous droits réservés.</p>
         </div>
     </footer>
 
@@ -248,11 +320,11 @@
                     design1_title: "Dressing Room sur Mesure", design1_desc: "Réalisation d'un dressing complet où le design épuré rencontre une fonctionnalité maximale. Cet espace sur mesure intègre des penderies toute hauteur, une niche d'entrée avec banquette, un îlot de rangement et un coin beauté luxueux avec miroir Hollywood. L'harmonie des teintes beiges et des contrastes noirs crée une atmosphère à la fois sophistiquée et apaisante.",
                     design_kitchen_title: "Cuisine Fonctionnelle", design_kitchen_desc: "Création d'une cuisine sur-mesure. L'objectif était de combiner esthétique moderne et fonctionnalité maximale dans un espace compact, avec des solutions de rangement intelligentes.",
                     design2_title: "Hilton Garden Inn (Arabie Saoudite)", design2_desc: "Contribution au design de plusieurs espaces pour le projet hôtelier Hilton Garden Inn. Création de rendus 3D photo-réalistes pour les chambres et les espaces communs, en utilisant 3ds Max pour des modélisations complexes et des finitions détaillées.",
-                    comm_title: "Communication & Marketing", comm_subtitle: "Logo",
+                    comm_title: "Communication & Marketing", comm_subtitle_full: "Identité visuelle, supports graphiques et campagnes digitales.",
                     comm1_title: "Identité Visuelle - Morpholia", comm1_desc: "Création de l'identité visuelle pour Morpholia, une marque de mode grande taille conçue pour célébrer toutes les morphologies. Le logo incarne cette mission : il associe un symbole organique – évoquant un cocon en pleine transformation – à une typographie moderne et affirmée. Il représente l'épanouissement et la confiance en soi, positionnant la marque comme une référence chic et inclusive dans l'univers de la mode.",
                     interests_title: "Mes Intérêts, Ma Force", interests_subtitle: "Mes passions nourrissent ma créativité et ma façon d'aborder les défis. Les échecs m'ont enseigné la stratégie, le cinéma affine mon sens de la narration visuelle, et l'origami me rappelle l'importance de la précision et de la patience.",
                     cv_title: "Mon Curriculum Vitae", cv_download_button: "Recrutez-moi ? Téléchargez-moi !",
-                    footer_copyright: "© 2025 Designed by Joseph Hamdy Kamal. Tous droits réservés."
+                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. Tous droits réservés."
                 },
                 en: {
                     nav_about: "About", nav_values: "Values", nav_skills: "Skills", nav_portfolio: "Portfolio", nav_experience: "Journey", nav_contact: "Contact", nav_cv: "My Resume",
@@ -289,11 +361,11 @@
                     design1_title: "Custom Dressing Room", design1_desc: "Design and 3D modeling of an optimized walk-in closet. Each element was designed to maximize storage while maintaining a modern and bright aesthetic. 3D visualization allowed the client to envision the space before construction.",
                     design_kitchen_title: "Functional Kitchen", design_kitchen_desc: "Creation of a custom kitchen for a client. The objective was to combine modern aesthetics with maximum functionality in a compact space.",
                     design2_title: "Hilton Garden Inn (Saudi Arabia)", design2_desc: "Contributed to the design of several spaces for the Hilton Garden Inn hotel project. Created photorealistic 3D renderings for rooms and common areas, using 3ds Max for complex modeling and detailed finishes.",
-                    comm_title: "Communication & Marketing", comm_subtitle: "Visual materials and digital campaigns.",
+                    comm_title: "Communication & Marketing", comm_subtitle_full: "Visual identity, graphic assets, and digital campaigns.",
                     comm1_title: "Visual Identity - Morpholia", comm1_desc: "Creation of the visual identity for Morpholia, a plus-size fashion brand designed to celebrate all body types. The logo embodies this mission: it combines an organic symbol – evoking a cocoon in transformation – with a modern and assertive typography. It represents self-fulfillment and confidence, positioning the brand as a chic and inclusive reference in the fashion world.",
                     interests_title: "My Interests, My Strength", interests_subtitle: "My passions fuel my creativity and my approach to challenges. Chess has taught me strategy, cinema refines my sense of visual storytelling, and origami reminds me of the importance of precision and patience.",
                     cv_title: "My Resume", cv_download_button: "Recruit me? Download me!",
-                    footer_copyright: "© 2025 Designed by Joseph Hamdy Kamal. All rights reserved."
+                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. All rights reserved."
                 },
                 it: {
                     nav_about: "Chi sono", nav_values: "Valori", nav_skills: "Competenze", nav_portfolio: "Portfolio", nav_experience: "Percorso", nav_contact: "Contatto", nav_cv: "Mio CV",
@@ -330,11 +402,11 @@
                     design1_title: "Cabina Armadio su Misura", design1_desc: "Progettazione e modellazione 3D di una cabina armadio ottimizzata. Ogni elemento è stato pensato per massimizzare lo spazio di archiviazione mantenendo un'estetica moderna e luminosa.",
                     design_kitchen_title: "Cucina Funzionale", design_kitchen_desc: "Creazione di una cucina su misura. L'obiettivo era combinare estetica moderna e massima funzionalità in uno spazio compatto.",
                     design2_title: "Hilton Garden Inn (Arabia Saudita)", design2_desc: "Contributo alla progettazione di diversi spazi per il progetto alberghiero Hilton Garden Inn. Creazione di rendering 3D fotorealistici per camere e aree comuni, utilizzando 3ds Max.",
-                    comm_title: "Comunicazione & Marketing", comm_subtitle: "Supports visuels et campagnes digitali.",
+                    comm_title: "Comunicazione & Marketing", comm_subtitle_full: "Identità visiva, supporti grafici e campagne digitali.",
                     comm1_title: "Identità Visiva - Morpholia", comm1_desc: "Creazione dell'identità visiva per Morpholia, un marchio di moda plus-size pensato per celebrare tutte le morfologie. Il logo incarna questa missione: combina un simbolo organico – che evoca un bozzolo in trasformazione – con una tipografia moderna e decisa. Rappresenta l'autorealizzazione e la fiducia in se stessi, posizionando il marchio come un riferimento chic e inclusivo nel mondo della moda.",
                     interests_title: "I Miei Interessi, La Mia Forza", interests_subtitle: "Le mie passioni alimentano la mia creatività e il mio approccio alle sfide. Gli scacchi mi hanno insegnato la strategia, il cinema affina il mio senso della narrazione visiva e l'origami mi ricorda l'importanza della precisione e della pazienza.",
                     cv_title: "Mio Curriculum Vitae", cv_download_button: "Assumimi? Scaricami!",
-                    footer_copyright: "© 2025 Designed by Joseph Hamdy Kamal. Tutti i diritti riservati."
+                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. Tutti i diritti riservati."
                 },
                 ar: {
                     nav_about: "عني", nav_values: "القيم", nav_skills: "المهارات", nav_portfolio: "الأعمال", nav_experience: "المسيرة", nav_contact: "اتصل", nav_cv: "سيرتي الذاتية",
@@ -371,23 +443,16 @@
                     design1_title: "غرفة ملابس مخصصة", design1_desc: "تصميم ونمذجة ثلاثية الأبعاد لغرفة ملابس مُحسّنة. تم تصميم كل عنصر لزيادة التخزين مع الحفاظ على جمالية حديثة ومشرقة.",
                     design_kitchen_title: "مطبخ وظيفي", design_kitchen_desc: "إنشاء مطبخ مخصص. كان الهدف هو الجمع بين الجماليات الحديثة والوظائف القصوى في مساحة صغيرة.",
                     design2_title: "فندق هيلتون جاردن إن (السعودية)", design2_desc: "المساهمة في تصميم العديد من المساحات لمشروع فندق هيلتون جاردن إن. إنشاء عروض ثلاثية الأبعاد واقعية للغرف والمناطق المشتركة باستخدام 3ds Max.",
-                    comm_title: "الاتصالات والتسويق", comm_subtitle: "Supports visuels et campagnes digitales.",
+                    comm_title: "الاتصالات والتسويق", comm_subtitle_full: "الهوية البصرية، المواد الرسومية والحملات الرقمية.",
                     comm1_title: "الهوية البصرية - مورفوليا", comm1_desc: "إنشاء الهوية البصرية لمورفوليا، علامة تجارية للأزياء ذات المقاسات الكبيرة مصممة للاحتفاء بجميع أشكال الجسم. يجسد الشعار هذه المهمة: فهو يجمع بين رمز عضوي - يستحضر شرنقة في طور التحول - مع طباعة حديثة وحازمة. إنه يمثل تحقيق الذات والثقة بالنفس، مما يضع العلامة التجارية كمرجع أنيق وشامل في عالم الموضة.",
                     interests_title: "اهتماماتي، قوتي", interests_subtitle: "شغفي يغذي إبداعي ونهجي في مواجهة التحديات. علمني الشطرنج الاستراتيجية، وصقل السينما إحساسي بالسرد البصري، ويذكرني الأوريغامي بأهمية الدقة والصبر.",
                     cv_title: "سيرتي الذاتية", cv_download_button: "هل تريد توظيفي؟ حمل سيرتي الذاتية!",
-                    footer_copyright: "© 2025 Designed by Joseph Hamdy Kamal. جميع الحقوق محفوظة."
+                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. جميع الحقوق محفوظة."
                 }
             };
             
             const htmlEl = document.documentElement;
-            const currentFlag = document.getElementById('current-lang-flag');
-            const currentFlagMobile = document.getElementById('current-lang-flag-mobile');
-            const flagSrc = {
-                fr: 'https://flagcdn.com/fr.svg',
-                en: 'https://flagcdn.com/gb.svg',
-                it: 'https://flagcdn.com/it.svg',
-                ar: 'https://flagcdn.com/sa.svg'
-            };
+            const flagSrc = { fr: 'https://flagcdn.com/fr.svg', en: 'https://flagcdn.com/gb.svg', it: 'https://flagcdn.com/it.svg', ar: 'https://flagcdn.com/sa.svg' };
 
             function setLanguage(lang) {
                 const langData = translations[lang];
@@ -407,43 +472,76 @@
                 htmlEl.dir = (lang === 'ar') ? 'rtl' : 'ltr';
                 document.body.classList.toggle('font-arabic', lang === 'ar');
 
-                currentFlag.src = flagSrc[lang];
-                currentFlagMobile.src = flagSrc[lang];
+                document.getElementById('current-lang-flag').src = flagSrc[lang];
+                document.getElementById('current-lang-flag-mobile').src = flagSrc[lang];
                 localStorage.setItem('portfolioLanguage', lang);
             }
 
-            document.querySelectorAll('.lang-switcher a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const lang = link.getAttribute('data-lang');
-                    setLanguage(lang);
-                    link.closest('.lang-dropdown').style.display = 'none';
-                    setTimeout(() => { if (link.closest('.lang-dropdown')) link.closest('.lang-dropdown').style.display = ''; }, 200);
+            // --- Language Switcher Logic (Click-based) ---
+            function setupLangSwitcher(btnId, dropdownId) {
+                const btn = document.getElementById(btnId);
+                const dropdown = document.getElementById(dropdownId);
+                
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    dropdown.classList.toggle('hidden');
                 });
+
+                dropdown.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const lang = link.getAttribute('data-lang');
+                        setLanguage(lang);
+                        dropdown.classList.add('hidden');
+                    });
+                });
+            }
+
+            setupLangSwitcher('lang-switcher-btn', 'lang-dropdown');
+            setupLangSwitcher('lang-switcher-btn-mobile', 'lang-dropdown-mobile');
+            
+            // Close dropdowns if clicked outside
+            document.addEventListener('click', () => {
+                document.getElementById('lang-dropdown').classList.add('hidden');
+                document.getElementById('lang-dropdown-mobile').classList.add('hidden');
             });
 
+
+            // --- Page Navigation Logic ---
             const mainContent = document.getElementById('main-content');
-            const projectPages = document.querySelectorAll('.page:not(#main-content)');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const pageLinks = document.querySelectorAll('.page-link');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const allPages = document.querySelectorAll('.page');
 
             function showPage(pageId) {
-                mainContent.classList.toggle('active', !pageId);
-                projectPages.forEach(p => p.classList.toggle('active', p.id === pageId));
+                allPages.forEach(p => p.classList.remove('active'));
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                } else {
+                    mainContent.classList.add('active');
+                }
                 window.scrollTo(0, 0);
+                // Re-trigger animations on the new page
+                revealElementsOnScroll();
             }
             
             document.querySelectorAll('.portfolio-link, .page-link').forEach(link => {
-                link.addEventListener('click', e => { e.preventDefault(); showPage(link.getAttribute('href').substring(1)); });
+                link.addEventListener('click', e => { 
+                    e.preventDefault(); 
+                    showPage(link.getAttribute('href').substring(1)); 
+                });
             });
             
-            document.querySelectorAll('.back-to-portfolio').forEach(button => {
-                button.addEventListener('click', e => { e.preventDefault(); showPage(null); });
+            document.querySelectorAll('.back-to-portfolio, .home-link').forEach(button => {
+                button.addEventListener('click', e => { 
+                    e.preventDefault(); 
+                    showPage(null);
+                    if (button.classList.contains('home-link')) {
+                        setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
+                    }
+                });
             });
 
-            navLinks.forEach(link => {
+            document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', (e) => {
                     const targetId = link.getAttribute('href');
                      if (targetId && targetId.startsWith('#') && !link.classList.contains('page-link')) {
@@ -454,54 +552,66 @@
                             if (targetElement) {
                                 targetElement.scrollIntoView({ behavior: 'smooth' });
                             }
-                        }, 50);
+                        }, 50); // Small delay to allow page switch
                     }
-                    if(mobileMenu && !mobileMenu.classList.contains('hidden')){
+                    if(!mobileMenu.classList.contains('hidden')){
                          mobileMenu.classList.add('hidden');
                     }
                 });
             });
             
-             document.querySelector('.home-link').addEventListener('click', e => {
-                e.preventDefault();
-                showPage(null);
-                setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 50);
-            });
-            
+            // --- Mobile Menu ---
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
             mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
             });
 
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        if (entry.target.classList.contains('skill-item')) {
-                            const progressBar = entry.target.querySelector('.progress-bar-fill');
-                            setTimeout(() => { progressBar.style.width = progressBar.getAttribute('data-width'); }, 200);
+
+            // --- Intersection Observer for Animations ---
+            function revealElementsOnScroll() {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            
+                            // Animate progress bars
+                            if (entry.target.classList.contains('skill-item')) {
+                                const progressBar = entry.target.querySelector('.progress-bar-fill');
+                                setTimeout(() => { progressBar.style.width = progressBar.getAttribute('data-width'); }, 200);
+                            }
+                            // Stagger children animation
+                            if (entry.target.classList.contains('reveal-stagger')) {
+                                const children = entry.target.querySelectorAll(':scope > *');
+                                children.forEach((child, index) => {
+                                    child.style.animationDelay = `${index * 100}ms`;
+                                });
+                            }
+                            observer.unobserve(entry.target); // Animate only once
                         }
-                    }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+                    el.classList.remove('visible'); // Reset visibility for re-triggering on page change
+                    observer.observe(el);
                 });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            }
             
-            const savedLang = localStorage.getItem('portfolioLanguage') || (navigator.language.split('-')[0] in translations ? navigator.language.split('-')[0] : 'fr');
-            setLanguage(savedLang);
-
-            // Lightbox and Carousel Logic
+            // --- Lightbox and Carousel Logic ---
             const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeLightbox = document.querySelector('.lightbox-close');
+            if (lightbox) {
+                const lightboxImg = document.getElementById('lightbox-img');
+                const closeLightbox = document.querySelector('.lightbox-close');
 
-            document.querySelectorAll('.lightbox-trigger').forEach(img => {
-                img.addEventListener('click', () => {
-                    lightbox.classList.add('active');
-                    lightboxImg.src = img.src;
+                document.querySelectorAll('.lightbox-trigger').forEach(img => {
+                    img.addEventListener('click', () => {
+                        lightbox.classList.add('active');
+                        lightboxImg.src = img.src;
+                    });
                 });
-            });
 
-            if(closeLightbox) {
                 closeLightbox.addEventListener('click', () => lightbox.classList.remove('active'));
                 lightbox.addEventListener('click', (e) => {
                     if (e.target === lightbox) {
@@ -513,9 +623,7 @@
             document.querySelectorAll('[data-carousel]').forEach(carousel => {
                 let slideIndex = 1;
                 const slides = carousel.querySelectorAll('.carousel-slide');
-                const prev = carousel.querySelector('.carousel-prev');
-                const next = carousel.querySelector('.carousel-next');
-
+                
                 function showSlides(n) {
                     if (slides.length === 0) return;
                     if (n > slides.length) { slideIndex = 1; }
@@ -524,11 +632,16 @@
                     slides[slideIndex - 1].style.display = "block";
                 }
                 
-                if(prev) prev.addEventListener('click', () => showSlides(slideIndex += -1));
-                if(next) next.addEventListener('click', () => showSlides(slideIndex += 1));
+                carousel.querySelector('.carousel-prev')?.addEventListener('click', () => showSlides(slideIndex += -1));
+                carousel.querySelector('.carousel-next')?.addEventListener('click', () => showSlides(slideIndex += 1));
                 
                 showSlides(slideIndex);
             });
+
+            // --- Initial Load ---
+            const savedLang = localStorage.getItem('portfolioLanguage') || (navigator.language.split('-')[0] in translations ? navigator.language.split('-')[0] : 'fr');
+            setLanguage(savedLang);
+            revealElementsOnScroll(); // Initial animation check
         });
     </script>
 </body>
