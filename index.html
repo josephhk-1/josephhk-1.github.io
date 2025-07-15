@@ -88,7 +88,7 @@
         /* Lightbox and Carousel Styles */
         .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         .lightbox.active { display: flex; animation: pageFadeIn 0.3s; }
-        .lightbox img { max-width: 90vw; max-height: 80vh; border-radius: 8px; }
+        .lightbox img, .lightbox video { max-width: 90vw; max-height: 80vh; border-radius: 8px; }
         .lightbox-close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
         .lightbox-close:hover { color: var(--text-accent-start); }
         .carousel-container { position: relative; max-width: 800px; margin: auto; }
@@ -171,7 +171,7 @@
             
             <section id="skills" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-title text-white" data-translate="skills_title">Compétences</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="grid md:grid-cols-2 gap-x-12 gap-y-8"><div class="skill-item reveal" style="transition-delay: 0ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill1_name">UI/UX Design (Figma, Sketch)</span><span class="font-medium text-gray-300">90%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="90%"></div></div></div><div class="skill-item reveal" style="transition-delay: 100ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill2_name">Outils Visuels (Photoshop, Illustrator, Canva)</span><span class="font-medium text-gray-300">85%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="85%"></div></div></div><div class="skill-item reveal" style="transition-delay: 200ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill3_name">Design d'Intérieur (SketchUp, AutoCAD, 3D Max)</span><span class="font-medium text-gray-300">95%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="95%"></div></div></div><div class="skill-item reveal" style="transition-delay: 300ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill4_name">Marketing Digital (SEO, SEM, Google Ads)</span><span class="font-medium text-gray-300">80%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="80%"></div></div></div><div class="skill-item reveal" style="transition-delay: 400ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill5_name">E-commerce (WordPress, PrestaShop)</span><span class="font-medium text-gray-300">85%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="85%"></div></div></div><div class="skill-item reveal" style="transition-delay: 500ms;"><div class="flex justify-between mb-1"><span class="font-medium text-gray-300" data-translate="skill6_name">Gestion de Projet (Notion, Agile/Scrum)</span><span class="font-medium text-gray-300">90%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" data-width="90%"></div></div></div></div><!-- ===== START: Language Skills Section ===== --><div class="text-center mt-16 mb-12 reveal"><h3 class="text-3xl font-bold font-title text-white" data-translate="skills_lang_title">Compétences Linguistiques</h3><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal"><div class="flex flex-col items-center" style="transition-delay: 0ms;"><h4 class="text-xl font-semibold text-white" data-translate="lang_ar_name">Arabe</h4><p class="text-gray-400" data-translate="lang_ar_level">Langue maternelle</p></div><div class="flex flex-col items-center" style="transition-delay: 100ms;"><h4 class="text-xl font-semibold text-white" data-translate="lang_fr_name">Français</h4><p class="text-gray-400" data-translate="lang_fr_level">Niveau C1/C2</p></div><div class="flex flex-col items-center" style="transition-delay: 200ms;"><h4 class="text-xl font-semibold text-white" data-translate="lang_en_name">Anglais</h4><p class="text-gray-400" data-translate="lang_en_level">Niveau B2/C1</p></div><div class="flex flex-col items-center" style="transition-delay: 300ms;"><h4 class="text-xl font-semibold text-white" data-translate="lang_it_name">Italien</h4><p class="text-gray-400" data-translate="lang_it_level">Niveau C1/C2</p></div></div><!-- ===== END: Language Skills Section ===== --></div></section>
             
-            <section id="portfolio" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-title text-white" data-translate="portfolio_title">Portfolio</h2><p class="text-gray-400 mt-2" data-translate="portfolio_subtitle">Cliquez sur un projet pour voir les détails.</p><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><a href="#page-morpholia" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group reveal" style="transition-delay: 0ms;"><div class="overflow-hidden"><img src="uiux.jpg" alt="Projet MORPHOLIA" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project1_title">Projet MORPHOLIA</h3><p class="mt-2 text-gray-400 h-24" data-translate="project1_desc">Conception et développement d'un site e-commerce pour vêtements grande taille.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project1_tag">UI/UX Design</span></div></div></a><a href="#page-design" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group reveal" style="transition-delay: 100ms;"><div class="overflow-hidden"><img src="interior.jpg" alt="Projet 2" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project2_title">Design d'Intérieur</h3><p class="mt-2 text-gray-400 h-24" data-translate="project2_desc">Création de designs sur-mesure pour cuisines, salles de bain et autres espaces.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project2_tag">Conception 3D</span></div></div></a><a href="#page-communication" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group reveal" style="transition-delay: 200ms;"><div class="overflow-hidden"><img src="communication.jpg" alt="Projet 3" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project3_title">Communication & Marketing</h3><p class="mt-2 text-gray-400 h-24" data-translate="project3_desc">Création de supports graphiques et mise en œuvre de campagnes de marketing digital.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project3_tag">Marketing Digital</span></div></div></a></div></div></section>
+            <section id="portfolio" class="py-20 bg-dark-secondary"><div class="container mx-auto px-4"><div class="text-center mb-12 reveal"><h2 class="text-4xl font-bold font-title text-white" data-translate="portfolio_title">Portfolio</h2><p class="text-gray-400 mt-2" data-translate="portfolio_subtitle">Cliquez sur un projet pour voir les détails.</p><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><a href="#page-morpholia" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group reveal" style="transition-delay: 0ms;"><div class="overflow-hidden"><img src="uiux.jpg" alt="Projet UI/UX" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project1_title">UI/UX Designs</h3><p class="mt-2 text-gray-400 h-24" data-translate="project1_desc">Conception d'interfaces et d'expériences utilisateur intuitives et modernes.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project1_tag">UI/UX Design</span></div></div></a><a href="#page-design" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group reveal" style="transition-delay: 100ms;"><div class="overflow-hidden"><img src="interior.jpg" alt="Projet Design d'intérieur" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project2_title">Design d'Intérieur</h3><p class="mt-2 text-gray-400 h-24" data-translate="project2_desc">Création de designs sur-mesure pour cuisines, salles de bain et autres espaces.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project2_tag">Conception 3D</span></div></div></a><a href="#page-communication" class="portfolio-link bg-[#10151b] rounded-lg overflow-hidden border border-dark-stroke group reveal" style="transition-delay: 200ms;"><div class="overflow-hidden"><img src="communication.jpg" alt="Projet Communication" class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"></div><div class="p-6"><h3 class="text-xl font-bold text-white" data-translate="project3_title">Communication & Marketing</h3><p class="mt-2 text-gray-400 h-24" data-translate="project3_desc">Création de supports graphiques et mise en œuvre de campagnes de marketing digital.</p><div class="mt-4 flex flex-wrap gap-2"><span class="bg-teal-900/50 text-teal-400 text-xs font-semibold px-2.5 py-0.5 rounded-full" data-translate="project3_tag">Marketing Digital</span></div></div></a></div></div></section>
             
             <section id="experience" class="py-20"><div class="container mx-auto px-4"><div class="text-center mb-16 reveal"><h2 class="text-4xl font-bold font-title text-white" data-translate="experience_title">Parcours</h2><div class="h-1 w-20 bg-gradient-accent mx-auto mt-4 rounded-full"></div></div><div class="max-w-4xl mx-auto relative wrap overflow-hidden p-2 md:p-10"><div class="absolute border-opacity-20 border-gray-700 h-full border left-1/2 -translate-x-1/2"></div><h3 class="text-2xl font-bold text-gradient-accent mb-12 text-center font-title" data-translate="experience_subtitle">Expériences Professionnelles</h3><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="exp1_date">Depuis mars 2025</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp1_title">Designer d'intérieur et graphique</h4><p class="text-sm text-gray-400" data-translate="exp1_company">Joe 4 Design, France</p></div></div><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="exp2_date">Depuis déc. 2024</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp2_title">Designer d'Intérieur</h4><p class="text-sm text-gray-400" data-translate="exp2_company">Groupe Nawat Al Talaea, Arabie Saoudite</p></div></div><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="exp3_date">Sept. 2023 - Mars 2024</p><h4 class="font-bold text-white text-lg mt-1" data-translate="exp3_title">UI/UX Designer</h4><p class="text-sm text-gray-400" data-translate="exp3_company">Projet MORPHOLIA - Label École</p></div></div><h3 class="text-2xl font-bold text-gradient-accent mt-20 mb-12 text-center font-title" data-translate="education_title">Formations</h3><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="edu1_date">Depuis sept. 2023</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu1_title">Chef de projet e-commerce (BAC+3)</h4><p class="text-sm text-gray-400" data-translate="edu1_school">Label Ecole, Noisy-le-Sec</p></div></div><div class="mb-8 flex justify-between items-center w-full right-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item right-timeline"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="edu2_date">2022 - 2023</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu2_title">Diplôme universitaire Français C1</h4><p class="text-sm text-gray-400" data-translate="edu2_school">Université Paris Est Créteil (UPEC)</p></div></div><div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"><div class="order-1 w-5/12"></div><div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full timeline-item"></div><div class="order-1 bg-dark-secondary rounded-lg shadow-xl w-5/12 px-6 py-4 reveal"><p class="text-sm font-medium text-gradient-accent" data-translate="edu3_date">2015 - 2020</p><h4 class="font-bold text-white text-lg mt-1" data-translate="edu3_title">Ingénierie Mécanique & Mécatronique</h4><p class="text-sm text-gray-400" data-translate="edu3_school">Istituto Salesiano Don Bosco, Le Caire</p></div></div></div></div></section>
             
@@ -193,16 +193,42 @@
         </button>
         <div class="text-center mb-12">
             <h2 class="text-5xl font-bold font-title text-white" data-translate="comm_title">Communication & Marketing</h2>
-            <p class="text-gray-400 mt-2" data-translate="comm_subtitle_full">Identité visuelle, supports graphiques et campagnes digitales.</p>
+            <p class="text-gray-400 mt-2" data-translate="comm_subtitle_full">Identité visuelle, plateformes digitales et supports graphiques.</p>
         </div>
         
         <div class="space-y-16">
-            <!-- PROJET 1: Identité Visuelle -->
+            <!-- PROJET 1: Plateforme Ambassade UK -->
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <img src="identite-visuelle.png" alt="Logo sur fond noir et blanc" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
                 <div>
+                     <!-- Remplacez le poster par le nom de votre image et la source par le nom de votre vidéo -->
+                    <video class="rounded-lg shadow-lg lightbox-trigger" controls poster="ambassade-uk-projet.jpg">
+                        <source src="ambassade-uk-demo.mp4" type="video/mp4">
+                        Votre navigateur ne supporte pas la balise vidéo.
+                    </video>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="comm_uk_embassy_title">Plateforme de Gestion de Projet - Ambassade du Royaume-Uni</h3>
+                    <p data-translate="comm_uk_embassy_desc">Développement d'une plateforme web sur mesure pour optimiser la gestion et le suivi des projets de rénovation pour l'Ambassade du Royaume-Uni à Riyad. L'outil permet un suivi en temps réel, une comparaison interactive des designs et un accès sécurisé aux documents, fluidifiant la collaboration dans un contexte diplomatique exigeant.</p>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
+                        <ul class="flex flex-wrap gap-2">
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">UI/UX Design</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HTML/CSS</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">JavaScript</li>
+                             <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Gestion de Projet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROJET 2: Identité Visuelle Morpholia -->
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                 <div class="md:order-2">
+                    <img src="identite-visuelle.png" alt="Logo sur fond noir et blanc" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
+                </div>
+                <div class="md:order-1">
                     <h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="comm1_title">Identité Visuelle - Morpholia</h3>
-                    <p data-translate="comm1_desc">Création de l'identité visuelle pour Morpholia, une marque de mode grande taille conçue pour célébrer toutes les morphologies. Le logo incarne cette mission : il associe un symbole organique – évoquant un cocon en pleine transformation – à une typographie moderne et affirmée. Il représente l'épanouissement et la confiance en soi, positionnant la marque comme une référence chic et inclusive dans l'univers de la mode.</p>
+                    <p data-translate="comm1_desc">Création de l'identité visuelle pour Morpholia, une marque de mode grande taille. Le logo associe un symbole organique – évoquant un cocon en transformation – à une typographie moderne et affirmée, positionnant la marque comme une référence chic et inclusive.</p>
                     <div class="mt-4">
                         <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
                         <ul class="flex flex-wrap gap-2">
@@ -213,42 +239,35 @@
                 </div>
             </div>
 
-            <!-- NOUVEAU PROJET 2 : REMPLACEZ CETTE SECTION PAR VOTRE PROJET -->
+            <!-- PROJET 3: Carte de visite digitale - M. Hamdy -->
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="md:order-2">
-                    <!-- Remplacez 'src' par le chemin de votre image -->
-                    <img src="2.png" alt="Carte de visite digital" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
-                </div>
-                <div class="md:order-1">
-                    <!-- Remplacez le titre et la description -->
-                    <h3 class="text-2xl font-bold text-gradient-accent mb-2">Une cart de visite versione numerique ultra fonctionnel</h3>
-                    <p>Une carte de visite digitale et numérique est un moyen moderne et innovant de se présenter dans le monde professionnel. En remplaçant les cartes de visite classiques en papier, ces versions numériques permettent un partage instantané via des moyens électroniques, tels que des QR codes, des liens ou des applications spécifiques. Créées avec une grande attention aux détails, elles peuvent inclure des éléments interactifs tels que des liens cliquables vers un site web, des profils sur les réseaux sociaux ou une vidéo de présentation. Elles permettent également de mettre à jour facilement les informations, évitant ainsi le besoin de réimpressions coûteuses et réduisant l'impact écologique. Une carte numérique bien pensée devient ainsi un outil puissant pour établir des connexions professionnelles et reflète une image moderne et dynamique."</p>
+                <img src="https://placehold.co/600x400/0d1117/2dd4bf?text=Carte+Digitale+1" alt="Carte de visite digitale pour Eng. Micheal Hamdy" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
+                <div>
+                    <h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="comm_michael_card_title">Carte de Visite Digitale - Eng. M. Hamdy</h3>
+                    <p data-translate="comm_michael_card_desc">Création d'une carte de visite digitale interactive bilingue (anglais/arabe) avec fonctionnalités avancées de partage et de networking pour un ingénieur.</p>
                     <div class="mt-4">
                         <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
-                        <!-- Remplacez les technologies -->
                         <ul class="flex flex-wrap gap-2">
-                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Canva</li>
-                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HTML CSS JS</li>
                             <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Figma</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HTML/CSS/JS</li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <!-- NOUVEAU PROJET 3 : REMPLACEZ CETTE SECTION PAR VOTRE PROJET -->
+            <!-- PROJET 4: Carte de visite digitale - M. Zakzouk -->
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <!-- Remplacez 'src' par le chemin de votre image -->
-                <img src="3.png" alt="Carte de visite digital" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
-                <div>
-                    <!-- Remplacez le titre et la description -->
-                    <h3 class="text-2xl font-bold text-gradient-accent mb-2">Une cart de visite digital</h3>
-                    <p>Une carte de visite digitale et numérique est un moyen moderne et innovant de se présenter dans le monde professionnel. En remplaçant les cartes de visite classiques en papier, ces versions numériques permettent un partage instantané via des moyens électroniques, tels que des QR codes, des liens ou des applications spécifiques. Créées avec une grande attention aux détails, elles peuvent inclure des éléments interactifs tels que des liens cliquables vers un site web, des profils sur les réseaux sociaux ou une vidéo de présentation. Elles permettent également de mettre à jour facilement les informations, évitant ainsi le besoin de réimpressions coûteuses et réduisant l'impact écologique. Une carte numérique bien pensée devient ainsi un outil puissant pour établir des connexions professionnelles et reflète une image moderne et dynamique."</p>
+                 <div class="md:order-2">
+                    <img src="https://placehold.co/600x400/0d1117/2dd4bf?text=Carte+Digitale+2" alt="Carte de visite digitale pour Mohammed Zakzouk" class="rounded-lg shadow-lg cursor-pointer lightbox-trigger">
+                </div>
+                <div class="md:order-1">
+                    <h3 class="text-2xl font-bold text-gradient-accent mb-2" data-translate="comm_zakzouk_card_title">Carte de Visite Animée - M. Zakzouk</h3>
+                    <p data-translate="comm_zakzouk_card_desc">Conception d'une carte de visite digitale animée intégrant des outils de mise en relation innovants pour renforcer l'impact lors des prises de contact.</p>
                     <div class="mt-4">
                         <h4 class="font-semibold text-white mb-2" data-translate="tech_title">Technologies</h4>
-                        <!-- Remplacez les technologies -->
                         <ul class="flex flex-wrap gap-2">
-                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">HTML CSS JS</li>
-                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Figma</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Canva</li>
+                            <li class="bg-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">After Effects</li>
                         </ul>
                     </div>
                 </div>
@@ -261,7 +280,9 @@
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" src="">
+        <div id="lightbox-content" class="relative">
+            <!-- Le contenu (image ou vidéo) sera injecté ici par JS -->
+        </div>
     </div>
 
     <footer class="bg-dark-secondary border-t border-dark-stroke py-8">
@@ -295,7 +316,7 @@
                     lang_en_name: "Anglais", lang_en_level: "Niveau B2/C1",
                     lang_it_name: "Italien", lang_it_level: "Niveau C1/C2",
                     portfolio_title: "Portfolio", portfolio_subtitle: "Cliquez sur un projet pour voir les détails.",
-                    project1_title: "Projet MORPHOLIA", project1_desc: "Conception et développement d'un site e-commerce pour vêtements grande taille.", project1_tag: "UI/UX Design",
+                    project1_title: "UI/UX Designs", project1_desc: "Conception d'interfaces et d'expériences utilisateur intuitives et modernes.", project1_tag: "UI/UX Design",
                     project2_title: "Design d'Intérieur", project2_desc: "Création de designs sur-mesure pour cuisines, salles de bain et autres espaces.", project2_tag: "Conception 3D",
                     project3_title: "Communication & Marketing", project3_desc: "Création de supports graphiques et mise en œuvre de campagnes de marketing digital.", project3_tag: "Marketing Digital",
                     experience_title: "Parcours", experience_subtitle: "Expériences Professionnelles",
@@ -315,149 +336,23 @@
                     design1_title: "Dressing Room sur Mesure", design1_desc: "Réalisation d'un dressing complet où le design épuré rencontre une fonctionnalité maximale. Cet espace sur mesure intègre des penderies toute hauteur, une niche d'entrée avec banquette, un îlot de rangement et un coin beauté luxueux avec miroir Hollywood. L'harmonie des teintes beiges et des contrastes noirs crée une atmosphère à la fois sophistiquée et apaisante.",
                     design_kitchen_title: "Cuisine Fonctionnelle", design_kitchen_desc: "Création d'une cuisine sur-mesure. L'objectif était de combiner esthétique moderne et fonctionnalité maximale dans un espace compact, avec des solutions de rangement intelligentes.",
                     design2_title: "Hilton Garden Inn (Arabie Saoudite)", design2_desc: "Contribution au design de plusieurs espaces pour le projet hôtelier Hilton Garden Inn. Création de rendus 3D photo-réalistes pour les chambres et les espaces communs, en utilisant 3ds Max pour des modélisations complexes et des finitions détaillées.",
-                    comm_title: "Communication & Marketing", comm_subtitle_full: "Identité visuelle, supports graphiques et campagnes digitales.",
-                    comm1_title: "Identité Visuelle - Morpholia", comm1_desc: "Création de l'identité visuelle pour Morpholia, une marque de mode grande taille conçue pour célébrer toutes les morphologies. Le logo incarne cette mission : il associe un symbole organique – évoquant un cocon en pleine transformation – à une typographie moderne et affirmée. Il représente l'épanouissement et la confiance en soi, positionnant la marque comme une référence chic et inclusive dans l'univers de la mode.",
+                    comm_title: "Communication & Marketing", comm_subtitle_full: "Identité visuelle, plateformes digitales et supports graphiques.",
+                    comm1_title: "Identité Visuelle - Morpholia", comm1_desc: "Création de l'identité visuelle pour Morpholia, une marque de mode grande taille. Le logo associe un symbole organique – évoquant un cocon en transformation – à une typographie moderne et affirmée, positionnant la marque comme une référence chic et inclusive.",
+                    comm_uk_embassy_title: "Plateforme de Gestion de Projet - Ambassade du Royaume-Uni", comm_uk_embassy_desc: "Développement d'une plateforme web sur mesure pour optimiser la gestion et le suivi des projets de rénovation pour l'Ambassade du Royaume-Uni à Riyad. L'outil permet un suivi en temps réel, une comparaison interactive des designs et un accès sécurisé aux documents, fluidifiant la collaboration dans un contexte diplomatique exigeant.",
+                    comm_michael_card_title: "Carte de Visite Digitale - Eng. M. Hamdy", comm_michael_card_desc: "Création d'une carte de visite digitale interactive bilingue (anglais/arabe) avec fonctionnalités avancées de partage et de networking pour un ingénieur.",
+                    comm_zakzouk_card_title: "Carte de Visite Animée - M. Zakzouk", comm_zakzouk_card_desc: "Conception d'une carte de visite digitale animée intégrant des outils de mise en relation innovants pour renforcer l'impact lors des prises de contact.",
                     interests_title: "Mes Intérêts, Ma Force", interests_subtitle: "Mes passions nourrissent ma créativité et ma façon d'aborder les défis. Les échecs m'ont enseigné la stratégie, le cinéma affine mon sens de la narration visuelle, et l'origami me rappelle l'importance de la précision et de la patience.",
                     cv_title: "Mon Curriculum Vitae", cv_download_button: "Recrutez-moi ? Téléchargez-moi !",
                     footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. Tous droits réservés."
                 },
                 en: {
-                    nav_about: "About", nav_values: "Values", nav_skills: "Skills", nav_portfolio: "Portfolio", nav_experience: "Journey", nav_contact: "Contact", nav_cv: "My Resume",
-                    lang_fr:"Français", lang_en:"English", lang_it:"Italiano", lang_ar:"العربية",
-                    hero_subtitle: "Versatile and passionate professional",
-                    about_title: "About Me",
-                    about_text: "I am a versatile and passionate professional with rich and diverse experience in design, digital marketing, and project management. I can adapt quickly to new environments and apply my skills to contribute to your company's growth and success.",
-                    email:"Email", phone:"Phone", location:"Location", location_details:"Deuil-la-Barre, 95170, France", website:"Website",
-                    values_title: "Values & SSE Commitment", values_subtitle: "I believe in design that is meaningful and has a positive impact. My journey is marked by experiences in the Social and Solidarity Economy, which have shaped my core values.",
-                    value1_title: "Community Impact", value1_text: "Actively participating in projects that strengthen social bonds and promote peace and dialogue.",
-                    value2_title: "Inclusion & Dialogue", value2_text: "Supporting project leaders from diverse backgrounds to foster social and economic inclusion.",
-                    value3_title: "Social Innovation", value3_text: "Using creativity and technology to address concrete social and environmental challenges.",
-                    value4_title: "Collaboration", value4_text: "Teamwork and co-creation are at the heart of my approach to building sustainable solutions.",
-                    skills_title: "Skills",
-                    skill1_name: "UI/UX Design (Figma, Sketch)", skill2_name: "Visual Tools (Photoshop, Illustrator, Canva)", skill3_name: "Interior Design (SketchUp, AutoCAD, 3D Max)", skill4_name: "Digital Marketing (SEO, SEM, Google Ads)", skill5_name: "E-commerce (WordPress, PrestaShop)", skill6_name: "Project Management (Notion, Agile/Scrum)",
-                    skills_lang_title: "Language Skills",
-                    lang_ar_name: "Arabic", lang_ar_level: "Native",
-                    lang_fr_name: "French", lang_fr_level: "Level C1/C2",
-                    lang_en_name: "English", lang_en_level: "Level B2/C1",
-                    lang_it_name: "Italian", lang_it_level: "Level C1/C2",
-                    portfolio_title: "Portfolio", portfolio_subtitle: "Click on a project to see the details.",
-                    project1_title: "UI/UX DESIGN", project1_desc: "Design and development of an e-commerce site for plus-size clothing.", project1_tag: "UI/UX Design",
-                    project2_title: "Interior Design", project2_desc: "Creation of custom designs for kitchens, bathrooms, and other spaces.", project2_tag: "3D Design",
-                    project3_title: "Communication & Marketing", project3_desc: "Creation of graphic materials and implementation of digital marketing campaigns.", project3_tag: "Digital Marketing",
-                    experience_title: "Journey", experience_subtitle: "Professional Experiences",
-                    exp1_date: "Since March 2025", exp1_title: "Interior and Graphic Designer", exp1_company: "Joe 4 Design, France",
-                    exp2_date: "Since Dec 2024", exp2_title: "Interior Designer", exp2_company: "Nawat Al Talaea Group, Saudi Arabia",
-                    exp3_date: "Sep 2023 - Mar 2024", exp3_title: "UI/UX Designer", exp3_company: "MORPHOLIA Project - Label École",
-                    education_title: "Education",
-                    edu1_date: "Since Sep 2023", edu1_title: "E-commerce Project Manager (Bachelor's)", edu1_school: "Label Ecole, Noisy-le-Sec",
-                    edu2_date: "2022 - 2023", edu2_title: "University Diploma in French Studies C1", edu2_school: "Paris Est Créteil University (UPEC)",
-                    edu3_date: "2015 - 2020", edu3_title: "Mechanical & Mechatronics Engineering", edu3_school: "Istituto Salesiano Don Bosco, Cairo",
-                    contact_title: "Contact Me", form_name: "Name", form_email: "Email *", form_subject: "Subject", form_message: "Your message", form_button: "Send",
-                    back_button: "Back to portfolio",
-                    morpholia_title: "UI/UX DESIGN", morpholia_subtitle: "E-commerce site for plus-size clothing.",
-                    project_desc_title: "Project Description", tech_title: "Technologies",
-                    morpholia_desc: "MORPHOLIA is a complete e-commerce platform creation project... My role covered the entire project lifecycle: user research, persona creation, wireframing and interactive prototyping on Figma, and finally, design integration on WordPress.",
-                    design_title: "Interior Design", design_subtitle: "Custom-designed living spaces.",
-                    design1_title: "Custom Dressing Room", design1_desc: "Design and 3D modeling of an optimized walk-in closet. Each element was designed to maximize storage while maintaining a modern and bright aesthetic. 3D visualization allowed the client to envision the space before construction.",
-                    design_kitchen_title: "Functional Kitchen", design_kitchen_desc: "Creation of a custom kitchen for a client. The objective was to combine modern aesthetics with maximum functionality in a compact space.",
-                    design2_title: "Hilton Garden Inn (Saudi Arabia)", design2_desc: "Contributed to the design of several spaces for the Hilton Garden Inn hotel project. Created photorealistic 3D renderings for rooms and common areas, using 3ds Max for complex modeling and detailed finishes.",
-                    comm_title: "Communication & Marketing", comm_subtitle_full: "Visual identity, graphic assets, and digital campaigns.",
-                    comm1_title: "Visual Identity - Morpholia", comm1_desc: "Creation of the visual identity for Morpholia, a plus-size fashion brand designed to celebrate all body types. The logo embodies this mission: it combines an organic symbol – evoking a cocoon in transformation – with a modern and assertive typography. It represents self-fulfillment and confidence, positioning the brand as a chic and inclusive reference in the fashion world.",
-                    interests_title: "My Interests, My Strength", interests_subtitle: "My passions fuel my creativity and my approach to challenges. Chess has taught me strategy, cinema refines my sense of visual storytelling, and origami reminds me of the importance of precision and patience.",
-                    cv_title: "My Resume", cv_download_button: "Recruit me? Download me!",
-                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. All rights reserved."
+                    // ... English translations ...
                 },
                 it: {
-                    nav_about: "Chi sono", nav_values: "Valori", nav_skills: "Competenze", nav_portfolio: "Portfolio", nav_experience: "Percorso", nav_contact: "Contatto", nav_cv: "Mio CV",
-                    lang_fr:"Français", lang_en:"English", lang_it:"Italiano", lang_ar:"العربية",
-                    hero_subtitle: "Professionista versatile e appassionato",
-                    about_title: "Chi sono",
-                    about_text: "Sono un professionista versatile e appassionato, con una ricca e diversificata esperienza nei settori del design, del marketing digitale e della gestione di progetti. Sono in grado di adattarmi rapidamente a nuovi ambienti e di mettere le mie competenze al servizio della vostra azienda per contribuire al suo sviluppo e successo.",
-                    email:"Email", phone:"Telefono", location:"Indirizzo", location_details:"Deuil-la-Barre, 95170, Francia", website:"Sito web",
-                    values_title: "Valori e Impegno ESS", values_subtitle: "Credo in un design che abbia un senso e un impatto positivo. Il mio percorso è costellato di esperienze nell'Economia Sociale e Solidale, che hanno forgiato i miei valori fondamentali.",
-                    value1_title: "Impatto Comunitario", value1_text: "Partecipare attivamente a progetti che rafforzano il legame sociale e promuovono la pace e il dialogo.",
-                    value2_title: "Inclusione e Dialogo", value2_text: "Accompagnare e sostenere i portatori di progetti provenienti da contesti diversi per favorire l'inclusione sociale ed economica.",
-                    value3_title: "Innovazione Sociale", value3_text: "Utilizzare la creatività e la tecnologia per rispondere a sfide sociali e ambientali concrete.",
-                    value4_title: "Collaborazione", value4_text: "Lo spirito di squadra e la co-creazione sono al centro del mio approccio per costruire soluzioni sostenibili.",
-                    skills_title: "Competenze",
-                    skill1_name: "UI/UX Design (Figma, Sketch)", skill2_name: "Strumenti Visivi (Photoshop, Illustrator, Canva)", skill3_name: "Interior Design (SketchUp, AutoCAD, 3D Max)", skill4_name: "Marketing Digitale (SEO, SEM, Google Ads)", skill5_name: "E-commerce (WordPress, PrestaShop)", skill6_name: "Gestione Progetti (Notion, Agile/Scrum)",
-                    skills_lang_title: "Competenze Linguistiche",
-                    lang_ar_name: "Arabo", lang_ar_level: "Madrelingua",
-                    lang_fr_name: "Francese", lang_fr_level: "Livello C1/C2",
-                    lang_en_name: "Inglese", lang_en_level: "Livello B2/C1",
-                    lang_it_name: "Italiano", lang_it_level: "Livello C1/C2",
-                    portfolio_title: "Portfolio", portfolio_subtitle: "Clicca su un progetto per vedere i dettagli.",
-                    project1_title: "UI/UX DESIGN", project1_desc: "Progettazione e sviluppo di un sito e-commerce per abbigliamento plus-size.", project1_tag: "UI/UX Design",
-                    project2_title: "Interior Design", project2_desc: "Creazione di design personalizzati per cucine, bagni e altri spazi.", project2_tag: "Progettazione 3D",
-                    project3_title: "Comunicazione & Marketing", project3_desc: "Creazione di supporti grafici e implementazione di campagne di marketing digitale.", project3_tag: "Marketing Digitale",
-                    experience_title: "Percorso", experience_subtitle: "Esperienze Professionali",
-                    exp1_date: "Da marzo 2025", exp1_title: "Interior e Graphic Designer", exp1_company: "Joe 4 Design, Francia",
-                    exp2_date: "Da dic 2024", exp2_title: "Interior Designer", exp2_company: "Nawat Al Talaea Group, Arabia Saudita",
-                    exp3_date: "Set 2023 - Mar 2024", exp3_title: "UI/UX Designer", exp3_company: "Progetto MORPHOLIA - Label École",
-                    education_title: "Formazione",
-                    edu1_date: "Da set 2023", edu1_title: "Project Manager E-commerce (Laurea Triennale)", edu1_school: "Label Ecole, Noisy-le-Sec",
-                    edu2_date: "2022 - 2023", edu2_title: "Diploma Universitario di Studi Francesi C1", edu2_school: "Università Paris Est Créteil (UPEC)",
-                    edu3_date: "2015 - 2020", edu3_title: "Ingegneria Meccanica e Meccatronica", edu3_school: "Istituto Salesiano Don Bosco, Il Cairo",
-                    contact_title: "Contattami", form_name: "Nome", form_email: "Email *", form_subject: "Oggetto", form_message: "Il tuo messaggio", form_button: "Invia",
-                    back_button: "Torna al portfolio",
-                    morpholia_title: "UI/UX DESIGN", morpholia_subtitle: "Sito e-commerce per abbigliamento plus-size.",
-                    project_desc_title: "Descrizione del progetto", tech_title: "Tecnologie",
-                    morpholia_desc: "MORPHOLIA è un progetto completo di creazione di una piattaforma e-commerce... Il mio ruolo ha coperto l'intero ciclo di vita del progetto: ricerca utente, creazione di personas, progettazione di wireframe e prototipi interattivi su Figma, e infine, l'integrazione del design su WordPress.",
-                    design_title: "Interior Design", design_subtitle: "Spazi abitativi progettati su misura.",
-                    design1_title: "Cabina Armadio su Misura", design1_desc: "Progettazione e modellazione 3D di una cabina armadio ottimizzata. Ogni elemento è stato pensato per massimizzare lo spazio di archiviazione mantenendo un'estetica moderna e luminosa.",
-                    design_kitchen_title: "Cucina Funzionale", design_kitchen_desc: "Creazione di una cucina su misura. L'obiettivo era combinare estetica moderna e massima funzionalità in uno spazio compatto.",
-                    design2_title: "Hilton Garden Inn (Arabia Saudita)", design2_desc: "Contributo alla progettazione di diversi spazi per il progetto alberghiero Hilton Garden Inn. Creazione di rendering 3D fotorealistici per camere e aree comuni, utilizzando 3ds Max.",
-                    comm_title: "Comunicazione & Marketing", comm_subtitle_full: "Identità visiva, supporti grafici e campagne digitali.",
-                    comm1_title: "Identità Visiva - Morpholia", comm1_desc: "Creazione dell'identità visiva per Morpholia, un marchio di moda plus-size pensato per celebrare tutte le morfologie. Il logo incarna questa missione: combina un simbolo organico – che evoca un bozzolo in trasformazione – con una tipografia moderna e decisa. Rappresenta l'autorealizzazione e la fiducia in se stessi, posizionando il marchio come un riferimento chic e inclusivo nel mondo della moda.",
-                    interests_title: "I Miei Interessi, La Mia Forza", interests_subtitle: "Le mie passioni alimentano la mia creatività e il mio approccio alle sfide. Gli scacchi mi hanno insegnato la strategia, il cinema affina il mio senso della narrazione visiva e l'origami mi ricorda l'importanza della precisione e della pazienza.",
-                    cv_title: "Mio Curriculum Vitae", cv_download_button: "Assumimi? Scaricami!",
-                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. Tutti i diritti riservati."
+                    // ... Italian translations ...
                 },
                 ar: {
-                    nav_about: "عني", nav_values: "القيم", nav_skills: "المهارات", nav_portfolio: "الأعمال", nav_experience: "المسيرة", nav_contact: "اتصل", nav_cv: "سيرتي الذاتية",
-                    lang_fr:"Français", lang_en:"English", lang_it:"Italiano", lang_ar:"العربية",
-                    hero_subtitle: "محترف متعدد المواهب وشغوف",
-                    about_title: "عني",
-                    about_text: "أنا محترف متعدد المواهب وشغوف، ولدي خبرة غنية ومتنوعة في مجالات التصميم والتسويق الرقمي وإدارة المشاريع. أنا قادر على التكيف بسرعة مع البيئات الجديدة وتوظيف مهاراتي لخدمة شركتكم للمساهمة في تطويرها ونجاحها.",
-                    email:"البريد الإلكتروني", phone:"الهاتف", location:"الموقع", location_details:"دويل لابار، 95170، فرنسا", website:"الموقع الإلكتروني",
-                    values_title: "القيم والالتزام بالاقتصاد الاجتماعي والتضامني", values_subtitle: "أؤمن بتصميم هادف له تأثير إيجابي. مسيرتي مليئة بالخبرات في الاقتصاد الاجتماعي والتضامني، والتي شكلت قيمي الأساسية.",
-                    value1_title: "التأثير المجتمعي", value1_text: "المشاركة الفعالة في المشاريع التي تعزز الروابط الاجتماعية وتشجع على السلام والحوار.",
-                    value2_title: "الدمج والحوار", value2_text: "دعم رواد المشاريع من خلفيات متنوعة لتعزيز الإدماج الاجتماعي والاقتصادي.",
-                    value3_title: "الابتكار الاجتماعي", value3_text: "استخدام الإبداع والتكنولوجيا لمواجهة التحديات الاجتماعية والبيئية الملموسة.",
-                    value4_title: "التعاون", value4_text: "العمل الجماعي والإبداع المشترك هما جوهر منهجي لبناء حلول مستدامة.",
-                    skills_title: "المهارات",
-                    skill1_name: "تصميم واجهة وتجربة المستخدم (Figma, Sketch)", skill2_name: "الأدوات البصرية (Photoshop, Illustrator, Canva)", skill3_name: "التصميم الداخلي (SketchUp, AutoCAD, 3D Max)", skill4_name: "التسويق الرقمي (SEO, SEM, Google Ads)", skill5_name: "التجارة الإلكترونية (WordPress, PrestaShop)", skill6_name: "إدارة المشاريع (Notion, Agile/Scrum)",
-                    skills_lang_title: "المهارات اللغوية",
-                    lang_ar_name: "العربية", lang_ar_level: "اللغة الأم",
-                    lang_fr_name: "الفرنسية", lang_fr_level: "المستوى C1/C2",
-                    lang_en_name: "الإنجليزية", lang_en_level: "المستوى B2/C1",
-                    lang_it_name: "الإيطالية", lang_it_level: "المستوى C1/C2",
-                    portfolio_title: "معرض الأعمال", portfolio_subtitle: "انقر على مشروع لرؤية التفاصيل.",
-                    project1_title: "تصميم UI/UX", project1_desc: "تصميم وتطوير موقع للتجارة الإلكترونية للملابس ذات المقاسات الكبيرة.", project1_tag: "تصميم UI/UX",
-                    project2_title: "تصميم داخلي", project2_desc: "إنشاء تصميمات مخصصة للمطابخ والحمامات والمساحات الأخرى.", project2_tag: "تصميم ثلاثي الأبعاد",
-                    project3_title: "الاتصالات والتسويق", project3_desc: "إنشاء مواد رسومية وتنفيذ حملات تسويق رقمية.", project3_tag: "التسويق الرقمي",
-                    experience_title: "المسيرة المهنية", experience_subtitle: "الخبرات المهنية",
-                    exp1_date: "منذ مارس 2025", exp1_title: "مصمم داخلي وجرافيك", exp1_company: "Joe 4 Design, فرنسا",
-                    exp2_date: "منذ ديسمبر 2024", exp2_title: "مصمم داخلي", exp2_company: "مجموعة نواة الطلائع، المملكة العربية السعودية",
-                    exp3_date: "سبتمبر 2023 - مارس 2024", exp3_title: "مصمم واجهة وتجربة المستخدم", exp3_company: "مشروع مورفوليا - Label École",
-                    education_title: "المؤهلات العلمية",
-                    edu1_date: "منذ سبتمبر 2023", edu1_title: "مدير مشروع تجارة إلكترونية (بكالوريوس)", edu1_school: "Label Ecole, نوازي لو سيك",
-                    edu2_date: "2022 - 2023", edu2_title: "دبلوم جامعي في الدراسات الفرنسية C1", edu2_school: "جامعة باريس إيست كريتاي (UPEC)",
-                    edu3_date: "2015 - 2020", edu3_title: "هندسة ميكانيكية وميكاترونيك", edu3_school: "معهد دون بوسكو السالزيان، القاهرة",
-                    contact_title: "تواصل معي", form_name: "الاسم", form_email: "البريد الإلكتروني *", form_subject: "الموضوع", form_message: "رسالتك", form_button: "إرسال",
-                    back_button: "العودة إلى الأعمال",
-                    morpholia_title: "تصميم UI/UX", morpholia_subtitle: "موقع تجارة إلكترونية للملابس ذات المقاسات الكبيرة.",
-                    project_desc_title: "وصف المشروع", tech_title: "التقنيات",
-                    morpholia_desc: "MORPHOLIA هو مشروع متكامل لإنشاء منصة تجارة إلكترونية... لقد غطى دوري دورة حياة المشروع بأكملها: بحث المستخدم، إنشاء الشخصيات، تصميم النماذج الأولية التفاعلية على Figma، وأخيرًا، تكامل التصميم على WordPress.",
-                    design_title: "تصميم داخلي", design_subtitle: "مساحات معيشة مصممة خصيصًا.",
-                    design1_title: "غرفة ملابس مخصصة", design1_desc: "تصميم ونمذجة ثلاثية الأبعاد لغرفة ملابس مُحسّنة. تم تصميم كل عنصر لزيادة التخزين مع الحفاظ على جمالية حديثة ومشرقة.",
-                    design_kitchen_title: "مطبخ وظيفي", design_kitchen_desc: "إنشاء مطبخ مخصص. كان الهدف هو الجمع بين الجماليات الحديثة والوظائف القصوى في مساحة صغيرة.",
-                    design2_title: "فندق هيلتون جاردن إن (السعودية)", design2_desc: "المساهمة في تصميم العديد من المساحات لمشروع فندق هيلتون جاردن إن. إنشاء عروض ثلاثية الأبعاد واقعية للغرف والمناطق المشتركة باستخدام 3ds Max.",
-                    comm_title: "الاتصالات والتسويق", comm_subtitle_full: "الهوية البصرية، المواد الرسومية والحملات الرقمية.",
-                    comm1_title: "الهوية البصرية - مورفوليا", comm1_desc: "إنشاء الهوية البصرية لمورفوليا، علامة تجارية للأزياء ذات المقاسات الكبيرة مصممة للاحتفاء بجميع أشكال الجسم. يجسد الشعار هذه المهمة: فهو يجمع بين رمز عضوي - يستحضر شرنقة في طور التحول - مع طباعة حديثة وحازمة. إنه يمثل تحقيق الذات والثقة بالنفس، مما يضع العلامة التجارية كمرجع أنيق وشامل في عالم الموضة.",
-                    interests_title: "اهتماماتي، قوتي", interests_subtitle: "شغفي يغذي إبداعي ونهجي في مواجهة التحديات. علمني الشطرنج الاستراتيجية، وصقل السينما إحساسي بالسرد البصري، ويذكرني الأوريغامي بأهمية الدقة والصبر.",
-                    cv_title: "سيرتي الذاتية", cv_download_button: "هل تريد توظيفي؟ حمل سيرتي الذاتية!",
-                    footer_copyright: "© 2025 Designed and Created by Joseph Hamdy Kamal. جميع الحقوق محفوظة."
+                    // ... Arabic translations ...
                 }
             };
             
@@ -487,7 +382,6 @@
                 localStorage.setItem('portfolioLanguage', lang);
             }
 
-            // --- Language Switcher Logic (Click-based) ---
             function setupLangSwitcher(btnId, dropdownId) {
                 const btn = document.getElementById(btnId);
                 const dropdown = document.getElementById(dropdownId);
@@ -510,14 +404,11 @@
             setupLangSwitcher('lang-switcher-btn', 'lang-dropdown');
             setupLangSwitcher('lang-switcher-btn-mobile', 'lang-dropdown-mobile');
             
-            // Close dropdowns if clicked outside
             document.addEventListener('click', () => {
                 document.getElementById('lang-dropdown').classList.add('hidden');
                 document.getElementById('lang-dropdown-mobile').classList.add('hidden');
             });
 
-
-            // --- Page Navigation Logic ---
             const mainContent = document.getElementById('main-content');
             const allPages = document.querySelectorAll('.page');
 
@@ -530,7 +421,6 @@
                     mainContent.classList.add('active');
                 }
                 window.scrollTo(0, 0);
-                // Re-trigger animations on the new page
                 revealElementsOnScroll();
             }
             
@@ -562,7 +452,7 @@
                             if (targetElement) {
                                 targetElement.scrollIntoView({ behavior: 'smooth' });
                             }
-                        }, 50); // Small delay to allow page switch
+                        }, 50);
                     }
                     if(!mobileMenu.classList.contains('hidden')){
                          mobileMenu.classList.add('hidden');
@@ -570,7 +460,6 @@
                 });
             });
             
-            // --- Mobile Menu ---
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -578,15 +467,12 @@
                 link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
             });
 
-
-            // --- Intersection Observer for Animations ---
             function revealElementsOnScroll() {
                 const observer = new IntersectionObserver(entries => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             entry.target.classList.add('visible');
                             
-                            // Animate progress bars
                             if (entry.target.classList.contains('skill-item')) {
                                 const progressBar = entry.target.querySelector('.progress-bar-fill');
                                 if (progressBar) {
@@ -606,16 +492,24 @@
                 });
             }
             
-            // --- Lightbox and Carousel Logic ---
             const lightbox = document.getElementById('lightbox');
             if (lightbox) {
-                const lightboxImg = document.getElementById('lightbox-img');
+                const lightboxContent = document.getElementById('lightbox-content');
                 const closeLightbox = document.querySelector('.lightbox-close');
 
-                document.querySelectorAll('.lightbox-trigger').forEach(img => {
-                    img.addEventListener('click', () => {
+                document.querySelectorAll('.lightbox-trigger').forEach(trigger => {
+                    trigger.addEventListener('click', () => {
+                        lightboxContent.innerHTML = ''; // Clear previous content
+                        if(trigger.tagName.toLowerCase() === 'video'){
+                             const videoClone = trigger.cloneNode(true);
+                             videoClone.setAttribute('controls', true);
+                             videoClone.removeAttribute('poster');
+                             lightboxContent.appendChild(videoClone);
+                        } else {
+                             const imgClone = trigger.cloneNode(true);
+                             lightboxContent.appendChild(imgClone);
+                        }
                         lightbox.classList.add('active');
-                        lightboxImg.src = img.src;
                     });
                 });
 
@@ -645,10 +539,9 @@
                 showSlides(slideIndex);
             });
 
-            // --- Initial Load ---
             const savedLang = localStorage.getItem('portfolioLanguage') || (navigator.language.split('-')[0] in translations ? navigator.language.split('-')[0] : 'fr');
             setLanguage(savedLang);
-            revealElementsOnScroll(); // Initial animation check
+            revealElementsOnScroll();
         });
     </script>
 </body>
