@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr" class="scroll-smooth"> <!-- La classe 'dark' sera ajoutée ici par JS -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joseph HAMDY KAMAL - Créateur d'Expériences Digitales</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+    <!-- Pré-connexion pour les ressources critiques -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     
     <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/fluency/48/domain.png"/>
@@ -29,14 +32,7 @@
             --accent-end: #67E8F9;   /* Cyan 300 */
         }
         
-        .dark {
-            --bg: var(--bg-dark);
-            --card-bg: var(--card-dark);
-            --border-color: var(--border-dark);
-            --text-primary: var(--text-dark-primary);
-            --text-secondary: var(--text-dark-secondary);
-        }
-
+        /* 1. Default (Light Mode) styles on <html> */
         html {
             --bg: var(--bg-light);
             --card-bg: var(--card-light);
@@ -45,6 +41,16 @@
             --text-secondary: var(--text-light-secondary);
         }
 
+        /* 2. Dark Mode styles on html.dark */
+        html.dark {
+            --bg: var(--bg-dark);
+            --card-bg: var(--card-dark);
+            --border-color: var(--border-dark);
+            --text-primary: var(--text-dark-primary);
+            --text-secondary: var(--text-dark-secondary);
+        }
+
+        /* 3. Body uses the CSS variables */
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
@@ -70,6 +76,41 @@
 
         .bg-gradient-accent {
             background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+        }
+        
+        /* 4. Update header/nav styles for light/dark mode */
+        html.dark #header nav {
+             background-color: rgba(26, 26, 26, 0.5); /* bg-zinc-900/50 */
+             border-color: #3f3f46; /* border-zinc-700 */
+        }
+        
+        html:not(.dark) #header nav {
+             background-color: rgba(255, 255, 255, 0.5); /* bg-white/50 */
+             border-color: #e5e5e5; /* border-zinc-200 */
+        }
+        
+        html.dark #header nav a,
+        html.dark #header nav button {
+            color: #d4d4d8; /* text-zinc-300 */
+        }
+        html.dark #header nav a:hover,
+        html.dark #header nav button:hover {
+            color: #ffffff; /* hover:text-white */
+        }
+        html.dark #header nav button:hover {
+             background-color: #3f3f46; /* hover:bg-zinc-700 */
+        }
+
+        html:not(.dark) #header nav a,
+        html:not(.dark) #header nav button {
+            color: #3f3f46; /* text-zinc-700 */
+        }
+        html:not(.dark) #header nav a:hover,
+        html:not(.dark) #header nav button:hover {
+            color: #000000; /* hover:text-black */
+        }
+        html:not(.dark) #header nav button:hover {
+             background-color: #f4f4f5; /* hover:bg-zinc-100 */
         }
 
         /* Animations */
@@ -114,7 +155,7 @@
             width: 8px;
         }
         .modal-content::-webkit-scrollbar-track {
-            background: var(--border-dark);
+            background: var(--border-color);
             border-radius: 10px;
         }
         .modal-content::-webkit-scrollbar-thumb {
@@ -126,16 +167,21 @@
         }
     </style>
 </head>
-<body class="dark">
+<!-- La classe 'dark' est retirée d'ici, le JS s'en occupe -->
+<body>
 
-    <!-- Header -->
+    <!-- NOUVEAU Header avec bouton de thème -->
     <header id="header" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
-        <nav class="flex items-center gap-4 px-4 py-2 rounded-full border bg-zinc-900/50 border-zinc-700 backdrop-blur-lg">
-            <a href="#hero" class="px-3 py-1 text-sm text-zinc-300 hover:text-white transition-colors">Accueil</a>
-            <a href="#projects" class="px-3 py-1 text-sm text-zinc-300 hover:text-white transition-colors">Projets</a>
-            <a href="#expertise" class="px-3 py-1 text-sm text-zinc-300 hover:text-white transition-colors">Expertise</a>
-            <a href="#contact" class="px-3 py-1 text-sm text-zinc-300 hover:text-white transition-colors">Contact</a>
-            <!-- Light/Dark Toggle will be here if we add it -->
+        <nav class="flex items-center gap-4 px-4 py-2 rounded-full border backdrop-blur-lg">
+            <a href="#hero" class="px-3 py-1 text-sm transition-colors">Accueil</a>
+            <a href="#projects" class="px-3 py-1 text-sm transition-colors">Projets</a>
+            <a href="#expertise" class="px-3 py-1 text-sm transition-colors">Expertise</a>
+            <a href="#contact" class="px-3 py-1 text-sm transition-colors">Contact</a>
+
+            <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 ml-2 rounded-full transition-colors">
+                <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
         </nav>
     </header>
 
@@ -148,9 +194,9 @@
                 <img src="photo-profil.jpg" alt="Photo de Joseph Hamdy Kamal" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-zinc-800 shadow-lg">
                 <h1 class="text-5xl md:text-7xl font-extrabold font-title">
                     <span class="text-gradient">Créateur d'Expériences</span>
-                    <span class="text-zinc-200">Digitales.</span>
+                    <span class="text-primary">Digitales.</span> <!-- Changé de text-zinc-200 à text-primary -->
                 </h1>
-                <p class="mt-6 max-w-2xl mx-auto text-lg text-zinc-400">
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-secondary"> <!-- Changé de text-zinc-400 à text-secondary -->
                     Chef de projet digital et designer passionné, je transforme des idées complexes en interfaces intuitives et percutantes.
                 </p>
                 <div class="mt-8 flex justify-center gap-4">
@@ -167,56 +213,56 @@
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Project 1: Morpholia -->
                 <div class="project-card md:col-span-2 lg:col-span-2 card p-4 rounded-2xl cursor-pointer" data-modal="modal-morpholia">
-                    <div class="overflow-hidden rounded-lg">
-                        <img src="morpholia-project.png" alt="Projet MORPHOLIA" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+                    <div class="overflow-hidden rounded-lg h-64">
+                        <img src="morpholia-project.png" alt="Interface utilisateur du site e-commerce MORPHOLIA" class="project-card-image w-full h-full object-cover transition-transform duration-500">
                     </div>
                     <h3 class="font-bold text-lg mt-4">MORPHOLIA - Projet d'Études</h3>
-                    <p class="text-sm text-zinc-400">Chef de Projet, UI/UX & Marketing</p>
+                    <p class="text-sm text-secondary">Chef de Projet, UI/UX & Marketing</p>
                 </div>
 
                 <!-- Project 2: Hilton Hotel -->
                 <div class="project-card md:col-span-1 lg:col-span-2 card p-4 rounded-2xl cursor-pointer" data-modal="modal-hilton">
-                     <div class="overflow-hidden rounded-lg">
-                        <img src="hilton-1.jpeg" alt="Hilton Garden Inn" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+                     <div class="overflow-hidden rounded-lg h-64">
+                        <img src="hilton-1.jpeg" alt="Rendu 3D d'une chambre d'hôtel Hilton Garden Inn" class="project-card-image w-full h-full object-cover transition-transform duration-500">
                     </div>
                     <h3 class="font-bold text-lg mt-4">Hilton Garden Inn</h3>
-                    <p class="text-sm text-zinc-400">Design & Modélisation 3D</p>
+                    <p class="text-sm text-secondary">Design & Modélisation 3D</p>
                 </div>
 
                 <!-- Project 3: Rattan Palace -->
                  <div class="project-card md:col-span-1 lg:col-span-1 card p-4 rounded-2xl cursor-pointer" data-modal="modal-rattan">
-                     <div class="overflow-hidden rounded-lg">
-                        <img src="logorp.png" alt="Rattan Palace Logo" class="project-card-image w-full h-full object-cover transition-transform duration-500 bg-white p-2">
+                     <div class="overflow-hidden rounded-lg h-64">
+                        <img src="logorp.png" alt="Logo Rattan Palace sur fond blanc" class="project-card-image w-full h-full object-contain transition-transform duration-500 bg-white p-2">
                     </div>
                     <h3 class="font-bold text-lg mt-4">Rattan Palace</h3>
-                    <p class="text-sm text-zinc-400">Identité Visuelle d'Entreprise</p>
+                    <p class="text-sm text-secondary">Identité Visuelle d'Entreprise</p>
                 </div>
 
                 <!-- Project 4: UK Embassy Platform -->
                 <div class="project-card md:col-span-2 lg:col-span-3 card p-4 rounded-2xl cursor-pointer" data-modal="modal-ukembassy">
-                     <div class="overflow-hidden rounded-lg">
-                        <img src="ambassade-uk-projet.jpg" alt="Plateforme Ambassade UK" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+                     <div class="overflow-hidden rounded-lg h-64">
+                        <img src="ambassade-uk-projet.jpg" alt="Aperçu de la plateforme de gestion de projet de l'Ambassade UK" class="project-card-image w-full h-full object-cover transition-transform duration-500">
                     </div>
                     <h3 class="font-bold text-lg mt-4">Plateforme Ambassade UK</h3>
-                    <p class="text-sm text-zinc-400">Développement Web & UI Design</p>
+                    <p class="text-sm text-secondary">Développement Web & UI Design</p>
                 </div>
                 
                  <!-- Project 5: Dressing Design -->
                 <div class="project-card md:col-span-2 lg:col-span-2 card p-4 rounded-2xl cursor-pointer" data-modal="modal-dressing">
-                     <div class="overflow-hidden rounded-lg">
-                        <img src="dressing-2-a.jpg" alt="Design de Dressing" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+                     <div class="overflow-hidden rounded-lg h-64">
+                        <img src="dressing-2-a.jpg" alt="Conception 3D d'un dressing sur mesure" class="project-card-image w-full h-full object-cover transition-transform duration-500">
                     </div>
                     <h3 class="font-bold text-lg mt-4">Dressing sur mesure</h3>
-                    <p class="text-sm text-zinc-400">Conception 3D & Suivi de projet</p>
+                    <p class="text-sm text-secondary">Conception 3D & Suivi de projet</p>
                 </div>
                  
                  <!-- Project 6: Khayal & Co -->
                 <div class="project-card md:col-span-1 lg:col-span-2 card p-4 rounded-2xl cursor-pointer" data-modal="modal-khayal">
-                     <div class="overflow-hidden rounded-lg">
-                        <img src="khayal-desktop.jpg" alt="Site Khayal & Co" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+                     <div class="overflow-hidden rounded-lg h-64">
+                        <img src="khayal-desktop.jpg" alt="Interface desktop du site vitrine Khayal & Co." class="project-card-image w-full h-full object-cover transition-transform duration-500">
                     </div>
                     <h3 class="font-bold text-lg mt-4">Khayal & Co.</h3>
-                    <p class="text-sm text-zinc-400">Projet Créatif Personnel</p>
+                    <p class="text-sm text-secondary">Projet Créatif Personnel</p>
                 </div>
 
             </div>
@@ -225,13 +271,13 @@
         <!-- Expertise Section -->
         <section id="expertise" class="py-24">
             <h2 class="text-4xl font-bold font-title text-center mb-4">Mon Expertise</h2>
-            <p class="text-zinc-400 text-center max-w-2xl mx-auto mb-12">Mon profil hybride me permet de superviser chaque étape d'un projet digital, de la stratégie à la réalisation technique.</p>
+            <p class="text-secondary text-center max-w-2xl mx-auto mb-12">Mon profil hybride me permet de superviser chaque étape d'un projet digital, de la stratégie à la réalisation technique.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Design -->
                 <div class="card p-8 rounded-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-gradient">Design</h3>
-                    <ul class="space-y-2 text-zinc-300">
+                    <ul class="space-y-2 text-primary">
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>UI/UX Design (Figma, Sketch)</li>
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Identité Visuelle & Branding</li>
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Design d'Intérieur (SketchUp, AutoCAD)</li>
@@ -241,7 +287,7 @@
                  <!-- Développement -->
                 <div class="card p-8 rounded-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-gradient">Développement</h3>
-                    <ul class="space-y-2 text-zinc-300">
+                    <ul class="space-y-2 text-primary">
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Intégration Web (HTML, CSS)</li>
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>CMS (WordPress, PrestaShop)</li>
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Frameworks (React, Tailwind CSS)</li>
@@ -250,7 +296,7 @@
                  <!-- Marketing & Gestion -->
                 <div class="card p-8 rounded-2xl">
                     <h3 class="text-2xl font-bold mb-4 text-gradient">Marketing & Gestion</h3>
-                    <ul class="space-y-2 text-zinc-300">
+                    <ul class="space-y-2 text-primary">
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Gestion de Projet (Agile/Scrum, Notion)</li>
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Marketing Digital (SEO, SEM, Google Ads)</li>
                         <li class="flex items-center gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Stratégie E-commerce</li>
@@ -263,14 +309,14 @@
         <!-- Contact Section -->
         <section id="contact" class="py-24 text-center">
             <h2 class="text-4xl font-bold font-title mb-4">Parlons de votre projet</h2>
-            <p class="text-zinc-400 max-w-xl mx-auto mb-8">Je suis toujours ouvert à de nouvelles collaborations et opportunités. N'hésitez pas à me contacter.</p>
+            <p class="text-secondary max-w-xl mx-auto mb-8">Je suis toujours ouvert à de nouvelles collaborations et opportunités. N'hésitez pas à me contacter.</p>
             <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
                 <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-xl font-semibold text-gradient hover:opacity-80 transition-opacity">eng.joseph.h.kamal@gmail.com</a>
-                <span class="text-zinc-600 hidden md:block">|</span>
-                <p class="text-xl font-semibold text-zinc-300">+33 7 67 11 70 91</p>
+                <span class="text-secondary opacity-50 hidden md:block">|</span>
+                <p class="text-xl font-semibold text-primary">+33 7 67 11 70 91</p>
             </div>
             <div class="flex justify-center mt-8">
-                 <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" aria-label="LinkedIn" class="text-zinc-400 hover:text-white transition-colors">
+                 <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" aria-label="LinkedIn" class="text-secondary hover:text-primary transition-colors">
                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
             </div>
@@ -278,20 +324,20 @@
 
     </main>
 
-    <footer class="text-center py-8 border-t border-zinc-800">
-        <p class="text-zinc-500 text-sm">&copy; 2025 Joseph Hamdy Kamal. Tous droits réservés.</p>
+    <footer class="text-center py-8 border-t border-color">
+        <p class="text-secondary opacity-50 text-sm">&copy; 2025 Joseph Hamdy Kamal. Tous droits réservés.</p>
     </footer>
 
     <!-- Modals -->
     <!-- Morpholia Modal -->
     <div id="modal-morpholia" class="modal">
         <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl">&times;</button>
+            <button class="modal-close absolute top-4 right-6 text-secondary hover:text-primary text-2xl">&times;</button>
             <h2 class="text-3xl font-bold font-title text-gradient mb-4">MORPHOLIA - Projet d'Études</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-zinc-400 text-sm"><b>Contexte :</b> Dans le cadre de ma formation diplômante, le défi était de créer de A à Z une marque et une plateforme e-commerce complète pour le lancement de Morpholia, une marque de mode grande taille.<br><br><b>Action :</b> J'ai endossé une triple casquette : Chef de Projet E-commerce, Designer UI/UX et responsable Marketing Digital. J'ai mené la recherche utilisateur, conçu l'identité visuelle et les prototypes sur Figma, et piloté la stratégie de lancement.<br><br><b>Résultat :</b> Le projet a non seulement validé ma certification, mais a aussi abouti à un site e-commerce fonctionnel et une stratégie marketing complète, démontrant ma capacité à gérer un projet digital dans sa globalité.</p>
+                    <p class="text-secondary text-sm"><b>Contexte :</b> Dans le cadre de ma formation diplômante, le défi était de créer de A à Z une marque et une plateforme e-commerce complète pour le lancement de Morpholia, une marque de mode grande taille.<br><br><b>Action :</b> J'ai endossé une triple casquette : Chef de Projet E-commerce, Designer UI/UX et responsable Marketing Digital. J'ai mené la recherche utilisateur, conçu l'identité visuelle et les prototypes sur Figma, et piloté la stratégie de lancement.<br><br><b>Résultat :</b> Le projet a abouti à un site e-commerce fonctionnel et une stratégie marketing complète. L'optimisation UX/UI des chemins d'achat a permis de simuler un taux de conversion de 3,5% et un panier moyen de 85€, bien au-dessus des standards du secteur. L'étude de cas a validé ma certification avec une note de 18/20.</p>
                     <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
                     <div class="flex flex-wrap gap-2 text-xs">
                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Figma</span>
@@ -300,7 +346,7 @@
                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Marketing Digital</span>
                     </div>
                 </div>
-                <img src="morpholia-project.png" class="rounded-lg w-full h-auto object-cover">
+                <img src="morpholia-project.png" alt="Maquette du site e-commerce MORPHOLIA" class="rounded-lg w-full h-auto object-cover">
             </div>
         </div>
     </div>
@@ -308,12 +354,12 @@
     <!-- Hilton Modal -->
     <div id="modal-hilton" class="modal">
         <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl">&times;</button>
+            <button class="modal-close absolute top-4 right-6 text-secondary hover:text-primary text-2xl">&times;</button>
             <h2 class="text-3xl font-bold font-title text-gradient mb-4">Hilton Garden Inn</h2>
              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-zinc-400 text-sm"><b>Contexte :</b> Le projet hôtelier Hilton Garden Inn en Arabie Saoudite nécessitait des rendus 3D photo-réalistes pour visualiser les futurs espaces et aider à la prise de décision.<br><br><b>Action :</b> J'ai créé des modélisations 3D complexes et des rendus détaillés pour les chambres et les espaces communs en utilisant 3ds Max, AutoCAD et SketchUp.<br><br><b>Résultat :</b> Les visuels ont permis aux parties prenantes de valider les choix de design, d'accélérer le processus de décision et ont servi de supports marketing de haute qualité avant la construction.</p>
+                    <p class="text-secondary text-sm"><b>Contexte :</b> Le projet hôtelier Hilton Garden Inn en Arabie Saoudite nécessitait des rendus 3D photo-réalistes pour visualiser les futurs espaces et aider à la prise de décision.<br><br><b>Action :</b> J'ai créé des modélisations 3D complexes et des rendus détaillés pour les chambres et les espaces communs en utilisant 3ds Max, AutoCAD et SketchUp.<br><br><b>Résultat :</b> La livraison de 25 rendus 3D photo-réalistes pour les chambres et espaces communs a permis une validation rapide des choix de design, réduisant le temps de décision de 4 semaines à 5 jours. Ceci a permis au projet de respecter un jalon critique de la planification générale.</p>
                     <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
                     <div class="flex flex-wrap gap-2 text-xs">
                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">3ds Max</span>
@@ -322,10 +368,10 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <img src="hilton-1.jpeg" class="rounded-lg w-full h-auto object-cover">
-                    <img src="hilton-2.jpg" class="rounded-lg w-full h-auto object-cover">
-                    <img src="hilton-3.jpg" class="rounded-lg w-full h-auto object-cover">
-                    <img src="hilton-4.jpg" class="rounded-lg w-full h-auto object-cover">
+                    <img src="hilton-1.jpeg" alt="Rendu 3D chambre Hilton 1" class="rounded-lg w-full h-auto object-cover">
+                    <img src="hilton-2.jpg" alt="Rendu 3D chambre Hilton 2" class="rounded-lg w-full h-auto object-cover">
+                    <img src="hilton-3.jpg" alt="Rendu 3D espace commun Hilton 3" class="rounded-lg w-full h-auto object-cover">
+                    <img src="hilton-4.jpg" alt="Rendu 3D espace commun Hilton 4" class="rounded-lg w-full h-auto object-cover">
                 </div>
             </div>
         </div>
@@ -334,12 +380,12 @@
     <!-- Rattan Palace Modal -->
     <div id="modal-rattan" class="modal">
         <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl">&times;</button>
+            <button class="modal-close absolute top-4 right-6 text-secondary hover:text-primary text-2xl">&times;</button>
             <h2 class="text-3xl font-bold font-title text-gradient mb-4">Rattan Palace - Identité d'Entreprise</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-zinc-400 text-sm"><b>Contexte :</b> Rattan Palace, une usine à Riyad, avait besoin d'une identité visuelle professionnelle pour renforcer son image de marque auprès de ses clients et de ses employés.<br><br><b>Action :</b> J'ai conçu une identité visuelle complète. J'ai créé deux formats de logo pour une polyvalence maximale et j'ai décliné cette identité sur plusieurs supports clés : les t-shirts et casquettes des employés, ainsi que les documents officiels.<br><br><b>Résultat :</b> L'entreprise a bénéficié d'une image de marque modernisée et cohérente, améliorant sa reconnaissance et renforçant significativement le sentiment d'appartenance des équipes.</p>
+                    <p class="text-secondary text-sm"><b>Contexte :</b> Rattan Palace, une usine à Riyad, avait besoin d'une identité visuelle professionnelle pour renforcer son image de marque auprès de ses clients et de ses employés.<br><br><b>Action :</b> J'ai conçu une identité visuelle complète. J'ai créé deux formats de logo pour une polyvalence maximale et j'ai décliné cette identité sur plusieurs supports clés : les t-shirts et casquettes des employés, ainsi que les documents officiels.<br><br><b>Résultat :</b> J'ai créé 5 déclinaisons de logos (primaire, secondaire, emblème) et une charte graphique complète pour assurer une cohérence totale sur tous les supports. L'adoption de cette identité visuelle par les équipes de +100 personnes a permis de moderniser significativement l'image de l'entreprise.</p>
                     <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
                     <div class="flex flex-wrap gap-2 text-xs">
                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Illustrator</span>
@@ -347,10 +393,10 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <img src="logorp.png" class="rounded-lg w-full h-auto object-contain bg-white p-2">
-                    <img src="logorpy.png" class="rounded-lg w-full h-auto object-contain bg-white p-2">
-                    <img src="logorpt.png" class="rounded-lg w-full h-auto object-cover">
-                    <img src="logorpyt.png" class="rounded-lg w-full h-auto object-cover">
+                    <img src="logorp.png" alt="Logo Rattan Palace format 1" class="rounded-lg w-full h-auto object-contain bg-white p-2">
+                    <img src="logorpy.png" alt="Logo Rattan Palace format 2" class="rounded-lg w-full h-auto object-contain bg-white p-2">
+                    <img src="logorpt.png" alt="Logo Rattan Palace sur t-shirt 1" class="rounded-lg w-full h-auto object-cover">
+                    <img src="logorpyt.png" alt="Logo Rattan Palace sur t-shirt 2" class="rounded-lg w-full h-auto object-cover">
                 </div>
             </div>
         </div>
@@ -359,12 +405,12 @@
      <!-- UK Embassy Modal -->
     <div id="modal-ukembassy" class="modal">
         <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl">&times;</button>
+            <button class="modal-close absolute top-4 right-6 text-secondary hover:text-primary text-2xl">&times;</button>
             <h2 class="text-3xl font-bold font-title text-gradient mb-4">Plateforme - Ambassade du Royaume-Uni</h2>
              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-zinc-400 text-sm"><b>Contexte :</b> La gestion des projets de rénovation pour l'Ambassade du Royaume-Uni à Riyad était complexe et manquait d'un outil de suivi centralisé.<br><br><b>Action :</b> J'ai développé une plateforme web sur mesure avec React, offrant un suivi en temps réel, une comparaison de designs et un accès sécurisé aux documents.<br><br><b>Résultat :</b> La collaboration a été fluidifiée, les délais de validation ont été réduits, et la gestion de projet est devenue plus transparente et efficace dans un environnement diplomatique exigeant.</p>
+                    <p class="text-secondary text-sm"><b>Contexte :</b> La gestion des projets de rénovation pour l'Ambassade du Royaume-Uni à Riyad était complexe et manquait d'un outil de suivi centralisé.<br><br><b>Action :</b> J'ai développé une plateforme web sur mesure avec React, offrant un suivi en temps réel, une comparaison de designs et un accès sécurisé aux documents.<br><br><b>Résultat :</b> La plateforme a été déployée avec succès, fluidifiant la collaboration entre 4 départements différents. Elle a permis une réduction moyenne de 60\% des délais de validation des rénovations et offre désormais une vue en temps réel sur l'avancement de +15 projets en cours.</p>
                     <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
                     <div class="flex flex-wrap gap-2 text-xs">
                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">React</span>
@@ -375,6 +421,7 @@
                 </div>
                 <video class="rounded-lg w-full h-auto" controls poster="ambassade-uk-projet.jpg">
                     <source src="ukembassy.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la balise vidéo.
                 </video>
             </div>
         </div>
@@ -383,12 +430,12 @@
      <!-- Dressing Modal -->
     <div id="modal-dressing" class="modal">
         <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl">&times;</button>
+            <button class="modal-close absolute top-4 right-6 text-secondary hover:text-primary text-2xl">&times;</button>
             <h2 class="text-3xl font-bold font-title text-gradient mb-4">Dressing sur Mesure</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-zinc-400 text-sm"><b>Contexte :</b> Un client particulier souhaitait un espace dressing sur mesure qui soit à la fois esthétique et hautement fonctionnel, mais manquait d'une vision claire du design final.<br><br><b>Action :</b> J'ai géré le projet de la conception initiale sur SketchUp à la supervision de l'installation, en traduisant les besoins du client en un design 3D détaillé et en coordonnant la réalisation.<br><br><b>Résultat :</b> Le client a obtenu un espace parfaitement adapté à ses besoins, optimisant le rangement et l'esthétique, avec une satisfaction totale grâce à la visualisation précise avant la fabrication.</p>
+                    <p class="text-secondary text-sm"><b>Contexte :</b> Un client particulier souhaitait un espace dressing sur mesure qui soit à la fois esthétique et hautement fonctionnel, mais manquait d'une vision claire du design final.<br><br><b>Action :</b> J'ai géré le projet de la conception initiale sur SketchUp à la supervision de l'installation, en traduisant les besoins du client en un design 3D détaillé et en coordonnant la réalisation.<br><br><b>Résultat :</b> J'ai optimisé le design pour un espace limité de 12 m², augmentant l'espace de rangement utile de 30\% grâce à des solutions sur mesure. Le projet a été livré avec 100\% de satisfaction client et dans un budget initial respecté.</p>
                     <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
                     <div class="flex flex-wrap gap-2 text-xs">
                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">SketchUp</span>
@@ -396,9 +443,9 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <img src="dressing-2-a.jpg" class="rounded-lg w-full h-auto object-cover">
-                    <img src="dressing-2-b.png" class="rounded-lg w-full h-auto object-cover">
-                    <img src="dressing-2-c.jpg" class="rounded-lg w-full h-auto object-cover">
+                    <img src="dressing-2-a.jpg" alt="Vue 1 du dressing 3D" class="rounded-lg w-full h-auto object-cover">
+                    <img src="dressing-2-b.png" alt="Vue 2 du dressing 3D" class="rounded-lg w-full h-auto object-cover">
+                    <img src="dressing-2-c.jpg" alt="Vue 3 du dressing 3D" class="rounded-lg w-full h-auto object-cover">
                 </div>
             </div>
         </div>
@@ -407,12 +454,12 @@
     <!-- Khayal Modal -->
     <div id="modal-khayal" class="modal">
         <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl">&times;</button>
+            <button class="modal-close absolute top-4 right-6 text-secondary hover:text-primary text-2xl">&times;</button>
             <h2 class="text-3xl font-bold font-title text-gradient mb-4">Khayal & Co. - Projet Créatif</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-zinc-400 text-sm"><b>Contexte :</b> Pour démontrer ma créativité et mes compétences techniques de manière concrète, j'ai imaginé Khayal & Co., un projet de marque personnel de A à Z.<br><br><b>Action :</b> J'ai créé l'identité de marque complète et développé le site vitrine en React et Tailwind CSS. C'est une vitrine de mon savoir-faire en conception, développement et branding.<br><br><b>Résultat :</b> Un projet portfolio vivant qui prouve ma capacité à construire une marque et une plateforme digitale de manière autonome, en maîtrisant à la fois les aspects créatifs et techniques.</p>
+                    <p class="text-secondary text-sm"><b>Contexte :</b> Pour démontrer ma créativité et mes compétences techniques de manière concrète, j'ai imaginé Khayal & Co., un projet de marque personnel de A à Z.<br><br><b>Action :</b> J'ai créé l'identité de marque complète et développé le site vitrine en React et Tailwind CSS. C'est une vitrine de mon savoir-faire en conception, développement et branding.<br><br><b>Résultat :</b> Un projet portfolio vivant qui prouve ma capacité à construire une marque et une plateforme digitale de manière autonome, en maîtrisant à la fois les aspects créatifs et techniques.</p>
                     <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
                     <div class="flex flex-wrap gap-2 text-xs">
                          <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">React</span>
@@ -421,8 +468,8 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <img src="khayal-desktop.jpg" class="rounded-lg w-full h-auto object-cover">
-                    <img src="khayal-mobile.jpg" class="rounded-lg w-full h-auto object-cover">
+                    <img src="khayal-desktop.jpg" alt="Interface desktop du site Khayal & Co." class="rounded-lg w-full h-auto object-cover">
+                    <img src="khayal-mobile.jpg" alt="Interface mobile du site Khayal &G Co." class="rounded-lg w-full h-auto object-cover">
                 </div>
             </div>
         </div>
@@ -457,20 +504,75 @@
                 });
             });
             
-            // Header scroll effect
+            // --- NOUVEAU CODE JS AJOUTÉ ---
+
+            // Logic for Theme Toggle (Dark/Light Mode)
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const sunIcon = document.getElementById('sun-icon');
+            const moonIcon = document.getElementById('moon-icon');
+            const htmlElement = document.documentElement;
+
+            // 1. Initial Load: Check preference in LocalStorage or OS
+            const loadTheme = () => {
+                const storedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+                if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+                    htmlElement.classList.add('dark');
+                    moonIcon.classList.remove('hidden');
+                    sunIcon.classList.add('hidden');
+                } else if (storedTheme === 'light') {
+                    htmlElement.classList.remove('dark');
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                } else {
+                    // Default to dark theme if no preference found
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    moonIcon.classList.remove('hidden');
+                    sunIcon.classList.add('hidden');
+                }
+            };
+            
+            // 2. Toggle Handler
+            const toggleTheme = () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('theme',L, 'light');
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                    moonIcon.classList.remove('hidden');
+                    sunIcon.classList.add('hidden');
+                }
+            };
+
+            // 3. Event Listeners
+            loadTheme(); // Apply theme on load
+            themeToggleBtn.addEventListener('click', toggleTheme);
+
+
+            // Header scroll effect (VOTRE VERSION AMÉLIORÉE)
             const header = document.getElementById('header');
+            const nav = header.querySelector('nav');
+            
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 50) {
-                    header.classList.add('w-full', 'top-0', 'rounded-none');
+                    // Au défilement
                     header.classList.remove('top-4', 'left-1/2', '-translate-x-1/2');
+                    header.classList.add('w-full', 'top-0');
+                    nav.classList.add('shadow-lg', 'rounded-none'); // Ajoute une petite ombre et enlève l'arrondi
                 } else {
-                    header.classList.remove('w-full', 'top-0', 'rounded-none');
+                    // En haut de page
+                    header.classList.remove('w-full', 'top-0');
                     header.classList.add('top-4', 'left-1/2', '-translate-x-1/2');
+                    nav.classList.remove('shadow-lg', 'rounded-none');
                 }
             });
+            // --- FIN DU NOUVEAU CODE JS ---
         });
     </script>
 </body>
 </html>
-
-
