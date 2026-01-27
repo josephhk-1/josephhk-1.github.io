@@ -1,567 +1,369 @@
-<!DOCTYPE html><html lang="fr" class="scroll-smooth"><head>
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Joseph HAMDY KAMAL - Chef de Projet Digital & Product Designer</title>
-    <meta name="description" content="Portfolio de Joseph Hamdy Kamal. Chef de projet digital hybride, spécialisé en UI/UX Design, Développement Web et Stratégie Marketing.">
-    <meta name="author" content="Joseph Hamdy Kamal">
-    
-    <meta property="og:title" content="Joseph HAMDY KAMAL - Portfolio Digital">
-    <meta property="og:description" content="Découvrez mes projets en Design, Développement et Gestion de Projet.">
-    <meta property="og:image" content="morpholia-project.png"> <meta property="og:type" content="website">
-
+    <title>Joseph Hamdy Kamal | Senior-Minded UI/UX Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-    
-    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/fluency/48/domain.png"/>
-
     <style>
         :root {
-            --bg-dark: #0A0A0A;
-            --bg-light: #F5F5F5;
-            --card-dark: #1A1A1A;
-            --card-light: #FFFFFF;
-            --border-dark: #2A2A2A;
-            --border-light: #E5E5E5;
-            --text-dark-primary: #F5F5F5;
-            --text-dark-secondary: #A3A3A3;
-            --text-light-primary: #1A1A1A;
-            --text-light-secondary: #525252;
-            --accent-start: #0891B2; /* Cyan 600 */
-            --accent-end: #67E8F9;   /* Cyan 300 */
-        }
-        
-        /* 1. Default (Light Mode) styles on <html> */
-        html {
-            --bg: var(--bg-light);
-            --card-bg: var(--card-light);
-            --border-color: var(--border-light);
-            --text-primary: var(--text-light-primary);
-            --text-secondary: var(--text-light-secondary);
+            --primary: #2dd4bf;
+            --secondary: #0ea5e9;
+            --dark-bg: #05070a;
+            --card-bg: #0f172a;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
 
-        /* 2. Dark Mode styles on html.dark */
-        html.dark {
-            --bg: var(--bg-dark);
-            --card-bg: var(--card-dark);
-            --border-color: var(--border-dark);
-            --text-primary: var(--text-dark-primary);
-            --text-secondary: var(--text-dark-secondary);
-        }
-
-        /* 3. Body uses the CSS variables */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
-        
-        .font-title { font-family: 'Montserrat', sans-serif; }
-        
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+        .font-header { font-family: 'Space Grotesk', sans-serif; }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .text-gradient {
-            background: linear-gradient(to right, var(--accent-start), var(--accent-end));
+            background: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
         }
 
-        .bg-gradient-accent {
-            background: linear-gradient(to right, var(--accent-start), var(--accent-end));
-        }
-        
-        /* 4. Update header/nav styles for light/dark mode */
-        html.dark #header nav {
-             background-color: rgba(26, 26, 26, 0.8); /* Plus opaque pour lisibilité */
-             border-color: #3f3f46;
-        }
-        
-        html:not(.dark) #header nav {
-             background-color: rgba(255, 255, 255, 0.8);
-             border-color: #e5e5e5;
-        }
-        
-        html.dark #header nav a,
-        html.dark #header nav button {
-            color: #d4d4d8;
-        }
-        html.dark #header nav a:hover,
-        html.dark #header nav button:hover {
-            color: #ffffff;
-        }
-        html.dark #header nav button:hover {
-             background-color: #3f3f46;
+        .btn-primary {
+            background: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        html:not(.dark) #header nav a,
-        html:not(.dark) #header nav button {
-            color: #3f3f46;
-        }
-        html:not(.dark) #header nav a:hover,
-        html:not(.dark) #header nav button:hover {
-            color: #000000;
-        }
-        html:not(.dark) #header nav button:hover {
-             background-color: #f4f4f5;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(45, 212, 191, 0.4);
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Portfolio Cards */
+        .project-card {
+            transition: all 0.5s ease;
         }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
         }
-        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
-        .fade-up { animation: fadeUp 0.6s ease-out forwards; opacity: 0; }
-
-        .project-card:hover .project-card-image {
+        .project-card img {
+            transition: transform 0.8s ease;
+        }
+        .project-card:hover img {
             transform: scale(1.05);
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(8px);
-        }
-        .modal.active { display: flex; }
-        .modal-content {
-            margin: auto;
-            width: 90%;
-            max-width: 900px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-         /* Custom Scrollbar for Modal */
-        .modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
-        .modal-content::-webkit-scrollbar-track {
-            background: var(--border-color);
-            border-radius: 10px;
-        }
-        .modal-content::-webkit-scrollbar-thumb {
-            background: var(--accent-start);
-            border-radius: 10px;
-        }
-        .modal-content::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-end);
-        }
-    </style></head><body>
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    <header id="header" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
-        <nav class="flex items-center gap-4 px-4 py-2 rounded-full border backdrop-blur-lg shadow-lg">
-            <a href="#hero" class="px-3 py-1 text-sm transition-colors font-medium">Accueil</a>
-            <a href="#projects" class="px-3 py-1 text-sm transition-colors font-medium">Projets</a>
-            <a href="#expertise" class="px-3 py-1 text-sm transition-colors font-medium">Expertise</a>
-            <a href="#contact" class="px-3 py-1 text-sm transition-colors font-medium">Contact</a>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
 
-            <button id="theme-toggle" aria-label="Toggle dark mode" class="p-2 ml-2 rounded-full transition-colors">
-                <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                <svg id="moon-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-            </button>
-        </nav>
-    </header>
+        /* Blob Background */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.15) 0%, rgba(14, 165, 233, 0.1) 100%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 20s infinite alternate;
+        }
+        @keyframes move {
+            from { transform: translate(-10%, -10%); }
+            to { transform: translate(20%, 20%); }
+        }
+    </style>
+</head>
+<body>
 
-    <main class="container mx-auto px-4">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+        <div class="container mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="text-2xl font-bold font-header tracking-tighter">
+                JHK<span class="text-gradient">.</span>
+            </div>
+            <div class="hidden md:flex space-x-10 text-sm font-medium uppercase tracking-widest">
+                <a href="#home" class="hover:text-primary transition-colors">Accueil</a>
+                <a href="#portfolio" class="hover:text-primary transition-colors">Projets</a>
+                <a href="#process" class="hover:text-primary transition-colors">Ma Méthode</a>
+                <a href="#about" class="hover:text-primary transition-colors">Parcours</a>
+            </div>
+            <a href="mailto:eng.joseph.h.kamal@gmail.com" class="btn-primary px-6 py-2.5 rounded-full text-sm font-bold text-slate-900">
+                Contact
+            </a>
+        </div>
+    </nav>
 
-        <section id="hero" class="min-h-screen flex flex-col justify-center items-center text-center relative">
-             <div class="absolute inset-0 h-full w-full bg-gradient-to-b from-black/50 to-transparent z-0 pointer-events-none"></div>
-            <div style="animation-delay: 200ms;" class="fade-up z-10">
-                <img src="photo-profil.jpg" alt="Joseph Hamdy Kamal" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-zinc-800 shadow-2xl object-cover">
-                <h1 class="text-5xl md:text-7xl font-extrabold font-title mb-4">
-                    <span class="text-gradient">Chef de Projet</span>
-                    <span class="text-primary">Digital.</span>
+    <!-- Hero -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="blob top-[-10%] left-[-10%]"></div>
+        <div class="blob bottom-[10%] right-[-10%] opacity-50"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6 reveal">
+                    Ingénieur de formation • Designer par passion
+                </span>
+                <h1 class="text-6xl md:text-8xl font-extrabold font-header leading-[1.1] mb-8 reveal" style="transition-delay: 100ms">
+                    Concevoir des interfaces <span class="text-gradient">intuitives</span> basées sur la <span class="border-b-4 border-primary/30">logique</span>.
                 </h1>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-secondary font-light">
-                    Profil hybride <b>Design & Tech</b>. Je transforme des stratégies complexes en expériences utilisateurs intuitives et performantes.
+                <p class="text-xl text-text-dim mb-10 max-w-2xl reveal leading-relaxed" style="transition-delay: 200ms">
+                    Je suis Joseph, un UI/UX Designer avec un background en ingénierie mécatronique. Je comble le fossé entre la créativité visuelle et la faisabilité technique.
                 </p>
-                <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#contact" class="bg-gradient-accent text-white font-bold px-8 py-3 rounded-full hover:opacity-90 transition-opacity shadow-lg">Me contacter</a>
-                    <a href="CV_Joseph_HAMDY_KAMAL_Generaliste_Digital.pdf" download class="bg-zinc-800 text-zinc-100 font-semibold px-8 py-3 rounded-full hover:bg-zinc-700 transition-colors border border-zinc-700">Télécharger mon CV</a>
+                <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 300ms">
+                    <a href="#portfolio" class="btn-primary px-8 py-4 rounded-xl text-slate-900 font-bold text-lg">Voir mes projets</a>
+                    <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" class="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 transition-all font-bold text-lg">LinkedIn</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="projects" class="py-24">
-            <h2 class="text-4xl font-bold font-title text-center mb-12">Mes Réalisations</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="project-card md:col-span-2 lg:col-span-2 card p-4 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow" data-modal="modal-morpholia">
-                    <div class="overflow-hidden rounded-lg h-64">
-                        <img src="morpholia-project.png" alt="Interface utilisateur du site e-commerce MORPHOLIA" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+    <!-- The Hybrid Section -->
+    <section class="py-24 bg-card-bg/30">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="p-8 glass rounded-3xl reveal">
+                    <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
                     </div>
-                    <h3 class="font-bold text-lg mt-4">MORPHOLIA - E-commerce Inclusif</h3>
-                    <p class="text-sm text-secondary">Gestion de Projet, UX/UI & Stratégie</p>
+                    <h3 class="text-xl font-bold mb-4">Esprit Ingénieur</h3>
+                    <p class="text-text-dim text-sm leading-relaxed">Ma formation Don Bosco m'apporte une rigueur algorithmique unique. Je conçois des systèmes, pas juste des écrans.</p>
                 </div>
-
-                <div class="project-card md:col-span-1 lg:col-span-2 card p-4 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow" data-modal="modal-hilton">
-                     <div class="overflow-hidden rounded-lg h-64">
-                        <img src="hilton-1.jpeg" alt="Rendu 3D d'une chambre d'hôtel Hilton Garden Inn" class="project-card-image w-full h-full object-cover transition-transform duration-500">
+                <div class="p-8 glass rounded-3xl reveal" style="transition-delay: 100ms">
+                    <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                     </div>
-                    <h3 class="font-bold text-lg mt-4">Hilton Garden Inn</h3>
-                    <p class="text-sm text-secondary">Design & Modélisation 3D (3ds Max)</p>
+                    <h3 class="text-xl font-bold mb-4">Empathie Utilisateur</h3>
+                    <p class="text-text-dim text-sm leading-relaxed">Certifié par Label École, je place l'humain au centre. Je résous des problèmes réels via la recherche UX.</p>
                 </div>
-
-                <div class="project-card md:col-span-1 lg:col-span-1 card p-4 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow" data-modal="modal-rattan">
-                     <div class="overflow-hidden rounded-lg h-64">
-                        <img src="logorp.png" alt="Logo Rattan Palace" class="project-card-image w-full h-full object-contain transition-transform duration-500 bg-white p-2">
+                <div class="p-8 glass rounded-3xl reveal" style="transition-delay: 200ms">
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h3 class="font-bold text-lg mt-4">Rattan Palace</h3>
-                    <p class="text-sm text-secondary">Branding & Identité Visuelle</p>
-                </div>
-
-                <div class="project-card md:col-span-2 lg:col-span-3 card p-4 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow" data-modal="modal-ukembassy">
-                     <div class="overflow-hidden rounded-lg h-64">
-                        <img src="ambassade-uk-projet.jpg" alt="Plateforme de gestion Ambassade UK" class="project-card-image w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <h3 class="font-bold text-lg mt-4">Plateforme Ambassade UK</h3>
-                    <p class="text-sm text-secondary">Développement React & UI Design</p>
-                </div>
-                
-                 <div class="project-card md:col-span-2 lg:col-span-2 card p-4 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow" data-modal="modal-dressing">
-                     <div class="overflow-hidden rounded-lg h-64">
-                        <img src="dressing-2-a.jpg" alt="Conception 3D d'un dressing sur mesure" class="project-card-image w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <h3 class="font-bold text-lg mt-4">Dressing sur mesure</h3>
-                    <p class="text-sm text-secondary">Conception SketchUp & Suivi</p>
-                </div>
-                 
-                 <div class="project-card md:col-span-1 lg:col-span-2 card p-4 rounded-2xl cursor-pointer hover:shadow-xl transition-shadow" data-modal="modal-khayal">
-                     <div class="overflow-hidden rounded-lg h-64">
-                        <img src="khayal-desktop.jpg" alt="Site vitrine Khayal & Co." class="project-card-image w-full h-full object-cover transition-transform duration-500">
-                    </div>
-                    <h3 class="font-bold text-lg mt-4">Khayal & Co.</h3>
-                    <p class="text-sm text-secondary">Développement Front-End (React)</p>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="expertise" class="py-24">
-            <h2 class="text-4xl font-bold font-title text-center mb-4">Mon Expertise</h2>
-            <p class="text-secondary text-center max-w-2xl mx-auto mb-12">Une approche transversale pour piloter vos projets de l'idée à la mise en production.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="card p-8 rounded-2xl hover:border-cyan-500/50 transition-colors">
-                    <h3 class="text-2xl font-bold mb-4 text-gradient">Design</h3>
-                    <ul class="space-y-3 text-primary">
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>UI/UX Design (Figma)</li>
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Identité Visuelle & Branding</li>
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Modélisation 3D (3ds Max)</li>
-                    </ul>
-                </div>
-                 <div class="card p-8 rounded-2xl hover:border-cyan-500/50 transition-colors">
-                    <h3 class="text-2xl font-bold mb-4 text-gradient">Développement</h3>
-                    <ul class="space-y-3 text-primary">
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Front-End (React, Tailwind)</li>
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>CMS (WordPress, WooCommerce)</li>
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Intégration Web (HTML, CSS)</li>
-                    </ul>
-                </div>
-                 <div class="card p-8 rounded-2xl hover:border-cyan-500/50 transition-colors">
-                    <h3 class="text-2xl font-bold mb-4 text-gradient">Marketing & Gestion</h3>
-                    <ul class="space-y-3 text-primary">
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Gestion de Projet (Agile, Notion)</li>
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>SEO & Stratégie E-commerce</li>
-                        <li class="flex items-center gap-3"><svg aria-hidden="true" class="text-cyan-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.54.14a.5.5 0 0 1 .14.7L8.41 15.55a.5.5 0 0 1-.77.14L.14 8.41a.5.5 0 0 1 .14-.77L14.83.03a.5.5 0 0 1 .7.11z"/></svg>Analyse de données & KPI</li>
-                    </ul>
+                    <h3 class="text-xl font-bold mb-4">Dev-Friendly</h3>
+                    <p class="text-text-dim text-sm leading-relaxed">Je parle le langage du code. Mes fichiers Figma sont structurés, documentés et prêts pour l'intégration (HTML/CSS/React).</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="py-24 text-center">
-            <h2 class="text-4xl font-bold font-title mb-4">Parlons de votre projet</h2>
-            <p class="text-secondary max-w-xl mx-auto mb-8">Je suis toujours ouvert à de nouvelles collaborations et opportunités. N'hésitez pas à me contacter.</p>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8">
-                <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-xl font-semibold text-gradient hover:opacity-80 transition-opacity">eng.joseph.h.kamal@gmail.com</a>
-                <span class="text-secondary opacity-50 hidden md:block">|</span>
-                <a href="tel:+33767117091" class="text-xl font-semibold text-primary hover:text-cyan-500 transition-colors">+33 7 67 11 70 91</a>
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20">
+                <div class="max-w-xl reveal">
+                    <h2 class="text-4xl md:text-5xl font-extrabold font-header mb-6 italic">Études de Cas.</h2>
+                    <p class="text-text-dim">Une sélection de projets où j'ai allié stratégie business, UX design et exécution UI millimétrée.</p>
+                </div>
+                <div class="hidden md:block reveal">
+                    <span class="text-6xl font-black opacity-5">PORTFOLIO</span>
+                </div>
             </div>
-            <div class="flex justify-center mt-8">
-                 <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" aria-label="LinkedIn" class="text-secondary hover:text-primary transition-colors">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+
+            <div class="grid grid-cols-1 gap-32">
+                <!-- Project 1: Morpholia -->
+                <div class="grid md:grid-cols-2 gap-16 items-center reveal">
+                    <div class="order-2 md:order-1">
+                        <span class="text-primary font-bold text-sm tracking-tighter uppercase mb-4 block">01 / E-COMMERCE ACCESSIBLE</span>
+                        <h3 class="text-4xl font-bold mb-6 font-header">Morpholia : L'inclusion par le design</h3>
+                        <p class="text-text-dim mb-8 leading-relaxed">
+                            <strong class="text-white">Le Problème :</strong> Le tunnel d'achat de la mode grande taille est souvent frustrant et peu ergonomique.<br><br>
+                            <strong class="text-white">Ma Solution :</strong> Une refonte complète axée sur la personnalisation des morphologies et un parcours de paiement en 3 clics. Réalisation de User Flows complexes et prototypes haute-fidélité.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-10">
+                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">UX Research</span>
+                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">Figma Design System</span>
+                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">PrestaShop</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-primary font-bold hover:gap-3 transition-all">
+                            Voir l'étude complète 
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                    <div class="order-1 md:order-2 group overflow-hidden rounded-3xl glass border-white/5 p-4 project-card">
+                        <img src="morpholia-project.png" alt="Morpholia" class="rounded-2xl w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80'">
+                    </div>
+                </div>
+
+                <!-- Project 2: Khayal -->
+                <div class="grid md:grid-cols-2 gap-16 items-center reveal">
+                    <div class="group overflow-hidden rounded-3xl glass border-white/5 p-4 project-card">
+                        <img src="khayal-desktop.jpg" alt="Khayal & Co" class="rounded-2xl w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80'">
+                    </div>
+                    <div>
+                        <span class="text-secondary font-bold text-sm tracking-tighter uppercase mb-4 block">02 / BRAND IDENTITY & UI</span>
+                        <h3 class="text-4xl font-bold mb-6 font-header">Khayal & Co : L'élégance digitale</h3>
+                        <p class="text-text-dim mb-8 leading-relaxed">
+                            Conception d'un site vitrine haut de gamme pour une agence créative. L'enjeu était de refléter le luxe et l'innovation à travers une UI minimaliste ("Less is More"). Intégration complète en React/Tailwind pour prouver la viabilité du design.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-10">
+                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">React.js</span>
+                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">Tailwind CSS</span>
+                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">Animation Framer</span>
+                        </div>
+                        <a href="https://josephhk-1.github.io/Khayal-Co/" target="_blank" class="inline-flex items-center text-secondary font-bold hover:gap-3 transition-all">
+                            Visiter le site 
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Process -->
+    <section id="process" class="py-32 bg-white/[0.02]">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+                <h2 class="text-4xl font-bold font-header mb-6">Ma Méthodologie</h2>
+                <p class="text-text-dim italic">Comment je transforme une idée complexe en un produit fini.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="relative reveal">
+                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">01</span>
+                    <h4 class="text-xl font-bold mb-4 mt-6">Recherche</h4>
+                    <p class="text-sm text-text-dim leading-relaxed">Interviews utilisateurs, persona et analyse de la concurrence pour définir la stratégie.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay: 100ms">
+                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">02</span>
+                    <h4 class="text-xl font-bold mb-4 mt-6">Wireframing</h4>
+                    <p class="text-sm text-text-dim leading-relaxed">Bâtir l'architecture sans distraction visuelle pour valider les parcours (Lo-Fi).</p>
+                </div>
+                <div class="relative reveal" style="transition-delay: 200ms">
+                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">03</span>
+                    <h4 class="text-xl font-bold mb-4 mt-6">Prototypage</h4>
+                    <h4 class="text-xl font-bold mb-4 mt-6">Maquettage</h4>
+                    <p class="text-sm text-text-dim leading-relaxed">Application du Design System et création de maquettes haute-fidélité sur Figma.</p>
+                </div>
+                <div class="relative reveal" style="transition-delay: 300ms">
+                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">04</span>
+                    <h4 class="text-xl font-bold mb-4 mt-6">Handover</h4>
+                    <p class="text-sm text-text-dim leading-relaxed">Documentation technique détaillée pour les développeurs assurant un pixel-perfect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tools -->
+    <section class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="glass p-16 rounded-[40px] grid md:grid-cols-2 gap-20 items-center reveal">
+                <div>
+                    <h3 class="text-4xl font-bold mb-8 font-header italic">Boîte à outils.</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Product Design (Figma, XD)</span><span class="text-primary">98%</span></div>
+                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[98%] rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>User Research & Persona</span><span class="text-primary">90%</span></div>
+                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[90%] rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Front-end (HTML/CSS/JS)</span><span class="text-primary">85%</span></div>
+                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[85%] rounded-full"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2"><span>Design System Thinking</span><span class="text-primary">95%</span></div>
+                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[95%] rounded-full"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
+                        <p class="text-text-dim text-xs uppercase mb-1">Langues</p>
+                        <p class="font-bold">Français / Italien / Anglais / Arabe</p>
+                    </div>
+                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
+                        <p class="text-text-dim text-xs uppercase mb-1">Logiciels</p>
+                        <p class="font-bold">Adobe Suite, Jira, Notion, Slack</p>
+                    </div>
+                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
+                        <p class="text-text-dim text-xs uppercase mb-1">Loisirs</p>
+                        <p class="font-bold">Échecs (Licence B), Football, Origami</p>
+                    </div>
+                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
+                        <p class="text-text-dim text-xs uppercase mb-1">Certifs</p>
+                        <p class="font-bold">AI Overview, PrestaShop Expert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 text-center reveal">
+        <div class="container mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold font-header mb-12 italic leading-tight">
+                Démarrons un projet <span class="text-gradient underline">ensemble</span>.
+            </h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-10">
+                <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-3xl font-bold hover:text-primary transition-all">eng.joseph.h.kamal@gmail.com</a>
+                <span class="hidden md:block opacity-20">|</span>
+                <a href="tel:+33767117091" class="text-3xl font-bold hover:text-primary transition-all">+33 07 67 11 70 91</a>
+            </div>
+            <div class="mt-20">
+                <a href="CV_Joseph_HAMDY_KAMAL_Generaliste_Digital.pdf" download class="btn-primary px-10 py-5 rounded-2xl text-slate-900 font-extrabold text-xl shadow-2xl">
+                    Télécharger mon CV (PDF)
                 </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <footer class="text-center py-8 border-t border-color">
-        <p class="text-secondary opacity-50 text-sm">&copy; 2025 Joseph Hamdy Kamal. Tous droits réservés.</p>
+    <footer class="py-12 border-t border-white/5 bg-dark-bg/80">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center opacity-40 text-xs tracking-[0.2em] uppercase font-bold">
+            <p>&copy; 2026 Joseph Hamdy Kamal</p>
+            <div class="flex space-x-8 mt-6 md:mt-0">
+                <a href="#" class="hover:text-white">Behance</a>
+                <a href="#" class="hover:text-white">Dribbble</a>
+                <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" class="hover:text-white">LinkedIn</a>
+            </div>
+        </div>
     </footer>
 
-    <div id="modal-morpholia" class="modal">
-        <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold font-title text-gradient mb-4">MORPHOLIA - Projet d'Études</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-secondary text-sm leading-relaxed"><b>Contexte :</b> Défi : créer de A à Z une marque et une plateforme e-commerce complète pour le lancement de Morpholia, une marque de mode grande taille.<br><br><b>Action :</b> Triple casquette : Chef de Projet, Designer UI/UX et Responsable Marketing. J'ai piloté la recherche utilisateur, conçu l'identité visuelle, les prototypes Figma, et la stratégie de lancement.<br><br><b>Résultat :</b> Plateforme e-commerce fonctionnelle. L'optimisation UX a permis de simuler un <b>taux de conversion de 3,5%</b>. Projet certifié avec la note de <b>18/20</b>.</p>
-                    <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Figma</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">WordPress/WooCommerce</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">UX Research</span>
-                    </div>
-                    
-                    <div class="mt-8 pt-6 border-t border-zinc-700">
-                        <a href="Cahier de charge de Joseph (MORPHOLIA).pdf" target="_blank" class="inline-flex items-center gap-2 bg-gradient-accent text-white font-bold px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-sm">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            Télécharger l'Étude de Cas (60 pages)
-                        </a>
-                        <p class="text-xs text-secondary mt-2">Inclus : Stratégie UX, Charte graphique, Benchmark & Maquettes.</p>
-                    </div>
-
-                </div>
-                <div class="flex flex-col gap-4">
-                     <img src="morpholia-project.png" alt="Maquette du site e-commerce MORPHOLIA" class="rounded-lg w-full h-auto object-cover shadow-lg">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="modal-hilton" class="modal">
-        <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold font-title text-gradient mb-4">Hilton Garden Inn</h2>
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-secondary text-sm"><b>Contexte :</b> Projet hôtelier en Arabie Saoudite nécessitant des rendus 3D photo-réalistes pour la validation des espaces.<br><br><b>Action :</b> Modélisation 3D complexe et rendus détaillés (chambres & espaces communs) via 3ds Max et AutoCAD.<br><br><b>Résultat :</b> Livraison de 25 rendus haute définition. Réduction du temps de décision client de 4 semaines à 5 jours grâce à la précision des visuels.</p>
-                    <h4 class="font-bold text-lg mt-6 mb-2">Outils</h4>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">3ds Max</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">AutoCAD</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">V-Ray</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <img src="hilton-1.jpeg" alt="Rendu Chambre 1" class="rounded-lg w-full h-32 object-cover">
-                    <img src="hilton-2.jpg" alt="Rendu Chambre 2" class="rounded-lg w-full h-32 object-cover">
-                    <img src="hilton-3.jpg" alt="Rendu Lobby" class="rounded-lg w-full h-32 object-cover">
-                    <img src="hilton-4.jpg" alt="Rendu Couloir" class="rounded-lg w-full h-32 object-cover">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="modal-rattan" class="modal">
-        <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold font-title text-gradient mb-4">Rattan Palace - Branding</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-secondary text-sm"><b>Contexte :</b> Modernisation de l'identité visuelle d'une usine majeure à Riyad.<br><br><b>Action :</b> Conception de l'identité complète : logo responsive, charte graphique, et déclinaison sur supports physiques (uniformes, papeterie).<br><br><b>Résultat :</b> Identité adoptée par +100 employés, renforçant la cohésion interne et la reconnaissance de la marque.</p>
-                    <h4 class="font-bold text-lg mt-6 mb-2">Outils</h4>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Adobe Illustrator</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Photoshop</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="logorp.png" class="rounded-lg w-full h-auto object-contain bg-white p-2">
-                    <img src="logorpy.png" class="rounded-lg w-full h-auto object-contain bg-white p-2">
-                    <img src="logorpt.png" class="rounded-lg w-full h-auto object-cover">
-                    <img src="logorpyt.png" class="rounded-lg w-full h-auto object-cover">
-                </div>
-            </div>
-        </div>
-    </div>
-
-     <div id="modal-ukembassy" class="modal">
-        <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold font-title text-gradient mb-4">App Web - Ambassade UK</h2>
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-secondary text-sm"><b>Contexte :</b> Gestion complexe des projets de rénovation de l'Ambassade du Royaume-Uni à Riyad.<br><br><b>Action :</b> Développement Full-stack d'une plateforme web de suivi de chantier. Fonctionnalités : Dashboard temps réel, gestion documentaire sécurisée, comparaison de plans.<br><br><b>Résultat :</b> Réduction de 60% des délais de validation. Centralisation réussie de 15+ projets simultanés.</p>
-                    <h4 class="font-bold text-lg mt-6 mb-2">Stack Technique</h4>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">React.js</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Node.js</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Tailwind CSS</span>
-                    </div>
-                </div>
-                <video class="rounded-lg w-full h-auto shadow-lg" controls poster="ambassade-uk-projet.jpg" preload="none">
-                    <source src="ukembassy.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la lecture de vidéos.
-                </video>
-            </div>
-        </div>
-    </div>
-    
-     <div id="modal-dressing" class="modal">
-        <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold font-title text-gradient mb-4">Dressing Sur Mesure</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-secondary text-sm"><b>Contexte :</b> Optimisation d'un espace restreint (12m²) pour un client particulier exigeant.<br><br><b>Action :</b> Conception complète sur SketchUp, itérations avec le client, plans techniques pour la menuiserie et suivi de chantier.<br><br><b>Résultat :</b> Gain de 30% d'espace de rangement utile. Satisfaction client de 100% et respect strict du budget.</p>
-                    <h4 class="font-bold text-lg mt-6 mb-2">Outils</h4>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">SketchUp Pro</span>
-                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Gestion de Travaux</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <img src="dressing-2-a.jpg" class="rounded-lg w-full h-auto object-cover">
-                    <img src="dressing-2-b.png" class="rounded-lg w-full h-auto object-cover">
-                    <img src="dressing-2-c.jpg" class="rounded-lg w-full h-auto object-cover">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="modal-khayal" class="modal">
-        <div class="modal-content card rounded-2xl p-8 relative">
-            <button class="modal-close absolute top-4 right-6 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-            <h2 class="text-3xl font-bold font-title text-gradient mb-4">Khayal & Co.</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold text-lg mb-2">Le Projet</h4>
-                    <p class="text-secondary text-sm"><b>Contexte :</b> Projet personnel "Bac à sable" pour expérimenter de nouvelles technologies Front-End.<br><br><b>Action :</b> Création d'une marque fictive, identité visuelle, et développement d'un site vitrine ultra-rapide.<br><br><b>Résultat :</b> Site performant (Score Lighthouse 95+), responsive design impeccable et animations fluides.</p>
-                    <h4 class="font-bold text-lg mt-6 mb-2">Technologies</h4>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                         <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">React</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Framer Motion</span>
-                        <span class="bg-zinc-800 text-zinc-300 px-2 py-1 rounded">Tailwind CSS</span>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <img src="khayal-desktop.jpg" class="rounded-lg w-full h-auto object-cover shadow-md">
-                    <img src="khayal-mobile.jpg" class="rounded-lg w-full h-auto object-cover shadow-md">
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Modal Logic
-            const projectCards = document.querySelectorAll('.project-card');
-            const modals = document.querySelectorAll('.modal');
-            const modalCloses = document.querySelectorAll('.modal-close');
+        // Reveal Animations
+        const observerOptions = {
+            threshold: 0.15
+        };
 
-            projectCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    const modalId = card.dataset.modal;
-                    document.getElementById(modalId)?.classList.add('active');
-                    document.body.style.overflow = 'hidden';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-            });
-
-            const closeModal = () => {
-                modals.forEach(modal => modal.classList.remove('active'));
-                document.body.style.overflow = 'auto';
-            };
-
-            modalCloses.forEach(button => button.addEventListener('click', closeModal));
-            modals.forEach(modal => {
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) {
-                        closeModal();
-                    }
-                });
-            });
-            
-            // Fermeture avec ECHAP
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeModal();
-                }
-            });
-
-            // Logic for Theme Toggle (Dark/Light Mode)
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const sunIcon = document.getElementById('sun-icon');
-            const moonIcon = document.getElementById('moon-icon');
-            const htmlElement = document.documentElement;
-
-            // 1. Initial Load: Check preference in LocalStorage or OS
-            const loadTheme = () => {
-                const storedTheme = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-                if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
-                    htmlElement.classList.add('dark');
-                    moonIcon.classList.remove('hidden');
-                    sunIcon.classList.add('hidden');
-                } else if (storedTheme === 'light') {
-                    htmlElement.classList.remove('dark');
-                    moonIcon.classList.add('hidden');
-                    sunIcon.classList.remove('hidden');
-                } else {
-                    // Default to dark theme if no preference found
-                    htmlElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    moonIcon.classList.remove('hidden');
-                    sunIcon.classList.add('hidden');
-                }
-            };
-            
-            // 2. Toggle Handler - CORRIGÉ
-            const toggleTheme = () => {
-                if (htmlElement.classList.contains('dark')) {
-                    htmlElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light'); // Correction ici (suppression du L en trop)
-                    moonIcon.classList.add('hidden');
-                    sunIcon.classList.remove('hidden');
-                } else {
-                    htmlElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    moonIcon.classList.remove('hidden');
-                    sunIcon.classList.add('hidden');
-                }
-            };
-
-            // 3. Event Listeners
-            loadTheme(); // Apply theme on load
-            themeToggleBtn.addEventListener('click', toggleTheme);
-
-
-            // Header scroll effect
-            const header = document.getElementById('header');
-            const nav = header.querySelector('nav');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    // Au défilement
-                    header.classList.remove('top-4', 'left-1/2', '-translate-x-1/2');
-                    header.classList.add('w-full', 'top-0');
-                    nav.classList.add('shadow-lg', 'rounded-none', 'border-b', 'border-zinc-700/50'); 
-                } else {
-                    // En haut de page
-                    header.classList.remove('w-full', 'top-0');
-                    header.classList.add('top-4', 'left-1/2', '-translate-x-1/2');
-                    nav.classList.remove('shadow-lg', 'rounded-none', 'border-b', 'border-zinc-700/50');
-                }
             });
         });
-    </script></body></html>
+    </script>
+</body>
+</html>
