@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joseph Hamdy Kamal | Senior-Minded UI/UX Designer</title>
+    <title>Joseph Hamdy Kamal | Senior UI/UX Designer & Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: #2dd4bf;
             --secondary: #0ea5e9;
-            --dark-bg: #05070a;
+            --dark-bg: #030508; /* Plus sombre pour faire ressortir les couleurs */
             --card-bg: #0f172a;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
@@ -24,14 +24,18 @@
             background-color: var(--dark-bg);
             color: var(--text-main);
             overflow-x: hidden;
+            /* Effet de grain "Noise" pour un look premium */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-attachment: fixed;
+            background-blend-mode: overlay;
         }
 
         .font-header { font-family: 'Space Grotesk', sans-serif; }
 
         .glass {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .text-gradient {
@@ -42,186 +46,167 @@
 
         .btn-primary {
             background: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(45, 212, 191, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 40px -10px rgba(45, 212, 191, 0.3);
         }
 
-        /* Portfolio Cards */
-        .project-card {
-            transition: all 0.5s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-        }
-        .project-card img {
-            transition: transform 0.8s ease;
-        }
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Animations */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        /* Animations de révélation améliorées */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--dark-bg); }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+        /* Effet de grille en background */
+        .grid-bg {
+            background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
 
-        /* Blob Background */
+        /* Blob d'arrière plan dynamiques */
         .blob {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(45, 212, 191, 0.15) 0%, rgba(14, 165, 233, 0.1) 100%);
-            filter: blur(80px);
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.2) 0%, rgba(14, 165, 233, 0.1) 100%);
+            filter: blur(100px);
             border-radius: 50%;
             z-index: -1;
-            animation: move 20s infinite alternate;
+            animation: float 20s infinite alternate ease-in-out;
         }
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(20%, 20%); }
+
+        @keyframes float {
+            0% { transform: translate(-5%, -5%) rotate(0deg); }
+            100% { transform: translate(10%, 10%) rotate(15deg); }
         }
     </style>
 </head>
-<body>
+<body class="grid-bg">
 
-    <!-- Nav -->
     <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
-        <div class="container mx-auto px-6 h-20 flex justify-between items-center">
+        <div class="container mx-auto px-8 h-20 flex justify-between items-center">
             <div class="text-2xl font-bold font-header tracking-tighter">
-                JHK<span class="text-gradient">.</span>
+                JHK<span class="text-primary">.</span>
             </div>
-            <div class="hidden md:flex space-x-10 text-sm font-medium uppercase tracking-widest">
-                <a href="#home" class="hover:text-primary transition-colors">Accueil</a>
-                <a href="#portfolio" class="hover:text-primary transition-colors">Projets</a>
-                <a href="#process" class="hover:text-primary transition-colors">Ma Méthode</a>
-                <a href="#about" class="hover:text-primary transition-colors">Parcours</a>
+            <div class="hidden md:flex space-x-12 text-[10px] font-bold uppercase tracking-[0.3em]">
+                <a href="#home" class="hover:text-primary transition-colors">Intro</a>
+                <a href="#portfolio" class="hover:text-primary transition-colors">Case Studies</a>
+                <a href="#about" class="hover:text-primary transition-colors">Background</a>
+                <a href="#process" class="hover:text-primary transition-colors">Method</a>
             </div>
-            <a href="mailto:eng.joseph.h.kamal@gmail.com" class="btn-primary px-6 py-2.5 rounded-full text-sm font-bold text-slate-900">
-                Contact
+            <a href="mailto:eng.joseph.h.kamal@gmail.com" class="bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-2.5 rounded-full text-xs font-bold transition-all">
+                Démarrer un projet
             </a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div class="blob top-[-10%] left-[-10%]"></div>
-        <div class="blob bottom-[10%] right-[-10%] opacity-50"></div>
+    <section id="home" class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="blob top-[-20%] left-[-10%]"></div>
+        <div class="blob bottom-[-10%] right-[-10%] opacity-40"></div>
         
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6 reveal">
-                    Ingénieur de formation • Designer par passion
-                </span>
-                <h1 class="text-6xl md:text-8xl font-extrabold font-header leading-[1.1] mb-8 reveal" style="transition-delay: 100ms">
-                    Concevoir des interfaces <span class="text-gradient">intuitives</span> basées sur la <span class="border-b-4 border-primary/30">logique</span>.
+        <div class="container mx-auto px-8">
+            <div class="max-w-5xl">
+                <div class="reveal mb-8 flex items-center gap-4">
+                    <span class="h-[1px] w-12 bg-primary"></span>
+                    <span class="text-primary text-xs font-bold uppercase tracking-[0.4em]">Basé à Paris • Mobile en Europe</span>
+                </div>
+                
+                <h1 class="text-7xl md:text-9xl font-black font-header leading-[0.9] mb-10 reveal" style="transition-delay: 100ms">
+                    L'ingénierie <br>
+                    <span class="text-gradient italic">au service</span> <br>
+                    du Design.
                 </h1>
-                <p class="text-xl text-text-dim mb-10 max-w-2xl reveal leading-relaxed" style="transition-delay: 200ms">
-                    Je suis Joseph, un UI/UX Designer avec un background en ingénierie mécatronique. Je comble le fossé entre la créativité visuelle et la faisabilité technique.
+                
+                <p class="text-xl md:text-2xl text-text-dim mb-12 max-w-2xl reveal leading-relaxed font-light" style="transition-delay: 200ms">
+                    Je suis <span class="text-white font-semibold">Joseph</span>, UI/UX Designer hybride avec un background en ingénierie mécatronique. Je conçois des produits numériques complexes, scalables et centrés sur l'utilisateur.
                 </p>
-                <div class="flex flex-wrap gap-4 reveal" style="transition-delay: 300ms">
-                    <a href="#portfolio" class="btn-primary px-8 py-4 rounded-xl text-slate-900 font-bold text-lg">Voir mes projets</a>
-                    <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" class="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 transition-all font-bold text-lg">LinkedIn</a>
+
+                <div class="flex flex-wrap gap-6 reveal" style="transition-delay: 300ms">
+                    <a href="#portfolio" class="btn-primary px-10 py-5 rounded-2xl text-slate-950 font-black text-lg shadow-xl flex items-center gap-3 group">
+                        Explorer les projets
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" target="_blank" class="px-10 py-5 rounded-2xl border border-white/10 hover:bg-white/5 transition-all font-bold text-lg">
+                        LinkedIn
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- The Hybrid Section -->
-    <section class="py-24 bg-card-bg/30">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="p-8 glass rounded-3xl reveal">
-                    <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Esprit Ingénieur</h3>
-                    <p class="text-text-dim text-sm leading-relaxed">Ma formation Don Bosco m'apporte une rigueur algorithmique unique. Je conçois des systèmes, pas juste des écrans.</p>
+    <section class="py-24 border-y border-white/5 bg-white/[0.01]">
+        <div class="container mx-auto px-8">
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="reveal">
+                    <h3 class="text-sm font-bold text-primary uppercase tracking-widest mb-4">01. Rigueur Technique</h3>
+                    <p class="text-text-dim leading-relaxed">Formation d'ingénieur Don Bosco. Mon design ne s'arrête pas aux pixels, il prend en compte les contraintes algorithmiques et la structure du code.</p>
                 </div>
-                <div class="p-8 glass rounded-3xl reveal" style="transition-delay: 100ms">
-                    <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Empathie Utilisateur</h3>
-                    <p class="text-text-dim text-sm leading-relaxed">Certifié par Label École, je place l'humain au centre. Je résous des problèmes réels via la recherche UX.</p>
+                <div class="reveal" style="transition-delay: 100ms">
+                    <h3 class="text-sm font-bold text-secondary uppercase tracking-widest mb-4">02. Vision Produit</h3>
+                    <p class="text-text-dim leading-relaxed">Certifié par Label École. Je fais le pont entre les besoins business, la faisabilité technique et l'émotion de l'utilisateur final.</p>
                 </div>
-                <div class="p-8 glass rounded-3xl reveal" style="transition-delay: 200ms">
-                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Dev-Friendly</h3>
-                    <p class="text-text-dim text-sm leading-relaxed">Je parle le langage du code. Mes fichiers Figma sont structurés, documentés et prêts pour l'intégration (HTML/CSS/React).</p>
+                <div class="reveal" style="transition-delay: 200ms">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-widest mb-4">03. Stack Moderne</h3>
+                    <p class="text-text-dim leading-relaxed">Expert Figma & Design Systems. Autonome en intégration front-end (React, Tailwind) pour garantir une fidélité absolue entre maquette et produit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="py-32">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20">
-                <div class="max-w-xl reveal">
-                    <h2 class="text-4xl md:text-5xl font-extrabold font-header mb-6 italic">Études de Cas.</h2>
-                    <p class="text-text-dim">Une sélection de projets où j'ai allié stratégie business, UX design et exécution UI millimétrée.</p>
-                </div>
-                <div class="hidden md:block reveal">
-                    <span class="text-6xl font-black opacity-5">PORTFOLIO</span>
-                </div>
+    <section id="portfolio" class="py-40">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-32 reveal">
+                <h2 class="text-5xl md:text-7xl font-black font-header italic">Études de cas<span class="text-primary">.</span></h2>
+                <p class="text-text-dim max-w-sm mt-6">Une sélection de solutions conçues pour l'impact utilisateur et la performance business.</p>
             </div>
 
-            <div class="grid grid-cols-1 gap-32">
-                <!-- Project 1: Morpholia -->
-                <div class="grid md:grid-cols-2 gap-16 items-center reveal">
-                    <div class="order-2 md:order-1">
-                        <span class="text-primary font-bold text-sm tracking-tighter uppercase mb-4 block">01 / E-COMMERCE ACCESSIBLE</span>
-                        <h3 class="text-4xl font-bold mb-6 font-header">Morpholia : L'inclusion par le design</h3>
-                        <p class="text-text-dim mb-8 leading-relaxed">
-                            <strong class="text-white">Le Problème :</strong> Le tunnel d'achat de la mode grande taille est souvent frustrant et peu ergonomique.<br><br>
-                            <strong class="text-white">Ma Solution :</strong> Une refonte complète axée sur la personnalisation des morphologies et un parcours de paiement en 3 clics. Réalisation de User Flows complexes et prototypes haute-fidélité.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-10">
-                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">UX Research</span>
-                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">Figma Design System</span>
-                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">PrestaShop</span>
-                        </div>
-                        <a href="#" class="inline-flex items-center text-primary font-bold hover:gap-3 transition-all">
-                            Voir l'étude complète 
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                    <div class="order-1 md:order-2 group overflow-hidden rounded-3xl glass border-white/5 p-4 project-card">
-                        <img src="morpholia-project.png" alt="Morpholia" class="rounded-2xl w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80'">
-                    </div>
-                </div>
-
-                <!-- Project 2: Khayal -->
-                <div class="grid md:grid-cols-2 gap-16 items-center reveal">
-                    <div class="group overflow-hidden rounded-3xl glass border-white/5 p-4 project-card">
-                        <img src="khayal-desktop.jpg" alt="Khayal & Co" class="rounded-2xl w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80'">
-                    </div>
+            <div class="space-y-48">
+                <div class="grid md:grid-cols-2 gap-20 items-center reveal">
                     <div>
-                        <span class="text-secondary font-bold text-sm tracking-tighter uppercase mb-4 block">02 / BRAND IDENTITY & UI</span>
-                        <h3 class="text-4xl font-bold mb-6 font-header">Khayal & Co : L'élégance digitale</h3>
-                        <p class="text-text-dim mb-8 leading-relaxed">
-                            Conception d'un site vitrine haut de gamme pour une agence créative. L'enjeu était de refléter le luxe et l'innovation à travers une UI minimaliste ("Less is More"). Intégration complète en React/Tailwind pour prouver la viabilité du design.
-                        </p>
-                        <div class="flex flex-wrap gap-3 mb-10">
-                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">React.js</span>
-                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">Tailwind CSS</span>
-                            <span class="px-4 py-1 rounded-full border border-white/10 text-xs font-semibold">Animation Framer</span>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="px-3 py-1 rounded bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest">E-commerce</span>
+                            <span class="px-3 py-1 rounded bg-white/5 text-text-dim text-[10px] font-bold uppercase tracking-widest">UX Research</span>
                         </div>
-                        <a href="https://josephhk-1.github.io/Khayal-Co/" target="_blank" class="inline-flex items-center text-secondary font-bold hover:gap-3 transition-all">
-                            Visiter le site 
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        <h3 class="text-4xl font-bold mb-8 font-header">Morpholia : Redéfinir l'inclusion digitale</h3>
+                        <p class="text-text-dim text-lg mb-10 leading-relaxed">
+                            Comment transformer une expérience d'achat frustrante en un parcours fluide et valorisant ? <br><br>
+                            J'ai mené la recherche utilisateur pour identifier les points de douleur spécifiques à la mode grande taille, aboutissant à une refonte du tunnel de conversion avec une augmentation significative de l'engagement.
+                        </p>
+                        <ul class="space-y-4 mb-12">
+                            <li class="flex items-center gap-3 text-sm font-medium"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> Design System modulaire</li>
+                            <li class="flex items-center gap-3 text-sm font-medium"><svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg> Proto-personnas & User Flows</li>
+                        </ul>
+                        <a href="#" class="inline-flex items-center font-bold text-white group">
+                            Découvrir le process 
+                            <span class="ml-4 w-12 h-[2px] bg-primary group-hover:w-16 transition-all"></span>
+                        </a>
+                    </div>
+                    <div class="group relative overflow-hidden rounded-[2rem] glass p-4 border-white/5">
+                        <img src="morpholia-project.png" alt="Morpholia" class="rounded-[1.5rem] w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80'">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-20 items-center reveal">
+                    <div class="order-2 md:order-1 group relative overflow-hidden rounded-[2rem] glass p-4 border-white/5">
+                        <img src="khayal-desktop.jpg" alt="Khayal" class="rounded-[1.5rem] w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80'">
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="px-3 py-1 rounded bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-widest">Brand Identity</span>
+                            <span class="px-3 py-1 rounded bg-white/5 text-text-dim text-[10px] font-bold uppercase tracking-widest">UI/UX Design</span>
+                        </div>
+                        <h3 class="text-4xl font-bold mb-8 font-header">Khayal & Co : L'esthétique du luxe minimaliste</h3>
+                        <p class="text-text-dim text-lg mb-10 leading-relaxed">
+                            Création d'une identité visuelle et d'une interface web haute couture. L'objectif était de traduire l'élégance à travers le vide (white space) et des micro-animations fluides développées en React.
+                        </p>
+                        <div class="flex flex-wrap gap-3 mb-12">
+                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-bold">React.js</span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-bold">Tailwind CSS</span>
+                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-bold">Framer Motion</span>
+                        </div>
+                        <a href="https://josephhk-1.github.io/Khayal-Co/" target="_blank" class="btn-primary px-8 py-4 rounded-xl text-slate-950 font-bold flex items-center gap-3 self-start w-max">
+                            Visiter le live
                         </a>
                     </div>
                 </div>
@@ -229,139 +214,149 @@
         </div>
     </section>
 
-    <!-- My Process -->
-    <section id="process" class="py-32 bg-white/[0.02]">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
-                <h2 class="text-4xl font-bold font-header mb-6">Ma Méthodologie</h2>
-                <p class="text-text-dim italic">Comment je transforme une idée complexe en un produit fini.</p>
-            </div>
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="relative reveal">
-                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">01</span>
-                    <h4 class="text-xl font-bold mb-4 mt-6">Recherche</h4>
-                    <p class="text-sm text-text-dim leading-relaxed">Interviews utilisateurs, persona et analyse de la concurrence pour définir la stratégie.</p>
+    <section id="process" class="py-40 bg-white/[0.02]">
+        <div class="container mx-auto px-8">
+            <h2 class="text-4xl font-bold font-header mb-24 text-center italic">Mon Workflow <span class="text-primary">"End-to-End"</span></h2>
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="reveal group">
+                    <div class="text-5xl font-black text-white/5 mb-6 group-hover:text-primary/20 transition-colors">01</div>
+                    <h4 class="text-xl font-bold mb-4">Discovery</h4>
+                    <p class="text-text-dim text-sm leading-relaxed">Interviews, analyse de données et benchmark pour comprendre le "Pourquoi" avant le "Quoi".</p>
                 </div>
-                <div class="relative reveal" style="transition-delay: 100ms">
-                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">02</span>
-                    <h4 class="text-xl font-bold mb-4 mt-6">Wireframing</h4>
-                    <p class="text-sm text-text-dim leading-relaxed">Bâtir l'architecture sans distraction visuelle pour valider les parcours (Lo-Fi).</p>
+                <div class="reveal group" style="transition-delay: 100ms">
+                    <div class="text-5xl font-black text-white/5 mb-6 group-hover:text-primary/20 transition-colors">02</div>
+                    <h4 class="text-xl font-bold mb-4">Architecture</h4>
+                    <p class="text-text-dim text-sm leading-relaxed">User flows et wireframes lo-fi pour valider la logique et l'ergonomie sans distraction visuelle.</p>
                 </div>
-                <div class="relative reveal" style="transition-delay: 200ms">
-                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">03</span>
-                    <h4 class="text-xl font-bold mb-4 mt-6">Maquettage</h4>
-                    <p class="text-sm text-text-dim leading-relaxed">Application du Design System et création de maquettes haute-fidélité sur Figma.</p>
+                <div class="reveal group" style="transition-delay: 200ms">
+                    <div class="text-5xl font-black text-white/5 mb-6 group-hover:text-primary/20 transition-colors">03</div>
+                    <h4 class="text-xl font-bold mb-4">Visual Design</h4>
+                    <p class="text-text-dim text-sm leading-relaxed">Création d'un Design System scalable et de maquettes pixel-perfect sur Figma.</p>
                 </div>
-                <div class="relative reveal" style="transition-delay: 300ms">
-                    <span class="text-8xl font-black text-white/5 absolute -top-10 left-0">04</span>
-                    <h4 class="text-xl font-bold mb-4 mt-6">Handover</h4>
-                    <p class="text-sm text-text-dim leading-relaxed">Documentation technique détaillée pour les développeurs assurant un pixel-perfect.</p>
+                <div class="reveal group" style="transition-delay: 300ms">
+                    <div class="text-5xl font-black text-white/5 mb-6 group-hover:text-primary/20 transition-colors">04</div>
+                    <h4 class="text-xl font-bold mb-4">Dev Handoff</h4>
+                    <p class="text-text-dim text-sm leading-relaxed">Documentation technique et support à l'intégration pour garantir la fidélité du produit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills & Tools -->
-    <section class="py-32">
-        <div class="container mx-auto px-6">
-            <div class="glass p-16 rounded-[40px] grid md:grid-cols-2 gap-20 items-center reveal">
+    <section class="py-40">
+        <div class="container mx-auto px-8">
+            <div class="glass p-12 md:p-20 rounded-[3rem] grid lg:grid-cols-2 gap-20 items-center reveal">
                 <div>
-                    <h3 class="text-4xl font-bold mb-8 font-header italic">Boîte à outils.</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <div class="flex justify-between mb-2"><span>Product Design (Figma, XD)</span><span class="text-primary">98%</span></div>
-                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[98%] rounded-full"></div></div>
+                    <h3 class="text-5xl font-bold mb-10 font-header italic tracking-tight">Maîtrise technique<span class="text-primary">.</span></h3>
+                    <div class="space-y-8">
+                        <div class="group">
+                            <div class="flex justify-between mb-3 text-xs font-bold uppercase tracking-widest">
+                                <span>UI Design & Prototyping</span>
+                                <span class="text-primary">98%</span>
+                            </div>
+                            <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div class="h-full bg-primary w-[98%] rounded-full group-hover:opacity-80 transition-all"></div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2"><span>User Research & Persona</span><span class="text-primary">90%</span></div>
-                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[90%] rounded-full"></div></div>
+                        <div class="group">
+                            <div class="flex justify-between mb-3 text-xs font-bold uppercase tracking-widest">
+                                <span>UX Research & Strategy</span>
+                                <span class="text-secondary">92%</span>
+                            </div>
+                            <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div class="h-full bg-secondary w-[92%] rounded-full group-hover:opacity-80 transition-all"></div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="flex justify-between mb-2"><span>Front-end (HTML/CSS/JS)</span><span class="text-primary">85%</span></div>
-                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[85%] rounded-full"></div></div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2"><span>Design System Thinking</span><span class="text-primary">95%</span></div>
-                            <div class="h-1.5 w-full bg-white/10 rounded-full"><div class="h-full bg-primary w-[95%] rounded-full"></div></div>
+                        <div class="group">
+                            <div class="flex justify-between mb-3 text-xs font-bold uppercase tracking-widest">
+                                <span>Front-end (React/Tailwind)</span>
+                                <span class="text-white">85%</span>
+                            </div>
+                            <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                <div class="h-full bg-white w-[85%] rounded-full group-hover:opacity-80 transition-all"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
-                        <p class="text-text-dim text-xs uppercase mb-1">Langues</p>
-                        <p class="font-bold">Français / Italien / Anglais / Arabe</p>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-8 bg-white/[0.03] border border-white/5 rounded-3xl hover:border-primary/30 transition-colors">
+                        <p class="text-text-dim text-[10px] font-bold uppercase tracking-widest mb-2">Logiciels</p>
+                        <p class="font-bold text-sm">Figma, Adobe Suite, Jira, VS Code</p>
                     </div>
-                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
-                        <p class="text-text-dim text-xs uppercase mb-1">Logiciels</p>
-                        <p class="font-bold">Adobe Suite, Jira, Notion, Slack</p>
+                    <div class="p-8 bg-white/[0.03] border border-white/5 rounded-3xl hover:border-primary/30 transition-colors">
+                        <p class="text-text-dim text-[10px] font-bold uppercase tracking-widest mb-2">Langues</p>
+                        <p class="font-bold text-sm">Français, Italien, Anglais, Arabe</p>
                     </div>
-                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
-                        <p class="text-text-dim text-xs uppercase mb-1">Loisirs</p>
-                        <p class="font-bold">Échecs (Licence B), Football, Origami</p>
+                    <div class="p-8 bg-white/[0.03] border border-white/5 rounded-3xl hover:border-primary/30 transition-colors">
+                        <p class="text-text-dim text-[10px] font-bold uppercase tracking-widest mb-2">Hobbies</p>
+                        <p class="font-bold text-sm">Échecs (Licence B), Football, Origami</p>
                     </div>
-                    <div class="p-6 border border-white/5 rounded-2xl bg-white/5 hover:border-primary/40 transition-colors">
-                        <p class="text-text-dim text-xs uppercase mb-1">Certifs</p>
-                        <p class="font-bold">AI Overview, PrestaShop Expert</p>
+                    <div class="p-8 bg-white/[0.03] border border-white/5 rounded-3xl hover:border-primary/30 transition-colors">
+                        <p class="text-text-dim text-[10px] font-bold uppercase tracking-widest mb-2">Certifications</p>
+                        <p class="font-bold text-sm">AI UX Design, PrestaShop Expert</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="py-32 text-center reveal">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold font-header mb-12 italic leading-tight">
-                Démarrons un projet <span class="text-gradient underline">ensemble</span>.
+    <section class="py-40 text-center">
+        <div class="container mx-auto px-8 reveal">
+            <h2 class="text-6xl md:text-8xl font-black font-header mb-16 italic tracking-tighter leading-none">
+                On crée quelque chose <br> de <span class="text-gradient underline">mémorable</span> ?
             </h2>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-10">
-                <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-3xl font-bold hover:text-primary transition-all">eng.joseph.h.kamal@gmail.com</a>
-                <span class="hidden md:block opacity-20">|</span>
-                <a href="tel:+33767117091" class="text-3xl font-bold hover:text-primary transition-all">+33 07 67 11 70 91</a>
-            </div>
-            <div class="mt-20">
-                <!-- Nom du fichier mis à jour ici -->
-                <a href="CV_JOSEPH_UI_UX_DESIGNER.pdf" download class="btn-primary px-10 py-5 rounded-2xl text-slate-900 font-extrabold text-xl shadow-2xl">
-                    Télécharger mon CV (PDF)
+            <div class="flex flex-col md:flex-row justify-center items-center gap-12 mb-20">
+                <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-3xl md:text-4xl font-bold hover:text-primary transition-all underline decoration-primary/30 underline-offset-8">
+                    eng.joseph.h.kamal@gmail.com
+                </a>
+                <a href="tel:+33767117091" class="text-3xl md:text-4xl font-bold hover:text-secondary transition-all">
+                    +33 7 67 11 70 91
                 </a>
             </div>
+            <a href="CV_JOSEPH_UI_UX_DESIGNER.pdf" download class="btn-primary px-12 py-6 rounded-2xl text-slate-950 font-black text-xl shadow-2xl">
+                Télécharger mon CV (PDF)
+            </a>
         </div>
     </section>
 
-    <footer class="py-12 border-t border-white/5 bg-dark-bg/80">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center opacity-40 text-xs tracking-[0.2em] uppercase font-bold">
-            <p>&copy; 2026 Joseph Hamdy Kamal</p>
-            <div class="flex space-x-8 mt-6 md:mt-0">
-                <a href="#" class="hover:text-white">Behance</a>
-                <a href="#" class="hover:text-white">Dribbble</a>
-                <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" class="hover:text-white">LinkedIn</a>
+    <footer class="py-16 border-t border-white/5 bg-black">
+        <div class="container mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-[0.3em] opacity-40">
+            <p>&copy; 2026 Joseph Hamdy Kamal — Conçu avec intention.</p>
+            <div class="flex space-x-10 mt-8 md:mt-0">
+                <a href="#" class="hover:text-white transition-colors">Behance</a>
+                <a href="#" class="hover:text-white transition-colors">Dribbble</a>
+                <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" class="hover:text-white transition-colors">LinkedIn</a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Reveal Animations
-        const observerOptions = {
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries) => {
+        // Intersection Observer pour les animations de révélation
+        const revealCallback = (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        };
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            threshold: 0.1
+        });
 
-        // Smooth Scroll
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Smooth Scroll pour la navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
