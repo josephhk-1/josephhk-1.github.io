@@ -1192,10 +1192,250 @@ footer {
   </div>
 </section>
 
+<!-- IA & OUTILS -->
+<section id="ia" class="section" style="background:var(--bg);border-top:1px solid var(--border);">
+<style>
+/* ─── AI SECTION STYLES ─── */
+.ai-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 60ch;
+  margin-top: 1.5rem;
+}
+.ai-headline strong { color: var(--white); font-weight: 500; }
+.ai-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(201,164,110,0.4);
+  background: rgba(201,164,110,0.06);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2rem;
+  width: fit-content;
+}
+.ai-badge::before {
+  content: '⬡';
+  font-size: 0.7rem;
+}
+
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 4rem;
+  border: 1px solid var(--border);
+}
+@media(max-width:1024px){ .ai-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width:640px){ .ai-grid { grid-template-columns: 1fr; } }
+
+.ai-card {
+  padding: 2.5rem 2rem;
+  border-right: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.ai-card:last-child { border-right: none; }
+.ai-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.ai-card:hover { background: rgba(201,164,110,0.05); }
+.ai-card:hover::before { opacity: 1; }
+
+.ai-card-icon {
+  width: 40px; height: 40px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+.ai-card:hover .ai-card-icon { border-color: var(--gold); }
+
+.ai-card-cat {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+.ai-card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.ai-card-body {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.ai-tools-list {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.ai-tool {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(201,164,110,0.2);
+  color: rgba(201,164,110,0.7);
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+.ai-card:hover .ai-tool {
+  border-color: rgba(201,164,110,0.4);
+  color: var(--gold);
+}
+
+/* Stat strip */
+.ai-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--border);
+  border-top: none;
+}
+.ai-stat {
+  padding: 2rem;
+  border-right: 1px solid var(--border);
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.ai-stat:last-child { border-right: none; }
+.ai-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.ai-stat-text {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-weight: 300;
+}
+.ai-stat-text strong { color: var(--white); display: block; font-weight: 500; font-size: 0.85rem; margin-bottom: 0.2rem; }
+@media(max-width:640px){ .ai-stats-strip { grid-template-columns: 1fr; } .ai-stat { border-right: none; border-bottom: 1px solid var(--border); } }
+</style>
+
+  <div class="section-narrow">
+    <div class="section-label reveal up">04 — Intelligence Artificielle</div>
+    <h2 class="section-title reveal up" style="transition-delay:0.1s">
+      IA-augmenté,<br>pas <em>IA-dépendant.</em>
+    </h2>
+
+    <div class="ai-badge reveal up" style="transition-delay:0.15s">
+      Compétence active · Usage quotidien · Veille continue
+    </div>
+
+    <p class="ai-headline reveal up" style="transition-delay:0.2s">
+      J'intègre les outils d'IA générative à <strong>chaque phase du projet</strong> : de la rédaction de briefs à la création visuelle, de la synthèse de données à la production de contenus. Résultat : <strong>délais divisés, qualité augmentée</strong>.
+    </p>
+
+    <div class="ai-grid reveal up" style="transition-delay:0.25s">
+
+      <div class="ai-card">
+        <div class="ai-card-icon">✦</div>
+        <div class="ai-card-cat">Rédaction & Stratégie</div>
+        <div class="ai-card-title">LLMs &<br>Assistants IA</div>
+        <div class="ai-card-body">Rédaction de briefs, comptes-rendus, spécifications, emails clients, stratégies de contenu et synthèses en quelques minutes.</div>
+        <div class="ai-tools-list">
+          <span class="ai-tool">Claude</span>
+          <span class="ai-tool">ChatGPT</span>
+          <span class="ai-tool">Gemini Advanced</span>
+          <span class="ai-tool">Perplexity</span>
+        </div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card-icon">◈</div>
+        <div class="ai-card-cat">Création Visuelle</div>
+        <div class="ai-card-title">Génération<br>d'Images</div>
+        <div class="ai-card-body">Mood boards, maquettes rapides, directions artistiques, identités visuelles et supports créatifs générés et itérés en temps réel.</div>
+        <div class="ai-tools-list">
+          <span class="ai-tool">Whisk</span>
+          <span class="ai-tool">Imagen</span>
+          <span class="ai-tool">Firefly</span>
+          <span class="ai-tool">Midjourney</span>
+        </div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card-icon">▶</div>
+        <div class="ai-card-cat">Vidéo & Motion</div>
+        <div class="ai-card-title">Production<br>Vidéo IA</div>
+        <div class="ai-card-body">Création de contenus vidéo promotionnels, animations et pitchs visuels pour les réseaux sociaux et campagnes digitales.</div>
+        <div class="ai-tools-list">
+          <span class="ai-tool">Flow (Veo 3)</span>
+          <span class="ai-tool">Runway</span>
+          <span class="ai-tool">Pika</span>
+          <span class="ai-tool">Kling</span>
+        </div>
+      </div>
+
+      <div class="ai-card">
+        <div class="ai-card-icon">◎</div>
+        <div class="ai-card-cat">Recherche & Analyse</div>
+        <div class="ai-card-title">Veille &<br>Synthèse</div>
+        <div class="ai-card-body">Analyse concurrentielle, synthèse de documents complexes, veille sectorielle et extraction de données pour le reporting KPI.</div>
+        <div class="ai-tools-list">
+          <span class="ai-tool">NotebookLM</span>
+          <span class="ai-tool">Gemini Labs</span>
+          <span class="ai-tool">Claude</span>
+          <span class="ai-tool">Perplexity</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats strip -->
+    <div class="ai-stats-strip reveal up" style="transition-delay:0.35s">
+      <div class="ai-stat">
+        <div class="ai-stat-num">−50%</div>
+        <div class="ai-stat-text">
+          <strong>Temps de production</strong>
+          Rédaction, maquettes et contenus visuels générés en fraction du temps habituel.
+        </div>
+      </div>
+      <div class="ai-stat">
+        <div class="ai-stat-num">10+</div>
+        <div class="ai-stat-text">
+          <strong>Outils maîtrisés</strong>
+          Écosystème Google Labs, OpenAI, Anthropic — sélection des meilleurs outils selon le besoin.
+        </div>
+      </div>
+      <div class="ai-stat">
+        <div class="ai-stat-num">∞</div>
+        <div class="ai-stat-text">
+          <strong>Veille active</strong>
+          Suivi quotidien des nouvelles releases, nouveaux modèles et cas d'usage émergents.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section id="experience" class="section">
   <div class="section-narrow">
-    <div class="section-label reveal up">04 — Parcours</div>
+    <div class="section-label reveal up">05 — Parcours</div>
     <h2 class="section-title reveal up" style="transition-delay:0.1s">
       Une trajectoire<br><em>singulière.</em>
     </h2>
