@@ -3,227 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joseph Hamdy Kamal | Senior UI/UX Designer & Engineer Portfolio</title>
+    <title>Joseph Hamdy Kamal | Creative PMO, Designer & Interior Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --primary: #2dd4bf; --secondary: #0ea5e9; --dark-bg: #030508; --card-bg: #0f172a; --text-dim: #94a3b8; }
+        :root { --primary: #2dd4bf; --secondary: #0ea5e9; --accent: #f43f5e; --dark-bg: #030508; --text-dim: #94a3b8; }
         body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--dark-bg); 
-            color: #fff; 
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); 
-            background-attachment: fixed; 
-            background-blend-mode: overlay; 
+            font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--dark-bg); color: #fff;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-attachment: fixed; background-blend-mode: overlay;
         }
         .font-header { font-family: 'Space Grotesk', sans-serif; }
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
-        .glass-card { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
-        .glass-card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .glass-card { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.3s ease; }
+        .glass-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         .text-gradient { background: linear-gradient(135deg, #2dd4bf 0%, #0ea5e9 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .project-img { transition: transform 0.6s ease; }
-        .glass-card:hover .project-img { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/5">
-        <div class="container mx-auto px-8 h-20 flex justify-between items-center">
-            <div class="text-xl font-bold font-header tracking-tighter">JOSEPH<span class="text-primary">.</span></div>
-            <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em]">
-                <a href="#projets" class="hover:text-primary transition-colors">Portfolio</a>
-                <a href="#experience" class="hover:text-primary transition-colors">Parcours</a>
-                <a href="#about" class="hover:text-primary transition-colors">Expertise</a>
-                <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-primary border border-primary/30 px-5 py-2 rounded-full hover:bg-primary/10 transition-all">Contact</a>
-            </div>
+    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/5 px-8 h-20 flex justify-between items-center">
+        <div class="text-xl font-bold font-header tracking-tighter">JOSEPH<span class="text-primary">.</span></div>
+        <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-widest">
+            <a href="#projets" class="hover:text-primary transition-colors">Projets</a>
+            <a href="#skills" class="hover:text-primary transition-colors">Compétences</a>
+            <a href="#experience" class="hover:text-primary transition-colors">Parcours</a>
+            <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-primary border border-primary/30 px-5 py-2 rounded-full">Contact</a>
         </div>
     </nav>
 
     <section class="min-h-screen flex items-center pt-20 px-8 relative overflow-hidden">
-        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full"></div>
         <div class="container mx-auto">
-            <div class="max-w-4xl">
-                <div class="reveal mb-6 flex items-center gap-3">
-                    <span class="h-[1px] w-8 bg-primary"></span>
-                    <span class="text-primary text-xs font-bold uppercase tracking-widest">Architecte de solutions digitales</span>
+            <div class="max-w-5xl">
+                <div class="reveal mb-6 flex flex-wrap gap-3">
+                    <span class="px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-primary">Creative PMO</span>
+                    <span class="px-3 py-1 bg-secondary/10 border border-secondary/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-secondary">Spatial Architect</span>
                 </div>
                 <h1 class="text-6xl md:text-8xl font-black font-header leading-[0.95] mb-8 reveal">
-                    Concevoir l'usage,<br>
-                    <span class="text-gradient italic">maîtriser</span> le code.
+                    Piloter la stratégie,<br>
+                    <span class="text-gradient italic">designer</span> l'espace.
                 </h1>
-                <p class="text-xl md:text-2xl text-text-dim mb-12 leading-relaxed reveal" style="transition-delay: 200ms">
-                    Designer-Ingénieur spécialisé dans la création de produits numériques à forte valeur ajoutée. De l'identité visuelle à l'intégration technique.
+                <p class="text-xl md:text-2xl text-text-dim mb-12 leading-relaxed reveal max-w-3xl">
+                    Profil hybride **PMO** et **Chef de Projet Digital**. J'allie la rigueur de l'ingénierie mécatronique à la vision créative de l'architecture d'intérieur et du design UI/UX.
                 </p>
-                <div class="flex flex-wrap gap-5 reveal" style="transition-delay: 400ms">
-                    <a href="#projets" class="bg-primary text-slate-950 px-10 py-4 rounded-2xl font-black hover:shadow-[0_0_30px_rgba(45,212,191,0.4)] transition-all">Explorer les Case Studies</a>
-                    <a href="CV_JOSEPH_UI_UX_DESIGNER.pdf" class="bg-white/5 border border-white/10 px-10 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all">Curriculum Vitae</a>
+                <div class="flex flex-wrap gap-5 reveal">
+                    <a href="#projets" class="bg-primary text-slate-950 px-10 py-4 rounded-2xl font-black hover:scale-105 transition-all">Voir les Projets</a>
+                    <a href="CV_Joseph_Hamdy Kamal.pdf" target="_blank" class="bg-white/5 border border-white/10 px-10 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all">Consulter le CV</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projets" class="py-32 px-8">
+    <section id="skills" class="py-32 px-8">
         <div class="container mx-auto">
-            <div class="mb-20 reveal">
-                <h2 class="text-4xl md:text-6xl font-bold font-header italic mb-4">Case Studies<span class="text-primary">.</span></h2>
-                <p class="text-text-dim">Sélection de travaux mêlant stratégie, branding et interfaces.</p>
+            <h2 class="text-4xl font-bold font-header mb-16 italic reveal">Expertise Transversale<span class="text-primary">.</span></h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-[2rem] reveal">
+                    <h3 class="text-xl font-bold mb-4 text-primary">Management & Strategie</h3>
+                    <ul class="text-sm text-text-dim space-y-3">
+                        <li>• Pilotage PMO & Suivi KPI</li>
+                        <li>• Framework McKinsey Forward</li>
+                        <li>• Méthodes Agiles (Scrum, Kanban)</li>
+                        <li>• Coordination Multiculturelle</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-10 rounded-[2rem] reveal" style="transition-delay: 100ms">
+                    <h3 class="text-xl font-bold mb-4 text-secondary">Design & Digital</h3>
+                    <ul class="text-sm text-text-dim space-y-3">
+                        <li>• UI/UX Design & Figma Expert</li>
+                        <li>• iOS Development (Apple Program)</li>
+                        <li>• E-commerce (PrestaShop Expert)</li>
+                        <li>• Marketing & Comms (Emailing >30%)</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-10 rounded-[2rem] reveal" style="transition-delay: 200ms">
+                    <h3 class="text-xl font-bold mb-4 text-accent">Architecture & 3D</h3>
+                    <ul class="text-sm text-text-dim space-y-3">
+                        <li>• AutoCAD (Architecture Intérieure)</li>
+                        <li>• 3ds Max & V-Ray Rendering</li>
+                        <li>• SolidWorks (Ingénierie)</li>
+                        <li>• Pack Architect Interior (Fondamentaux)</li>
+                    </ul>
+                </div>
             </div>
-            
+        </div>
+    </section>
+
+    <section id="projets" class="py-32 px-8 bg-white/[0.01]">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold font-header mb-16 reveal italic">Études de Cas Sélectionnées<span class="text-primary">.</span></h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="glass-card rounded-[2.5rem] overflow-hidden reveal">
-                    <div class="h-64 overflow-hidden">
-                        <img src="WEBSITE VIEW DESKTOP.png" class="project-img w-full h-full object-cover" alt="Rattan Palace">
-                    </div>
+                    <img src="joe-design-macbook.jpg" class="w-full h-56 object-cover" alt="Joe for Design">
                     <div class="p-8">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <div class="text-primary text-[10px] font-bold uppercase mb-1">Branding & E-Commerce</div>
-                                <h3 class="text-xl font-bold">Rattan Palace</h3>
-                            </div>
-                        </div>
-                        <p class="text-text-dim text-xs mb-6 leading-relaxed">Création du logo et conception complète du site web. Une expérience d'achat axée sur l'élégance naturelle et la simplicité.</p>
-                        <a href="https://rattanpalace.co" target="_blank" class="text-white text-sm font-bold border-b border-primary/50 pb-1 hover:border-primary transition-all">rattanpalace.co</a>
+                        <div class="text-secondary text-[10px] font-bold uppercase mb-2">Studio Créatif</div>
+                        <h3 class="text-xl font-bold mb-4">Joe for Design</h3>
+                        <p class="text-text-dim text-xs leading-relaxed mb-6">Plateforme de services design combinant innovation visuelle et stratégies de croissance.</p>
+                        <a href="https://joefordesign.com" target="_blank" class="text-white text-xs font-bold border-b border-secondary/50 pb-1 hover:border-secondary">joefordesign.com</a>
                     </div>
                 </div>
 
                 <div class="glass-card rounded-[2.5rem] overflow-hidden reveal" style="transition-delay: 100ms">
-                    <div class="h-64 overflow-hidden">
-                        <img src="FOR MY LINKEDIN.jpg" class="project-img w-full h-full object-cover" alt="Joe for Design">
-                    </div>
+                    <img src="WEBSITE VIEW DESKTOP.png" class="w-full h-56 object-cover" alt="Rattan Palace">
                     <div class="p-8">
-                        <div class="text-secondary text-[10px] font-bold uppercase mb-1">Personal Studio</div>
-                        <h3 class="text-xl font-bold">Joe for Design</h3>
-                        <p class="text-text-dim text-xs mb-6 leading-relaxed">Ma propre vitrine de design services. Un laboratoire créatif axé sur l'innovation visuelle et le "Product-Led Design".</p>
-                        <a href="https://joefordesign.com" target="_blank" class="text-white text-sm font-bold border-b border-secondary/50 pb-1 hover:border-secondary transition-all">joefordesign.com</a>
+                        <div class="text-primary text-[10px] font-bold uppercase mb-2">Branding & Web</div>
+                        <h3 class="text-xl font-bold mb-4">Rattan Palace</h3>
+                        <p class="text-text-dim text-xs leading-relaxed mb-6">Identité visuelle et déploiement e-commerce pour une marque de mobilier de luxe.</p>
+                        <a href="https://rattanpalace.co" target="_blank" class="text-white text-xs font-bold border-b border-primary/50 pb-1 hover:border-primary">rattanpalace.co</a>
                     </div>
                 </div>
 
                 <div class="glass-card rounded-[2.5rem] overflow-hidden reveal" style="transition-delay: 200ms">
-                    <div class="h-64 overflow-hidden">
-                        <img src="morpholia-project.png" class="project-img w-full h-full object-cover" alt="Morpholia">
-                    </div>
+                    <img src="morpholia-project.png" class="w-full h-56 object-cover" alt="Morpholia">
                     <div class="p-8">
-                        <div class="text-white/40 text-[10px] font-bold uppercase mb-1">UX Research</div>
-                        <h3 class="text-xl font-bold">Morpholia</h3>
-                        <p class="text-text-dim text-xs mb-6 leading-relaxed">Refonte inclusive d'un tunnel d'achat e-commerce. Focus sur l'accessibilité et la psychologie utilisateur.</p>
-                        <a href="#" class="text-white text-sm font-bold border-b border-white/20 pb-1">Study Case [PDF]</a>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-[2.5rem] overflow-hidden reveal">
-                    <div class="h-64 overflow-hidden">
-                        <img src="khayal-desktop.jpg" class="project-img w-full h-full object-cover" alt="Khayal">
-                    </div>
-                    <div class="p-8">
-                        <div class="text-primary text-[10px] font-bold uppercase mb-1">Luxury UI</div>
-                        <h3 class="text-xl font-bold">Khayal & Co</h3>
-                        <p class="text-text-dim text-xs mb-6 leading-relaxed">Identité visuelle et site vitrine pour une agence créative. Minimalisme et animations haute performance.</p>
-                        <a href="https://josephhk-1.github.io/Khayal-Co/" target="_blank" class="text-white text-sm font-bold border-b border-primary/50 pb-1">Visiter le site</a>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-[2.5rem] overflow-hidden reveal" style="transition-delay: 100ms">
-                    <div class="h-64 overflow-hidden">
-                        <img src="hilton-1.jpeg" class="project-img w-full h-full object-cover" alt="Hilton">
-                    </div>
-                    <div class="p-8">
-                        <div class="text-secondary text-[10px] font-bold uppercase mb-1">Corporate UX</div>
-                        <h3 class="text-xl font-bold">Hilton Group</h3>
-                        <p class="text-text-dim text-xs mb-6 leading-relaxed">Optimisation du flux de réservation. Amélioration de la conversion sur les réservations directes.</p>
-                        <span class="text-white/20 text-sm font-bold italic">Bientôt disponible</span>
-                    </div>
-                </div>
-
-                <div class="glass-card rounded-[2.5rem] overflow-hidden reveal" style="transition-delay: 200ms">
-                    <div class="h-64 overflow-hidden">
-                        <img src="identite-visuelle.png" class="project-img w-full h-full object-cover" alt="Identity">
-                    </div>
-                    <div class="p-8">
-                        <div class="text-white/40 text-[10px] font-bold uppercase mb-1">Visual Branding</div>
-                        <h3 class="text-xl font-bold">Identity Systems</h3>
-                        <p class="text-text-dim text-xs mb-6 leading-relaxed">Conception de systèmes graphiques cohérents et adaptables pour marques en croissance.</p>
-                        <a href="#" class="text-white text-sm font-bold border-b border-white/20 pb-1">Voir les concepts</a>
+                        <div class="text-white/40 text-[10px] font-bold uppercase mb-2">UX Research</div>
+                        <h3 class="text-xl font-bold mb-4">Morpholia</h3>
+                        <p class="text-text-dim text-xs leading-relaxed mb-6">Optimisation du tunnel d'achat axée sur l'accessibilité inclusive.</p>
+                        <span class="text-white/20 text-xs font-bold italic underline">Consulter l'étude</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="experience" class="py-32 px-8 bg-white/[0.02] border-y border-white/5">
-        <div class="container mx-auto max-w-5xl">
-            <div class="grid md:grid-cols-2 gap-20">
-                <div class="reveal">
-                    <h2 class="text-3xl font-bold font-header mb-12 flex items-center gap-4">
-                        <span class="w-10 h-[2px] bg-primary"></span> Expérience
-                    </h2>
-                    <div class="space-y-12">
-                        <div class="relative pl-8 border-l border-white/10">
-                            <div class="absolute top-0 left-[-5px] w-2 h-2 rounded-full bg-primary"></div>
-                            <h4 class="font-bold text-lg">UI/UX Designer Freelance</h4>
-                            <p class="text-primary text-xs font-mono mb-3">2022 - Présent</p>
-                            <p class="text-text-dim text-sm leading-relaxed">Clients : Rattan Palace, Khayal & Co. Création de solutions e-commerce et identités visuelles.</p>
-                        </div>
-                        <div class="relative pl-8 border-l border-white/10">
-                            <div class="absolute top-0 left-[-5px] w-2 h-2 rounded-full bg-white/20"></div>
-                            <h4 class="font-bold text-lg">Expert PrestaShop / CMS</h4>
-                            <p class="text-text-dim text-xs font-mono mb-3">2023</p>
-                            <p class="text-text-dim text-sm leading-relaxed">Déploiement technique et optimisation SEO/UX pour boutiques en ligne.</p>
-                        </div>
-                    </div>
+    <section id="experience" class="py-32 px-8">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold font-header mb-16 flex items-center gap-4">
+                <span class="w-10 h-[2px] bg-primary"></span> Parcours Stratégique
+            </h2>
+            <div class="space-y-12 border-l border-white/10 pl-8 ml-2">
+                <div class="relative reveal">
+                    <div class="absolute top-1 left-[-37px] w-3 h-3 rounded-full bg-primary ring-4 ring-dark-bg"></div>
+                    <h4 class="font-bold text-xl">Coordinateur de Projet & Digital Designer</h4>
+                    <p class="text-primary text-xs font-mono mb-2">Rattan Palace KSA & Freelance | 2022 - Présent</p>
+                    <p class="text-text-dim text-sm">Gestion opérationnelle, création de supports visuels et pilotage de campagnes marketing.</p>
                 </div>
-                <div class="reveal" style="transition-delay: 200ms">
-                    <h2 class="text-3xl font-bold font-header mb-12 flex items-center gap-4">
-                        <span class="w-10 h-[2px] bg-secondary"></span> Éducation
-                    </h2>
-                    <div class="space-y-12">
-                        <div class="relative pl-8 border-l border-white/10">
-                            <div class="absolute top-0 left-[-5px] w-2 h-2 rounded-full bg-secondary"></div>
-                            <h4 class="font-bold text-lg">Label École</h4>
-                            <p class="text-secondary text-xs font-mono mb-3">Certification Designer UI/UX</p>
-                            <p class="text-text-dim text-sm leading-relaxed">Spécialisation en Design Strategy et prototypage haute-fidélité.</p>
-                        </div>
-                        <div class="relative pl-8 border-l border-white/10">
-                            <div class="absolute top-0 left-[-5px] w-2 h-2 rounded-full bg-white/20"></div>
-                            <h4 class="font-bold text-lg">École Don Bosco</h4>
-                            <p class="text-text-dim text-xs font-mono mb-3">Ingénierie Mécatronique</p>
-                            <p class="text-text-dim text-sm leading-relaxed">Fondations en analyse de systèmes et rigueur technique.</p>
-                        </div>
-                    </div>
+                <div class="relative reveal">
+                    <div class="absolute top-1 left-[-37px] w-3 h-3 rounded-full bg-secondary ring-4 ring-dark-bg"></div>
+                    <h4 class="font-bold text-xl">McKinsey Forward Program</h4>
+                    <p class="text-secondary text-xs font-mono mb-2">Leadership & Leadership Opérationnel | 2026</p>
+                </div>
+                <div class="relative reveal">
+                    <div class="absolute top-1 left-[-37px] w-3 h-3 rounded-full bg-accent ring-4 ring-dark-bg"></div>
+                    <h4 class="font-bold text-xl">Interior Design (Engosoft)</h4>
+                    <p class="text-accent text-xs font-mono mb-2">AutoCAD, 3ds Max, Photoshop | 2025</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-32 px-8 text-center bg-black/40">
-        <div class="reveal">
-            <h2 class="text-5xl md:text-7xl font-black font-header mb-16 tracking-tighter">Prêt pour la <span class="text-gradient underline">prochaine</span> étape ?</h2>
-            <div class="flex flex-col md:flex-row justify-center gap-10 mb-20">
-                <div class="text-left">
-                    <p class="text-[10px] uppercase tracking-widest text-text-dim mb-2">Email</p>
-                    <a href="mailto:eng.joseph.h.kamal@gmail.com" class="text-2xl font-bold hover:text-primary transition-all">eng.joseph.h.kamal@gmail.com</a>
-                </div>
-                <div class="text-left">
-                    <p class="text-[10px] uppercase tracking-widest text-text-dim mb-2">Téléphone</p>
-                    <a href="tel:+33767117091" class="text-2xl font-bold hover:text-secondary transition-all">+33 7 67 11 70 91</a>
-                </div>
-            </div>
-            <div class="flex justify-center gap-10 opacity-40 text-[10px] font-bold uppercase tracking-[0.4em]">
-                <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/" class="hover:text-white transition-colors">LinkedIn</a>
-                <span>/</span>
-                <a href="#" class="hover:text-white transition-colors">Behance</a>
-                <span>/</span>
-                <a href="#" class="hover:text-white transition-colors">Dribbble</a>
-            </div>
-        </div>
+    <footer class="py-20 text-center border-t border-white/5 opacity-40 text-[10px] font-bold uppercase tracking-[0.4em]">
+        © 2026 JOSEPH HAMDY KAMAL — ARCHITECTE DE SOLUTIONS
     </footer>
 
     <script>
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, observerOptions);
+        }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
