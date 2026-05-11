@@ -935,8 +935,8 @@ footer {
   <div class="nav-links">
     <a href="#about">À Propos</a>
     <a href="#portfolio">Portfolio</a>
-    <a href="#expertise">Expertise</a>
-    <a href="#experience">Parcours</a>
+    <a href="#ia">IA & Outils</a>
+    <a href="#temoignages">Témoignages</a>
     <a href="#contact" class="nav-cta">Contact</a>
   </div>
   <div class="nav-hamburger" id="hamburger">
@@ -1553,10 +1553,331 @@ footer {
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="temoignages" class="section" style="background:var(--bg-warm);border-top:1px solid var(--border);">
+<style>
+/* ─── TESTIMONIALS ─── */
+.testi-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 2rem;
+  margin-bottom: 4rem;
+}
+.btn-linkedin {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  padding: 0.85rem 1.8rem;
+  border: 1px solid rgba(10,102,194,0.4);
+  background: rgba(10,102,194,0.07);
+  color: #5ba3d9;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.btn-linkedin:hover {
+  background: rgba(10,102,194,0.15);
+  border-color: rgba(10,102,194,0.7);
+  color: #74b8e8;
+  transform: translateY(-2px);
+}
+.btn-linkedin svg { width: 15px; height: 15px; fill: currentColor; flex-shrink:0; }
+
+/* Carousel wrapper */
+.testi-track-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.testi-track-wrap::before,
+.testi-track-wrap::after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+  pointer-events: none;
+}
+.testi-track-wrap::before { left:0; background: linear-gradient(to right, var(--bg-warm), transparent); }
+.testi-track-wrap::after  { right:0; background: linear-gradient(to left,  var(--bg-warm), transparent); }
+
+.testi-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+  will-change: transform;
+}
+
+.testi-card {
+  flex: 0 0 calc(50% - 0.75rem);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  background: rgba(255,255,255,0.015);
+  position: relative;
+  transition: border-color 0.3s, background 0.3s;
+}
+.testi-card:hover {
+  border-color: rgba(201,164,110,0.35);
+  background: rgba(201,164,110,0.04);
+}
+.testi-card::before {
+  content: '\201C';
+  position: absolute; top: 1.2rem; right: 1.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(201,164,110,0.12);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.testi-quote {
+  font-size: 0.88rem;
+  color: rgba(240,234,224,0.7);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+.testi-quote strong { color: var(--white); font-style: normal; font-weight: 500; }
+
+.testi-author {
+  display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+.testi-avatar {
+  width: 42px; height: 42px; border-radius: 0;
+  border: 1px solid var(--border);
+  background: var(--gold-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.testi-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.2;
+}
+.testi-role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.2rem;
+}
+.testi-org {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 300;
+  margin-top: 0.1rem;
+}
+
+/* Nav dots + arrows */
+.testi-nav {
+  display: flex; align-items: center; gap: 1.5rem;
+  margin-top: 2.5rem;
+  justify-content: center;
+}
+.testi-arrow {
+  width: 44px; height: 44px;
+  border: 1px solid var(--border);
+  background: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--muted);
+}
+.testi-arrow:hover { border-color: var(--gold); color: var(--gold); }
+.testi-arrow svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+.testi-dots { display: flex; gap: 0.5rem; }
+.testi-dot {
+  width: 6px; height: 6px;
+  background: var(--border);
+  border: none; cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+.testi-dot.active {
+  width: 24px;
+  background: var(--gold);
+}
+
+/* LinkedIn badge on card */
+.testi-li-badge {
+  position: absolute; top: 1.5rem; left: 2rem;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  color: #5ba3d9;
+  opacity: 0.6;
+}
+.testi-li-badge svg { width: 10px; height: 10px; fill: currentColor; }
+
+@media(max-width:900px){
+  .testi-card { flex: 0 0 calc(100% - 0rem); }
+  .testi-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+  <div class="section-narrow">
+    <div class="testi-header">
+      <div>
+        <div class="section-label reveal up">06 — Ils parlent de moi</div>
+        <h2 class="section-title reveal up" style="transition-delay:0.1s">
+          Ce que disent<br>ceux qui m'ont <em>côtoyé.</em>
+        </h2>
+      </div>
+      <a href="https://www.linkedin.com/in/joseph-hamdy-kamal-5abb7b241/details/recommendations/" target="_blank" class="btn-linkedin reveal up" style="transition-delay:0.2s">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Voir toutes les recommandations
+      </a>
+    </div>
+
+    <!-- Carousel -->
+    <div class="testi-track-wrap reveal up" style="transition-delay:0.25s">
+      <div class="testi-track" id="testiTrack">
+
+        <!-- 1. Michael Rezkallah — Chef de Projet -->
+        <div class="testi-card">
+          <div class="testi-li-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn · Recommandation vérifiée
+          </div>
+          <p class="testi-quote">
+            Joseph est devenu <strong>indispensable</strong> dans la conception et la coordination de nos projets haut de gamme. Il a géré et livré avec succès <strong>25 projets résidentiels complexes dans les délais</strong>. Au-delà de ses compétences techniques (SketchUp, AutoCAD), Joseph a démontré une maîtrise remarquable du cycle de projet complet — de la coordination fournisseurs au contrôle qualité sur site. Un professionnel à fort impact, avec la rare capacité d'<strong>allier vision créative et exécution sans faille.</strong>
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">MR</div>
+            <div>
+              <div class="testi-name">Michael Rezkallah</div>
+              <div class="testi-role">Project Manager</div>
+              <div class="testi-org">Nawat Al Talaea · KSA — Manager direct</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Michael Rezkallah — Marketing -->
+        <div class="testi-card">
+          <div class="testi-li-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn · Recommandation vérifiée
+          </div>
+          <p class="testi-quote">
+            Joseph a été <strong>déterminant dans le développement de notre présence digitale</strong>. Il a géré avec expertise nos réseaux sociaux et mené des campagnes de marketing digital couronnées de succès, produisant régulièrement des vidéos promotionnelles de qualité qui ont <strong>considérablement boosté notre engagement en ligne</strong>. Joseph est un professionnel créatif, proactif et hautement polyvalent, avec une <strong>vision acérée de la communication visuelle qui se traduit directement en résultats tangibles.</strong>
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">MR</div>
+            <div>
+              <div class="testi-name">Michael Rezkallah</div>
+              <div class="testi-role">Project Manager</div>
+              <div class="testi-org">Nawat Al Talaea · KSA — Manager direct</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Benoît Hamon -->
+        <div class="testi-card">
+          <div class="testi-li-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn · Recommandation vérifiée
+          </div>
+          <p class="testi-quote">
+            Joseph a réalisé son service civique chez SINGA. De l'avis de tous, il a été <strong>engagé, disponible et très professionnel</strong> dans les missions qui lui ont été confiées. Cette expérience lui a permis d'évoluer dans un environnement <strong>multiculturel, entrepreneurial et inclusif</strong> — un <strong>atout réel pour toute entreprise qui lui fera confiance.</strong>
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">BH</div>
+            <div>
+              <div class="testi-name">Benoît Hamon</div>
+              <div class="testi-role">CEO SINGA Global · Président d'ESS France</div>
+              <div class="testi-org">SINGA · Supérieur hiérarchique</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Hanieh Hadizadeh -->
+        <div class="testi-card">
+          <div class="testi-li-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn · Recommandation vérifiée
+          </div>
+          <p class="testi-quote">
+            J'ai eu le plaisir de collaborer avec Joseph au sein de SINGA Paris et je loue sa <strong>détermination, l'énergie et les idées</strong> qu'il a su mettre au service de l'association. Il a toutes les qualités pour faire un excellent collaborateur qui a le <strong>sens du collectif et cherche toujours à se dépasser.</strong>
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">HH</div>
+            <div>
+              <div class="testi-name">Hanieh Hadizadeh</div>
+              <div class="testi-role">Directrice SINGA Paris</div>
+              <div class="testi-org">SINGA · Supérieure directe</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Véronique Mezianili -->
+        <div class="testi-card">
+          <div class="testi-li-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn · Recommandation vérifiée
+          </div>
+          <p class="testi-quote">
+            C'est un jeune homme intelligent, doué d'un <strong>fort potentiel relationnel</strong>, linguistique et digital. En quelques mots : <strong>"communication" et "marketing digital"</strong> sont ses forces ; la bienveillance et la générosité ses valeurs. Je vous recommande vivement de le rencontrer pour <strong>envisager sereinement vos perspectives de recrutement.</strong>
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">VM</div>
+            <div>
+              <div class="testi-name">Véronique Mezianili</div>
+              <div class="testi-role">Conseillère en insertion</div>
+              <div class="testi-org">Mission Locale Vallée de Montmorency</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Maëlle Girard -->
+        <div class="testi-card">
+          <div class="testi-li-badge">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn · Recommandation vérifiée
+          </div>
+          <p class="testi-quote">
+            Joseph a travaillé sur différents enjeux informatiques qu'il a abordés avec <strong>professionnalisme et implication</strong>. J'ai pu apprécier son <strong>sérieux et sa motivation</strong> tout au long de sa mission chez SINGA Paris. Je suis convaincue qu'il saura mettre à profit ses qualités dans ses futurs projets professionnels.
+          </p>
+          <div class="testi-author">
+            <div class="testi-avatar">MG</div>
+            <div>
+              <div class="testi-name">Maëlle Girard</div>
+              <div class="testi-role">Chargée d'accompagnement à l'entrepreneuriat</div>
+              <div class="testi-org">SINGA Paris · Collègue directe</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /track -->
+    </div><!-- /wrap -->
+
+    <!-- Navigation -->
+    <div class="testi-nav">
+      <button class="testi-arrow" id="testiPrev" aria-label="Précédent">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <div class="testi-dots" id="testiDots"></div>
+      <button class="testi-arrow" id="testiNext" aria-label="Suivant">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="section">
   <div class="section-narrow">
-    <div class="section-label reveal up">05 — Contact</div>
+    <div class="section-label reveal up">07 — Contact</div>
     <div class="contact-grid">
       <div class="contact-info reveal left">
         <h2 class="contact-title">
@@ -1707,6 +2028,59 @@ hamburger.addEventListener('click', () => {
   navLinksWrap.style.borderBottom = '1px solid var(--border)';
   navLinksWrap.style.zIndex = '99';
 });
+
+/* ─── TESTIMONIALS CAROUSEL ─── */
+(function(){
+  const track   = document.getElementById('testiTrack');
+  const prev    = document.getElementById('testiPrev');
+  const next    = document.getElementById('testiNext');
+  const dotsWrap= document.getElementById('testiDots');
+  if(!track) return;
+
+  const cards   = Array.from(track.children);
+  const visible = () => window.innerWidth <= 900 ? 1 : 2;
+  let current   = 0;
+
+  function totalPages(){ return Math.ceil(cards.length / visible()); }
+
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    for(let i=0;i<totalPages();i++){
+      const d = document.createElement('button');
+      d.className = 'testi-dot' + (i===current?' active':'');
+      d.addEventListener('click', ()=>{ current=i; render(); });
+      dotsWrap.appendChild(d);
+    }
+  }
+
+  function render(){
+    const v = visible();
+    const cardWidth = track.parentElement.offsetWidth;
+    const gap = 24;
+    const step = (cardWidth / v) + (v===1?0:gap/2);
+    track.style.transform = `translateX(-${current * (cardWidth + gap)}px)`;
+    dotsWrap.querySelectorAll('.testi-dot').forEach((d,i)=>{
+      d.classList.toggle('active', i===current);
+    });
+  }
+
+  prev.addEventListener('click', ()=>{ current = Math.max(0, current-1); render(); });
+  next.addEventListener('click', ()=>{ current = Math.min(totalPages()-1, current+1); render(); });
+  window.addEventListener('resize', ()=>{ current=0; buildDots(); render(); });
+
+  buildDots();
+  render();
+
+  // Touch/swipe support
+  let startX = 0;
+  track.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', e=>{
+    const diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff)>50){
+      if(diff>0) next.click(); else prev.click();
+    }
+  });
+})();
 
 /* ─── CONTACT FORM SUBMIT SIMULATION ─── */
 document.querySelector('.btn-submit').addEventListener('click', function() {
