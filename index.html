@@ -1230,6 +1230,7 @@ footer {
           <span style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(201,164,110,0.25);color:var(--muted);letter-spacing:0.1em">Équipe · 4 semaines</span>
           <span style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(201,164,110,0.25);color:var(--muted);letter-spacing:0.1em">Swift · Figma · Agile</span>
           <a href="VitalPass___PMO_Joseph_HAMDY_KAMALr4fegwerg.pdf" download style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(201,164,110,0.4);color:var(--gold);letter-spacing:0.1em;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(201,164,110,0.1)'" onmouseout="this.style.background='transparent'">↓ Voir le dossier PDF</a>
+          <button onclick="document.getElementById('figmaModal').classList.add('open')" style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.8rem;border:1px solid rgba(74,222,128,0.5);color:#4ade80;letter-spacing:0.1em;background:rgba(74,222,128,0.07);cursor:pointer;transition:background 0.2s" onmouseover="this.style.background='rgba(74,222,128,0.15)'" onmouseout="this.style.background='rgba(74,222,128,0.07)'">▶ Voir la présentation Figma</button>
         </div>
       </div>
     </div>
@@ -2145,6 +2146,138 @@ footer {
   </div>
 </footer>
 
+<!-- FIGMA MODAL — VitalPass -->
+<style>
+.figma-modal {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(9,8,10,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex; flex-direction: column;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), visibility 0.4s;
+}
+.figma-modal.open {
+  opacity: 1; visibility: visible;
+}
+.figma-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.figma-modal-title {
+  display: flex; align-items: center; gap: 1rem;
+}
+.figma-modal-title span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.figma-modal-title strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+.figma-modal-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid rgba(74,222,128,0.35);
+  background: rgba(74,222,128,0.07);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  color: #4ade80;
+}
+.figma-modal-actions {
+  display: flex; align-items: center; gap: 1rem;
+}
+.figma-modal-close {
+  width: 40px; height: 40px;
+  border: 1px solid var(--border);
+  background: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: all 0.3s;
+}
+.figma-modal-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.figma-modal-body {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+.figma-modal-body iframe {
+  width: 100%; height: 100%;
+  border: none;
+  display: block;
+}
+.figma-modal-footer {
+  padding: 0.8rem 2rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.figma-modal-footer-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+.figma-open-full {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: opacity 0.3s;
+}
+.figma-open-full:hover { opacity: 0.7; }
+</style>
+
+<div class="figma-modal" id="figmaModal" role="dialog" aria-label="Présentation VitalPass Figma">
+  <div class="figma-modal-header">
+    <div class="figma-modal-title">
+      <span>01 / 07</span>
+      <strong>VitalPass — Présentation PMO</strong>
+      <div class="figma-modal-badge">Apple Foundation × Simplon</div>
+    </div>
+    <div class="figma-modal-actions">
+      <a href="https://embed.figma.com/deck/m5vGyQujzYS1oGK4ySLpvj/VitalPass-%E2%80%93-PMO-Joseph-HAMDY-KAMAL?node-id=1-310&viewport=-7%2C4%2C0.31&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share" target="_blank" class="figma-open-full">
+        Ouvrir dans Figma ↗
+      </a>
+      <button class="figma-modal-close" id="figmaClose" aria-label="Fermer">✕</button>
+    </div>
+  </div>
+  <div class="figma-modal-body">
+    <iframe
+      id="figmaFrame"
+      src=""
+      data-src="https://embed.figma.com/deck/m5vGyQujzYS1oGK4ySLpvj/VitalPass-%E2%80%93-PMO-Joseph-HAMDY-KAMAL?node-id=1-310&viewport=-7%2C4%2C0.31&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&embed-host=share"
+      allowfullscreen
+      loading="lazy"
+      title="VitalPass – Présentation PMO Figma"
+    ></iframe>
+  </div>
+  <div class="figma-modal-footer">
+    <span class="figma-modal-footer-text">Figma Deck · Joseph HAMDY KAMAL · Apple Foundation Program × Simplon · 2025</span>
+    <a href="VitalPass___PMO_Joseph_HAMDY_KAMALr4fegwerg.pdf" download class="figma-open-full">
+      ↓ Télécharger le PDF
+    </a>
+  </div>
+</div>
+
 <!-- FULLSCREEN MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-inner">
@@ -2286,6 +2419,41 @@ mobileItems.forEach(item => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeMenu();
 });
+
+/* ─── FIGMA MODAL ─── */
+(function(){
+  const modal  = document.getElementById('figmaModal');
+  const frame  = document.getElementById('figmaFrame');
+  const close  = document.getElementById('figmaClose');
+  if(!modal) return;
+
+  function openModal() {
+    // Lazy-load the iframe only when opened
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = frame.getAttribute('data-src');
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  close.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  // Also hook the card button (already uses inline onclick, but let's reinforce)
+  document.querySelectorAll('[onclick*="figmaModal"]').forEach(btn => {
+    btn.removeAttribute('onclick');
+    btn.addEventListener('click', e => { e.stopPropagation(); openModal(); });
+  });
+})();
 
 /* ─── TESTIMONIALS CAROUSEL ─── */
 (function(){
