@@ -447,10 +447,13 @@ nav.scrolled {
   aspect-ratio: 4/3;
   cursor: none;
 }
-.project-card.tall { aspect-ratio: 3/4; grid-row: span 2; }
-.project-card.wide { grid-column: span 2; aspect-ratio: 16/6; }
-.project-card:last-child { border-bottom: none; }
-.project-card:nth-child(even) { border-right: none; }
+.project-card.wide {
+  grid-column: span 2;
+  aspect-ratio: 16/6;
+  border-right: none;
+}
+/* Remove right border on right-column cards */
+.project-card:not(.wide):nth-child(even) { border-right: none; }
 
 .project-card img {
   width: 100%; height: 100%;
@@ -516,6 +519,7 @@ nav.scrolled {
 }
 .project-link svg { transition: transform 0.3s; }
 .project-link:hover svg { transform: translateX(4px); }
+.project-card:hover .project-tags { opacity: 1 !important; }
 .project-card:hover .project-link { opacity: 1; transform: translateY(0); }
 .project-number {
   position: absolute; top: 1.5rem; right: 1.5rem;
@@ -1006,8 +1010,9 @@ footer {
   .section { padding: 5rem 1.5rem; }
   .hero-title { font-size: 3rem; }
   .projects-grid { grid-template-columns: 1fr; }
-  .project-card.wide { grid-column: span 1; aspect-ratio: 4/3; }
-  .project-card:nth-child(even) { border-right: 1px solid var(--border); }
+  .project-card.wide { grid-column: span 1; aspect-ratio: 4/3; border-right: none; }
+  .project-card:not(.wide):nth-child(even) { border-right: none; }
+  .project-card { border-right: none; }
   .form-row { grid-template-columns: 1fr; }
   .info-grid { grid-template-columns: 1fr; }
   .info-item { border-right: none; }
@@ -1211,23 +1216,28 @@ footer {
 
   <div class="projects-grid" style="max-width:1200px;margin:4rem auto 0">
 
-    <!-- Card 1: VitalPass — WIDE (featured, most impactful) -->
-    <div class="project-card wide reveal up" style="border-bottom:1px solid var(--border)">
+    <!-- Card 01: VitalPass — WIDE featured -->
+    <div class="project-card wide reveal up">
       <div class="project-number">01 / 07</div>
-      <img src="vitalpass-cover.png" alt="VitalPass iOS App" onerror="this.style.background='linear-gradient(135deg,#0d2b1a 0%,#0a1f0d 50%,#092010 100%)'">
-      <div class="project-overlay">
+      <div class="project-bg-fallback" style="position:absolute;inset:0;background:linear-gradient(135deg,#071a0e 0%,#0d2b1a 60%,#071410 100%);z-index:0"></div>
+      <img src="vitalpass-cover.png" alt="VitalPass iOS App" style="position:relative;z-index:1" onerror="this.style.display='none'">
+      <div class="project-overlay" style="z-index:2">
         <div class="project-cat">iOS App · PMO · UI/UX Figma · Swift/SwiftUI · Tech For Good</div>
-        <div class="project-name">VitalPass — Application iOS d'Urgence Médicale</div>
-        <div class="project-desc">En tant que PMO de l'équipe, j'ai piloté en 4 semaines (Agile/Scrum) la conception et le développement d'une app iOS native permettant aux secouristes d'accéder instantanément aux antécédents médicaux d'un patient — hors ligne, zéro friction. Certifié Apple Foundation Program × Simplon.</div>
-        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:0.8rem">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.55rem;padding:0.2rem 0.6rem;border:1px solid rgba(74,222,128,0.3);color:#4ade80;letter-spacing:0.1em">Apple Foundation × Simplon</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.55rem;padding:0.2rem 0.6rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.1em">4 semaines · Équipe 5 pers.</span>
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.55rem;padding:0.2rem 0.6rem;border:1px solid var(--border);color:var(--muted);letter-spacing:0.1em">Swift · Figma · Agile</span>
+        <div class="project-name">VitalPass — App iOS d'Urgence Médicale</div>
+        <div class="project-desc">PMO d'une équipe de 5 — 4 semaines Agile/Scrum pour concevoir et développer une app iOS native transmettant instantanément les antécédents médicaux aux secouristes. Certifié Apple Foundation Program × Simplon.</div>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:0.8rem;opacity:0;transition:opacity 0.4s ease 0.2s" class="project-tags">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(74,222,128,0.4);color:#4ade80;letter-spacing:0.1em">Apple Foundation × Simplon</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(201,164,110,0.25);color:var(--muted);letter-spacing:0.1em">Équipe · 4 semaines</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(201,164,110,0.25);color:var(--muted);letter-spacing:0.1em">Swift · Figma · Agile</span>
+          <a href="VitalPass___PMO_Joseph_HAMDY_KAMALr4fegwerg.pdf" download style="font-family:'IBM Plex Mono',monospace;font-size:0.52rem;padding:0.2rem 0.6rem;border:1px solid rgba(201,164,110,0.4);color:var(--gold);letter-spacing:0.1em;text-decoration:none;transition:background 0.2s" onmouseover="this.style.background='rgba(201,164,110,0.1)'" onmouseout="this.style.background='transparent'">↓ Voir le dossier PDF</a>
         </div>
       </div>
     </div>
+
+    <!-- Card 02: Joe for Design — WIDE -->
+    <div class="project-card wide reveal up" style="transition-delay:0.05s">
       <div class="project-number">02 / 07</div>
-      <img src="joe-design-macbook.jpg.png" alt="Joe for Design" onerror="this.src='uiux.jpg'">
+      <img src="joe-design-macbook.jpg.png" alt="Joe for Design" onerror="this.style.background='linear-gradient(135deg,#0d0a07,#1a1208)'">
       <div class="project-overlay">
         <div class="project-cat">Studio Digital · Branding · Web Design</div>
         <div class="project-name">Joe for Design</div>
@@ -1238,10 +1248,10 @@ footer {
       </div>
     </div>
 
-    <!-- Card 3: Rattan Palace -->
+    <!-- Card 03: Rattan Palace -->
     <div class="project-card reveal up" style="transition-delay:0.1s">
       <div class="project-number">03 / 07</div>
-      <img src="WEBSITE VIEW DESKTOP.png" alt="Rattan Palace">
+      <img src="WEBSITE VIEW DESKTOP.png" alt="Rattan Palace" onerror="this.style.background='linear-gradient(135deg,#0a0d07,#161a0d)'">
       <div class="project-overlay">
         <div class="project-cat">E-Commerce · PrestaShop · Identité Visuelle</div>
         <div class="project-name">Rattan Palace</div>
@@ -1252,10 +1262,10 @@ footer {
       </div>
     </div>
 
-    <!-- Card 4: Khayal -->
+    <!-- Card 04: Khayal -->
     <div class="project-card reveal up" style="transition-delay:0.15s">
       <div class="project-number">04 / 07</div>
-      <img src="khayal-desktop.jpg" alt="Khayal & Co">
+      <img src="khayal-desktop.jpg" alt="Khayal & Co" onerror="this.style.background='linear-gradient(135deg,#08080a,#12101a)'">
       <div class="project-overlay">
         <div class="project-cat">Luxury UI · Site Vitrine · Minimalisme</div>
         <div class="project-name">Khayal & Co</div>
@@ -1266,10 +1276,10 @@ footer {
       </div>
     </div>
 
-    <!-- Card 5: Morpholia -->
+    <!-- Card 05: Morpholia -->
     <div class="project-card reveal up" style="transition-delay:0.2s">
       <div class="project-number">05 / 07</div>
-      <img src="morpholia-project.png" alt="Morpholia">
+      <img src="morpholia-project.png" alt="Morpholia" onerror="this.style.background='linear-gradient(135deg,#0a0710,#160d20)'">
       <div class="project-overlay">
         <div class="project-cat">UX Research · Accessibilité · Mode Inclusive</div>
         <div class="project-name">Morpholia</div>
@@ -1277,26 +1287,26 @@ footer {
       </div>
     </div>
 
-    <!-- Card 6: Interior 3D -->
+    <!-- Card 06: Interior 3D -->
     <div class="project-card reveal up" style="transition-delay:0.25s">
       <div class="project-number">06 / 07</div>
-      <img src="design-dressing-1.jpg" alt="Architecture 3D" onerror="this.src='interior.jpg'">
+      <img src="design-dressing-1.jpg" alt="Architecture 3D" onerror="this.style.background='linear-gradient(135deg,#0a0807,#1a1410)'">
       <div class="project-overlay">
-        <div class="project-cat">3D · AutoCAD · 3ds Max · Architecture</div>
+        <div class="project-cat">3D · AutoCAD · Architecture d'intérieur</div>
         <div class="project-name">Interior Rendering</div>
         <div class="project-desc">Modélisation et rendus photoréalistes d'espaces résidentiels — dressing, cuisines, salons — livrés pour des clients particuliers et promoteurs.</div>
       </div>
     </div>
 
-    <!-- Card 7: Hilton — WIDE -->
+    <!-- Card 07: Hilton — WIDE -->
     <div class="project-card wide reveal up" style="transition-delay:0.3s">
       <div class="project-number">07 / 07</div>
-      <img src="hilton-1.jpeg" alt="Hilton Hospitality" style="object-position:center">
+      <img src="hilton-1.jpeg" alt="Hilton Hospitality" style="object-position:center" onerror="this.style.background='linear-gradient(135deg,#080609,#100d14)'">
       <div class="project-overlay">
         <div class="project-cat">Corporate UX · App Mobile · Hôtellerie de luxe</div>
         <div class="project-name">Hilton Hospitality — Réservation Mobile</div>
         <div class="project-desc">Optimisation du flux de réservation mobile pour le groupe hôtelier international, visant à augmenter la conversion directe et fluidifier l'expérience VIP.</div>
-        <span class="project-link" style="opacity:0.5;pointer-events:none">
+        <span class="project-link" style="opacity:0.45;pointer-events:none;cursor:default">
           Étude de cas confidentielle
         </span>
       </div>
